@@ -6,11 +6,12 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <set>
 
 #include <SFML/Graphics.hpp>
 
 #include "domain.hpp"
-#include "window.h"
+#include "window.hpp"
 #include "player.hpp"
 #include "background.hpp"
 #include "drawable.hpp"
@@ -39,8 +40,12 @@ public:
 	void drawField();
 
 private:
-	std::vector<MyDrawable*> mDrawableObjects;
+	//std::set<MyDrawable*> mDrawableObjects;
+	//std::set<MyDrawable*> mDrawableObjects;
 	//sf::RenderWindow mWindow;
+	//auto ;
+	//std::set<int, decltype(cmp)> s;
+	std::set<MyDrawable*, DrawableComparator> mDrawableObjects;
 };
 
 //--------------------------------------------------------------------------------

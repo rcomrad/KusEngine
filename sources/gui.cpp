@@ -17,11 +17,14 @@
 //#define SHOW_CELLS_COORDINATES
 
 GUI::GUI(sint_16 aN, sint_16 aM) //:
+    //s(cmp = [](int a, int b) { return a < b; })
+    //mDrawableObjects([](MyDrawable* a, MyDrawable* b) { return a < b; })
     //mWindow     (sf::VideoMode(aN, aM), "Evolution"),
 {
-    mDrawableObjects.push_back(new Background(TEXTURES + "background.png"));
-    mDrawableObjects.push_back(new Player(TEXTURES + "player.png"));
-    
+
+
+    mDrawableObjects.insert(new Player(TEXTURES + "player.png"));
+    mDrawableObjects.insert(new Background(TEXTURES + "background.png"));
 }
 
 bool

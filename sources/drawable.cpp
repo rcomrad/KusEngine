@@ -2,7 +2,8 @@
 
 //Drawable::Drawable(std::string aTexturePath, sf::RenderWindow& aWindow) :
 //    mWindow(aWindow)
-MyDrawable::MyDrawable(std::string aTexturePath)
+MyDrawable::MyDrawable(std::string aTexturePath, uint_8 aLayer) :
+    mLayer      (aLayer)
 {
     mTexture.loadFromFile(aTexturePath);
     mSprite.setTexture(mTexture);
@@ -28,4 +29,16 @@ MyDrawable::draw()
     //}
 
     mWindow.draw(mSprite);
+}
+
+bool 
+MyDrawable::operator<(const MyDrawable& aOther) const
+{
+    if (mLayer == aOther.mLayer) return this < &aOther;
+    return mLayer < aOther.mLayer;
+}
+
+bool 
+DrawableComparator::operator() (MyDrawable* a, MyDrawable* b) const {
+    return (*a) < (*b);
 }
