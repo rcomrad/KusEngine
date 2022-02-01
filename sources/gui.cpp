@@ -23,8 +23,8 @@ GUI::GUI(sint_16 aN, sint_16 aM) //:
 {
 
 
-    mDrawableObjects.insert(new Player(TEXTURES + "player.png"));
-    mDrawableObjects.insert(new Background(TEXTURES + "background.png"));
+    //mDrawableObjects.insert(new Player(TEXTURES + "player.png"));
+    //mDrawableObjects.insert(new Background(TEXTURES + "background.png"));
 }
 
 bool
@@ -33,45 +33,56 @@ GUI::isAppClosed() const
     return !mWindow.isOpen();
 }
 
-std::vector<GUI::EventType>
+std::vector<Event*>
 GUI::getEvents()
 {
-    std::vector<EventType> result;
+    std::vector<Event*> result;
     sf::Event event;
     while (mWindow.pollEvent(event))
     {
         if (event.type == sf::Event::Closed)
             mWindow.close();
-
-        if (event.type == sf::Event::KeyReleased)
+        else if (event.type == sf::Event::MouseButtonReleased)
         {
-            switch (event.key.code)
-            {
-            case sf::Keyboard::Key::Tab     :
-                result.push_back(GUI::EventType::SWITCH_DRAW_MODE);
-                break;
-            case sf::Keyboard::Key::Space   :
-                result.push_back(GUI::EventType::SWITCH_PAUSE);
-                break;
-            case sf::Keyboard::Key::X       :
-                result.push_back(GUI::EventType::INCREASE_SPEED);
-                break;
-            case sf::Keyboard::Key::Z       :
-                result.push_back(GUI::EventType::DECREASE_SPEED);
-                break;
-            case sf::Keyboard::Key::LShift  :
-                result.push_back(GUI::EventType::STANDART_PAUSE);
-                break;
-            default:
-                break;
-            }
+            result.push_back(new MoveEvent(
+                sf::Mouse::getPosition(mWindow).x,
+                sf::Mouse::getPosition(mWindow).y)
+            );
+        }
+        else if (event.type == sf::Event::KeyReleased)
+        {
+            //switch (event.key.code)
+            //{
+            //case sf::Keyboard::Key::Tab     :
+            //    result.push_back(GUI::EventType::SWITCH_DRAW_MODE);
+            //    break;
+            //case sf::Keyboard::Key::Space   :
+            //    result.push_back(GUI::EventType::SWITCH_PAUSE);
+            //    break;
+            //case sf::Keyboard::Key::X       :
+            //    result.push_back(GUI::EventType::INCREASE_SPEED);
+            //    break;
+            //case sf::Keyboard::Key::Z       :
+            //    result.push_back(GUI::EventType::DECREASE_SPEED);
+            //    break;
+            //case sf::Keyboard::Key::LShift  :
+            //    result.push_back(GUI::EventType::STANDART_PAUSE);
+            //    break;
+            //default:
+            //    break;
+            //}
         }
     }
     return result;
 }
 
 void 
-GUI::drawField()
+GUI::drawObjects
+(
+    const
+    std::set<MyDrawable*, DrawableComparator>*
+    aDrawableObjects
+)
 {
     mWindow.clear(sf::Color::Black);
 
@@ -79,7 +90,7 @@ GUI::drawField()
     //d.draw();
     //mWindow.draw(cartoon);
     
-    for (MyDrawable* drawTarget : mDrawableObjects) drawTarget->draw();
+    for (MyDrawable* drawTarget : *aDrawableObjects) drawTarget->draw();
 
     mWindow.display();
 }

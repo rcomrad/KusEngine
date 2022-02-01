@@ -1,7 +1,7 @@
-#include "god.hpp"
+#include "core.hpp"
 
 int main()
 {
-	God g;
+	Core g;
 	g.run();
 }

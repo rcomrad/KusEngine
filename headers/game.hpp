@@ -5,16 +5,22 @@
 
 #include <iostream>
 
-class Game
+#include "program_state.h"
+#include "player.hpp"
+#include "background.hpp"
+
+class Game : public ProgramState
 {
 public:
 	Game();
 	~Game();
 
-	void run();
-
+	virtual void run(std::vector<Event*> aEvents);
+	virtual
+		const std::set<MyDrawable*, DrawableComparator>*
+		getPresentation() const;
 private:
-
+	std::set<MyDrawable*, DrawableComparator> mObjects;
 };
 
 //--------------------------------------------------------------------------------

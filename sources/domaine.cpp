@@ -1,5 +1,8 @@
 #include "domain.hpp"
 
+#ifdef BILL_WINDOWS
+#include <windows.h>
+#endif
 
 std::string 
 getMainPath() {

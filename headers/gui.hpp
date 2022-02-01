@@ -16,7 +16,7 @@
 #include "background.hpp"
 #include "drawable.hpp"
 
-
+#include "event.h"
 
 class GUI : MyWindow
 //class GUI
@@ -35,9 +35,14 @@ public:
 	GUI(sint_16 aN, sint_16 aM);
 
 	bool isAppClosed() const;
-	std::vector<EventType> getEvents();
+	std::vector<Event*> getEvents();
 
-	void drawField();
+	void drawObjects
+	(
+		const 
+		std::set<MyDrawable*, DrawableComparator>* 
+		aDrawableObjects
+	);
 
 private:
 	//std::set<MyDrawable*> mDrawableObjects;
@@ -45,7 +50,7 @@ private:
 	//sf::RenderWindow mWindow;
 	//auto ;
 	//std::set<int, decltype(cmp)> s;
-	std::set<MyDrawable*, DrawableComparator> mDrawableObjects;
+	;
 };
 
 //--------------------------------------------------------------------------------

@@ -1,29 +1,28 @@
-#ifndef GOD_H
-#define GOD_H
+#ifndef CORE_H
+#define CORE_H
 
 //--------------------------------------------------------------------------------
 
 #include <iostream>
 
 #include "gui.hpp"
+#include "program_state.h"
+#include "game.hpp"
 
-class God
+class Core
 {
 public:
-	God();
-	~God();
+	Core();
+	~Core();
 
 	void run();
 
 private:
 	GUI mView;
 
-	bool mNeedToDraw;
-	bool mIsTurnedOff;
-
-	uint_64 mPauseTime = 1 * 7 * 7 * 7 * 7 * 7 * 7 * 7;
+	ProgramState* mCurrentState;
 };
 
 //--------------------------------------------------------------------------------
 
-#endif // GOD_H
+#endif // CORE_H
