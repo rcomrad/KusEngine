@@ -6,7 +6,7 @@
 #include <iostream>
 
 #include "gui.hpp"
-#include "program_state.h"
+#include "program_state.hpp"
 #include "game.hpp"
 
 class Core

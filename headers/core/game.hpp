@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-#include "program_state.h"
+#include "program_state.hpp"
 #include "player.hpp"
 #include "background.hpp"
 
@@ -21,6 +21,7 @@ public:
 		getPresentation() const;
 private:
 	std::set<MyDrawable*, DrawableComparator> mObjects;
+	//std::vector<MyDrawable*> mObjectss;
 };
 
 //--------------------------------------------------------------------------------

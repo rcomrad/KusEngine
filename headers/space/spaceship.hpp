@@ -1,14 +1,15 @@
 #ifndef SPACESHIP_H
 #define SPACESHIP_H
 
-#include "drawable.hpp"
+#include "space_object.hpp"
 
-class Spaceship : public MyDrawable
+class Spaceship : public SpaceObject
 {
 public:
 	//Spaceship(std::string aTexturePath, sf::RenderWindow& aWindow);
-	Spaceship(std::string aTexturePath);
+	Spaceship(std::string aTexturePath, uint_8 aLayer = 0);
 	virtual ~Spaceship();
+	virtual void move(Pair<int> aCoord);
 
 private:
 };

@@ -16,7 +16,7 @@
 #include "background.hpp"
 #include "drawable.hpp"
 
-#include "event.h"
+#include "event.hpp"
 
 class GUI : MyWindow
 //class GUI

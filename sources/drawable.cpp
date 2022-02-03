@@ -42,3 +42,9 @@ bool
 DrawableComparator::operator() (MyDrawable* a, MyDrawable* b) const {
     return (*a) < (*b);
 }
+
+void
+MyDrawable::moveSprite(Pair<int> aCoord)
+{
+    mSprite.setPosition({ float(aCoord.x), float(aCoord.y) });
+}

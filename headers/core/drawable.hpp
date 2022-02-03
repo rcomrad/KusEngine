@@ -14,6 +14,9 @@ public:
 	void draw();
 	bool operator<(const MyDrawable& aOther) const;
 
+protected:
+	void moveSprite(Pair<int> aCoord);
+
 private:
 	sf::Texture mTexture;
 	sf::Sprite mSprite;

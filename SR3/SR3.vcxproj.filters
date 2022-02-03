@@ -13,9 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы заголовков\space">
+      <UniqueIdentifier>{39f15552-584f-4bb0-96f1-13a3eb15e053}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\core">
+      <UniqueIdentifier>{5dddc34e-cf4b-415f-a7b5-a8817cdf376b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\sources\god.cpp">
+    <ClCompile Include="..\sources\core.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="..\sources\gui.cpp">
@@ -42,31 +48,61 @@
     <ClCompile Include="..\sources\window.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="..\sources\event.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sources\program_state.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sources\space_object.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sources\game.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sources\game_object.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\headers\domain.hpp">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="..\headers\core\window.hpp">
+      <Filter>Файлы заголовков\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\god.hpp">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="..\headers\core\core.hpp">
+      <Filter>Файлы заголовков\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\gui.hpp">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="..\headers\core\domain.hpp">
+      <Filter>Файлы заголовков\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\drawable.hpp">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="..\headers\core\drawable.hpp">
+      <Filter>Файлы заголовков\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\spaceship.hpp">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="..\headers\core\event.hpp">
+      <Filter>Файлы заголовков\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\player.hpp">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="..\headers\core\game.hpp">
+      <Filter>Файлы заголовков\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\background.hpp">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="..\headers\core\gui.hpp">
+      <Filter>Файлы заголовков\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\window.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="..\headers\core\program_state.hpp">
+      <Filter>Файлы заголовков\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\space\spaceship.hpp">
+      <Filter>Файлы заголовков\space</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\space\background.hpp">
+      <Filter>Файлы заголовков\space</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\space\player.hpp">
+      <Filter>Файлы заголовков\space</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\space\space_object.hpp">
+      <Filter>Файлы заголовков\space</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\core\game_object.hpp">
+      <Filter>Файлы заголовков\core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

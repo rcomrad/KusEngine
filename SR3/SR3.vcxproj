@@ -22,22 +22,32 @@
     <ClCompile Include="..\sources\background.cpp" />
     <ClCompile Include="..\sources\domaine.cpp" />
     <ClCompile Include="..\sources\drawable.cpp" />
-    <ClCompile Include="..\sources\god.cpp" />
+    <ClCompile Include="..\sources\event.cpp" />
+    <ClCompile Include="..\sources\core.cpp" />
+    <ClCompile Include="..\sources\game.cpp" />
+    <ClCompile Include="..\sources\game_object.cpp" />
     <ClCompile Include="..\sources\gui.cpp" />
     <ClCompile Include="..\sources\main.cpp" />
     <ClCompile Include="..\sources\player.cpp" />
+    <ClCompile Include="..\sources\program_state.cpp" />
     <ClCompile Include="..\sources\spaceship.cpp" />
+    <ClCompile Include="..\sources\space_object.cpp" />
     <ClCompile Include="..\sources\window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\headers\background.hpp" />
-    <ClInclude Include="..\headers\domain.hpp" />
-    <ClInclude Include="..\headers\drawable.hpp" />
-    <ClInclude Include="..\headers\god.hpp" />
-    <ClInclude Include="..\headers\gui.hpp" />
-    <ClInclude Include="..\headers\player.hpp" />
-    <ClInclude Include="..\headers\spaceship.hpp" />
-    <ClInclude Include="..\headers\window.h" />
+    <ClInclude Include="..\headers\core\core.hpp" />
+    <ClInclude Include="..\headers\core\domain.hpp" />
+    <ClInclude Include="..\headers\core\drawable.hpp" />
+    <ClInclude Include="..\headers\core\event.hpp" />
+    <ClInclude Include="..\headers\core\game.hpp" />
+    <ClInclude Include="..\headers\core\game_object.hpp" />
+    <ClInclude Include="..\headers\core\gui.hpp" />
+    <ClInclude Include="..\headers\core\program_state.hpp" />
+    <ClInclude Include="..\headers\core\window.hpp" />
+    <ClInclude Include="..\headers\space\background.hpp" />
+    <ClInclude Include="..\headers\space\player.hpp" />
+    <ClInclude Include="..\headers\space\spaceship.hpp" />
+    <ClInclude Include="..\headers\space\space_object.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -117,7 +127,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN_BY_ME;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers\core;D:\projects\VS_2019\SR3\headers\space;D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,7 +144,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN_BY_ME;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers\core;D:\projects\VS_2019\SR3\headers\space;D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,7 +161,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN_BY_ME;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers\core;D:\projects\VS_2019\SR3\headers\space;D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -168,7 +178,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN_BY_ME;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers\core;D:\projects\VS_2019\SR3\headers\space;D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

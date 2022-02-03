@@ -6,7 +6,7 @@
 #include <set>
 
 #include "domain.hpp"
-#include "event.h"
+#include "event.hpp"
 #include "drawable.hpp"
 
 class ProgramState
