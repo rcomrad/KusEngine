@@ -8,6 +8,7 @@
 #include "gui.hpp"
 #include "program_state.hpp"
 #include "game.hpp"
+#include "my_time.hpp"
 
 class Core
 {

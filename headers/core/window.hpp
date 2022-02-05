@@ -5,6 +5,9 @@
 
 class MyWindow
 {
+public:
+	MyWindow();
+	virtual ~MyWindow();
 protected:
 	static sf::RenderWindow mWindow;
 	//sf::RenderWindow mWindow;

@@ -25,8 +25,8 @@ private:
 
 struct MoveEvent : public Event
 {
-	MoveEvent(int aX, int aY);
-	Pair<int> mCoord;
+	MoveEvent(float aX, float aY);
+	Pair<float> mCoord;
 };
 
 //--------------------------------------------------------------------------------

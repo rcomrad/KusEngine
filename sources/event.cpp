@@ -13,7 +13,7 @@ Event::getEventType()
 	return mType;
 }
 
-MoveEvent::MoveEvent(int aX, int aY) :
+MoveEvent::MoveEvent(float aX, float aY) :
 	Event		(EventType::MOVE),
 	mCoord		(aX, aY)
 {

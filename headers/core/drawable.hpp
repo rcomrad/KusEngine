@@ -14,13 +14,18 @@ public:
 	void draw();
 	bool operator<(const MyDrawable& aOther) const;
 
+
 protected:
-	void moveSprite(Pair<int> aCoord);
+	void moveSprite(Pair<float> aCoord);
+	void resetSprite(Pair<float> aCoord);
+	void setScale(Pair<float> aCoord);
+	Pair<float> getPosition();
 
 private:
 	sf::Texture mTexture;
 	sf::Sprite mSprite;
 	uint_8 mLayer;
+	Pair<int> mCoordOffset;
 };
 
 struct DrawableComparator {

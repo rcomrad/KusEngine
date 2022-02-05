@@ -5,6 +5,7 @@
 Player::Player(std::string aTexturePath) :
 	Spaceship(aTexturePath, 2)
 {
+	MyDrawable::setScale({ 0.35, 0.35 });
 }
 Player::~Player() {}
 

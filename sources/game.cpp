@@ -38,7 +38,7 @@ Game::run(std::vector<Event*> aEvents)
 	//A* a = new C;
 	//a->foo();
 
-
+	((SpaceObject*)(*(--mObjects.end())))->update();
 
 	std::set<MyDrawable*, DrawableComparator> mmm;
 
@@ -73,8 +73,11 @@ Game::run(std::vector<Event*> aEvents)
 			//ggg->processEvent(i);
 
 			((GameObject*)(*(--mObjects.end())))->processEvent(i);
+
 		}
 	}
+
+
 }
 
 

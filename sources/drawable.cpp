@@ -7,6 +7,9 @@ MyDrawable::MyDrawable(std::string aTexturePath, uint_8 aLayer) :
 {
     mTexture.loadFromFile(aTexturePath);
     mSprite.setTexture(mTexture);
+
+    mCoordOffset.x = mSprite.getGlobalBounds().height / 2;
+    mCoordOffset.y = mSprite.getGlobalBounds().width / 2;
 }
 
 MyDrawable::~MyDrawable(){}
@@ -44,7 +47,39 @@ DrawableComparator::operator() (MyDrawable* a, MyDrawable* b) const {
 }
 
 void
-MyDrawable::moveSprite(Pair<int> aCoord)
+MyDrawable::moveSprite(Pair<float> aCoord)
 {
-    mSprite.setPosition({ float(aCoord.x), float(aCoord.y) });
+    mSprite.move
+        ({
+            (aCoord.x),
+            (aCoord.y)
+        });
+}
+
+void
+MyDrawable::resetSprite(Pair<float> aCoord)
+{
+    mSprite.setPosition
+    ({
+        (aCoord.x - mCoordOffset.x),
+        (aCoord.y - mCoordOffset.y)
+        });
+}
+
+
+void
+MyDrawable::setScale(Pair<float> aCoord)
+{
+    mSprite.setScale({ float(aCoord.x), float(aCoord.y) });
+
+    mCoordOffset.x = mSprite.getGlobalBounds().height / 2;
+    mCoordOffset.y = mSprite.getGlobalBounds().width / 2;
+}
+
+Pair<float>
+MyDrawable::getPosition()
+{
+    sf::Vector2f pos = mSprite.getPosition();
+    return  { (mCoordOffset.x + pos.x),
+        (mCoordOffset.y + pos.y) };
 }

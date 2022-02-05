@@ -13,7 +13,7 @@ class Game : public ProgramState
 {
 public:
 	Game();
-	~Game();
+	virtual ~Game();
 
 	virtual void run(std::vector<Event*> aEvents);
 	virtual

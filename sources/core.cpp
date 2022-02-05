@@ -13,6 +13,8 @@ Core::Core() :
 	mView	(0, 0)
 {
 	mCurrentState = new Game();
+	MyTime::updateTime();
+	//for (int i = 0; i < 1e6; ++i);
 }
 
 Core::~Core(){}
@@ -22,9 +24,12 @@ Core::run()
 {
 	while (true)
 	{
-		mView.drawObjects(mCurrentState->getPresentation());
+		MyTime::updateTime();
+		if (MyTime::getFPSDCount())
+			mView.drawObjects(mCurrentState->getPresentation());
 		mCurrentState->run(mView.getEvents());
-		for (int i = 0; i < 1e7; ++i);
+		//for (int i = 0; i < 1e7; ++i);
+
 	}
 
 }
