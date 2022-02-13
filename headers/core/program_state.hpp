@@ -5,21 +5,24 @@
 
 #include <set>
 
-#include "domain.hpp"
-#include "event.hpp"
-#include "drawable.hpp"
+#include "core/domain.hpp"
+#include "events/event.hpp"
+#include "gui/drawable.hpp"
 
-class ProgramState
+namespace sr
 {
-public:
-	ProgramState();
-	virtual ~ProgramState();
+	class ProgramState
+	{
+	public:
+		ProgramState();
+		virtual ~ProgramState();
 
-	virtual void run(std::vector<Event*> aEvents) = 0;
-	virtual
-		const std::set<MyDrawable*, DrawableComparator>*
-		getPresentation() const = 0;
-};
+		virtual bool run(std::vector<Event*> aEvents) = 0;
+		virtual
+			const std::set<Drawable*, DrawableComparator>*
+			getPresentation() const = 0;
+	};
+}
 
 //--------------------------------------------------------------------------------
 

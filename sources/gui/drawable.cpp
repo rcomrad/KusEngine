@@ -1,8 +1,8 @@
-#include "drawable.hpp"
+#include "gui/drawable.hpp"
 
 //Drawable::Drawable(std::string aTexturePath, sf::RenderWindow& aWindow) :
 //    mWindow(aWindow)
-MyDrawable::MyDrawable(std::string aTexturePath, uint_8 aLayer) :
+sr::Drawable::Drawable(std::string aTexturePath, uint_8 aLayer) :
     mLayer      (aLayer)
 {
     mTexture.loadFromFile(aTexturePath);
@@ -12,11 +12,11 @@ MyDrawable::MyDrawable(std::string aTexturePath, uint_8 aLayer) :
     mCoordOffset.y = mSprite.getGlobalBounds().width / 2;
 }
 
-MyDrawable::~MyDrawable(){}
+sr::Drawable::~Drawable(){}
 
 void 
 //Drawable::draw(sf::RenderTarget& target, sf::RenderStates states) const
-MyDrawable::draw()
+sr::Drawable::draw()
 {
     //states.transform *= getTransform();
 
@@ -31,23 +31,23 @@ MyDrawable::draw()
     //    target.draw(m_outlineVertices, states);
     //}
 
-    mWindow.draw(mSprite);
+    Window::allWindow.draw(mSprite);
 }
 
 bool 
-MyDrawable::operator<(const MyDrawable& aOther) const
+sr::Drawable::operator<(const Drawable& aOther) const
 {
     if (mLayer == aOther.mLayer) return this < &aOther;
     return mLayer < aOther.mLayer;
 }
 
 bool 
-DrawableComparator::operator() (MyDrawable* a, MyDrawable* b) const {
+sr::DrawableComparator::operator() (Drawable* a, Drawable* b) const {
     return (*a) < (*b);
 }
 
 void
-MyDrawable::moveSprite(Pair<float> aCoord)
+sr::Drawable::moveSprite(Pair<float> aCoord)
 {
     mSprite.move
         ({
@@ -57,7 +57,7 @@ MyDrawable::moveSprite(Pair<float> aCoord)
 }
 
 void
-MyDrawable::resetSprite(Pair<float> aCoord)
+sr::Drawable::resetSprite(Pair<float> aCoord)
 {
     mSprite.setPosition
     ({
@@ -68,7 +68,7 @@ MyDrawable::resetSprite(Pair<float> aCoord)
 
 
 void
-MyDrawable::setScale(Pair<float> aCoord)
+sr::Drawable::setScale(Pair<float> aCoord)
 {
     mSprite.setScale({ float(aCoord.x), float(aCoord.y) });
 
@@ -77,7 +77,7 @@ MyDrawable::setScale(Pair<float> aCoord)
 }
 
 Pair<float>
-MyDrawable::getPosition()
+sr::Drawable::getPosition()
 {
     sf::Vector2f pos = mSprite.getPosition();
     return  { (mCoordOffset.x + pos.x),

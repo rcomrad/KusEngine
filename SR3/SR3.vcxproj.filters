@@ -13,87 +13,129 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Файлы заголовков\space">
-      <UniqueIdentifier>{39f15552-584f-4bb0-96f1-13a3eb15e053}</UniqueIdentifier>
+    <Filter Include="Исходные файлы\core">
+      <UniqueIdentifier>{e1c7feec-e651-4038-9966-833f94de5a0c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Файлы заголовков\core">
-      <UniqueIdentifier>{5dddc34e-cf4b-415f-a7b5-a8817cdf376b}</UniqueIdentifier>
+      <UniqueIdentifier>{2966c157-5a30-4bcd-80a5-10472746f9c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\gui">
+      <UniqueIdentifier>{4b9ff973-743a-4d37-afeb-6fff40d7d32b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\events">
+      <UniqueIdentifier>{511ad334-2608-4601-92fe-7b10c3b29f9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\game">
+      <UniqueIdentifier>{a0898591-a49e-4f15-b330-1c3a25c8bd03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\space">
+      <UniqueIdentifier>{647e6828-3b85-4eec-92c5-207720fae0d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\gui">
+      <UniqueIdentifier>{988c770c-d7cb-481f-aad3-3cedfd461866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\events">
+      <UniqueIdentifier>{23bf80ad-2ebc-4fda-8c71-261956f9114e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\game">
+      <UniqueIdentifier>{f23ad35d-b8dc-41fb-af88-5119e45685c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\space">
+      <UniqueIdentifier>{70ed4c5f-bad2-4b51-80dd-2c07dbc15435}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\sources\core.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="..\sources\core\core.cpp">
+      <Filter>Исходные файлы\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\gui.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="..\sources\core\domaine.cpp">
+      <Filter>Исходные файлы\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\main.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="..\sources\core\main.cpp">
+      <Filter>Исходные файлы\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\domaine.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="..\sources\core\my_time.cpp">
+      <Filter>Исходные файлы\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\drawable.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="..\sources\core\program_state.cpp">
+      <Filter>Исходные файлы\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\spaceship.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="..\sources\gui\background.cpp">
+      <Filter>Исходные файлы\gui</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\player.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="..\sources\gui\drawable.cpp">
+      <Filter>Исходные файлы\gui</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\background.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="..\sources\gui\gui.cpp">
+      <Filter>Исходные файлы\gui</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\window.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="..\sources\gui\window.cpp">
+      <Filter>Исходные файлы\gui</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\event.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="..\sources\events\event.cpp">
+      <Filter>Исходные файлы\events</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\program_state.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="..\sources\events\key_event.cpp">
+      <Filter>Исходные файлы\events</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\space_object.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="..\sources\game\game.cpp">
+      <Filter>Исходные файлы\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\game.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="..\sources\space\player.cpp">
+      <Filter>Исходные файлы\space</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\game_object.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="..\sources\space\space_object.cpp">
+      <Filter>Исходные файлы\space</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sources\space\spaceship.cpp">
+      <Filter>Исходные файлы\space</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sources\game\game_object.cpp">
+      <Filter>Исходные файлы\space</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sources\game\date.cpp">
+      <Filter>Исходные файлы\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sources\events\close_event.cpp">
+      <Filter>Исходные файлы\events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\headers\core\window.hpp">
-      <Filter>Файлы заголовков\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\headers\core\core.hpp">
       <Filter>Файлы заголовков\core</Filter>
     </ClInclude>
     <ClInclude Include="..\headers\core\domain.hpp">
       <Filter>Файлы заголовков\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\core\drawable.hpp">
+    <ClInclude Include="..\headers\core\getCPUTime.h">
       <Filter>Файлы заголовков\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\core\event.hpp">
-      <Filter>Файлы заголовков\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\headers\core\game.hpp">
-      <Filter>Файлы заголовков\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\headers\core\gui.hpp">
+    <ClInclude Include="..\headers\core\my_time.hpp">
       <Filter>Файлы заголовков\core</Filter>
     </ClInclude>
     <ClInclude Include="..\headers\core\program_state.hpp">
       <Filter>Файлы заголовков\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\space\spaceship.hpp">
-      <Filter>Файлы заголовков\space</Filter>
+    <ClInclude Include="..\headers\gui\background.hpp">
+      <Filter>Файлы заголовков\gui</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\space\background.hpp">
-      <Filter>Файлы заголовков\space</Filter>
+    <ClInclude Include="..\headers\gui\drawable.hpp">
+      <Filter>Файлы заголовков\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\gui\gui.hpp">
+      <Filter>Файлы заголовков\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\gui\window.hpp">
+      <Filter>Файлы заголовков\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\events\event.hpp">
+      <Filter>Файлы заголовков\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\events\key_event.hpp">
+      <Filter>Файлы заголовков\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\game\game.hpp">
+      <Filter>Файлы заголовков\game</Filter>
     </ClInclude>
     <ClInclude Include="..\headers\space\player.hpp">
       <Filter>Файлы заголовков\space</Filter>
@@ -101,8 +143,17 @@
     <ClInclude Include="..\headers\space\space_object.hpp">
       <Filter>Файлы заголовков\space</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\core\game_object.hpp">
-      <Filter>Файлы заголовков\core</Filter>
+    <ClInclude Include="..\headers\space\spaceship.hpp">
+      <Filter>Файлы заголовков\space</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\game\game_object.hpp">
+      <Filter>Файлы заголовков\space</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\game\date.hpp">
+      <Filter>Файлы заголовков\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\events\close_event.hpp">
+      <Filter>Файлы заголовков\events</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

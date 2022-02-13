@@ -5,24 +5,27 @@
 
 #include <iostream>
 
-#include "gui.hpp"
-#include "program_state.hpp"
-#include "game.hpp"
-#include "my_time.hpp"
+#include "gui/gui.hpp"
+#include "core/program_state.hpp"
+#include "game/game.hpp"
+#include "core/my_time.hpp"
 
-class Core
+namespace sr
 {
-public:
-	Core();
-	~Core();
+	class Core
+	{
+	public:
+		Core();
+		~Core();
 
-	void run();
+		void run();
 
-private:
-	GUI mView;
+	private:
+		GUI mView;
 
-	ProgramState* mCurrentState;
-};
+		ProgramState* mCurrentState;
+	};
+}
 
 //--------------------------------------------------------------------------------
 

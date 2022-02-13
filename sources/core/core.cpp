@@ -1,4 +1,4 @@
-#include "core.hpp"
+#include "core/core.hpp"
 
 //--------------------------------------------------------------------------------
 
@@ -9,27 +9,26 @@
 
 #define PAUSE_DELTA		7
 
-Core::Core() :
+sr::Core::Core() :
 	mView	(0, 0)
 {
 	mCurrentState = new Game();
-	MyTime::updateTime();
+	Time::updateTime();
 	//for (int i = 0; i < 1e6; ++i);
 }
 
-Core::~Core(){}
+sr::Core::~Core(){}
 
 void
-Core::run()
+sr::Core::run()
 {
 	while (true)
 	{
-		MyTime::updateTime();
-		if (MyTime::getFPSDCount())
+		Time::updateTime();
+		if (Time::getFPSDCount())
 			mView.drawObjects(mCurrentState->getPresentation());
-		mCurrentState->run(mView.getEvents());
+		if (mCurrentState->run(mView.getEvents())) break;
 		//for (int i = 0; i < 1e7; ++i);
-
 	}
 
 }

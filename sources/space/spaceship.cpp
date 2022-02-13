@@ -1,10 +1,10 @@
-#include "spaceship.hpp"
+#include "space/spaceship.hpp"
 
 #define DAY_SPEED float(3000)
 
 //Spaceship::Spaceship(std::string aTexturePath, sf::RenderWindow& aWindow) :
 //	Drawable(aTexturePath, aWindow)
-Spaceship::Spaceship
+sr::Spaceship::Spaceship
 (
 	std::string aTexturePath, 
 	uint_8 aLayer
@@ -13,12 +13,12 @@ Spaceship::Spaceship
 	mSpeed(1)
 {
 	mSpeed = 10;
-	mTargetCoord = MyDrawable::getPosition();
+	mTargetCoord = Drawable::getPosition();
 }
-Spaceship::~Spaceship(){}
+sr::Spaceship::~Spaceship(){}
 
 void
-Spaceship::move(Pair<float> aCoord)
+sr::Spaceship::move(Pair<float> aCoord)
 {
 	mTargetCoord = aCoord;
 	//Pair<int> dist = aCoord - MyDrawable::getPosition();
@@ -27,11 +27,11 @@ Spaceship::move(Pair<float> aCoord)
 }
 
 void 
-Spaceship::update()
+sr::Spaceship::update()
 {
-	double dDay = MyTime::getDTime() / DAY_SPEED;
-	Pair<float> dist = mTargetCoord - MyDrawable::getPosition();
-	dist.x *= dDay * mSpeed;
-	dist.y *= dDay * mSpeed;
-	MyDrawable::moveSprite(dist);
+	Pair<float> dist = mTargetCoord - Drawable::getPosition();
+	double dSpace = Time::getDTime() / DAY_SPEED * mSpeed;
+	dist.x *= dSpace;
+	dist.y *= dSpace;
+	Drawable::moveSprite(dist);
 }

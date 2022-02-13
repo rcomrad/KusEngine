@@ -19,32 +19,41 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\sources\background.cpp" />
-    <ClCompile Include="..\sources\domaine.cpp" />
-    <ClCompile Include="..\sources\drawable.cpp" />
-    <ClCompile Include="..\sources\event.cpp" />
-    <ClCompile Include="..\sources\core.cpp" />
-    <ClCompile Include="..\sources\game.cpp" />
-    <ClCompile Include="..\sources\game_object.cpp" />
-    <ClCompile Include="..\sources\gui.cpp" />
-    <ClCompile Include="..\sources\main.cpp" />
-    <ClCompile Include="..\sources\player.cpp" />
-    <ClCompile Include="..\sources\program_state.cpp" />
-    <ClCompile Include="..\sources\spaceship.cpp" />
-    <ClCompile Include="..\sources\space_object.cpp" />
-    <ClCompile Include="..\sources\window.cpp" />
+    <ClCompile Include="..\sources\core\core.cpp" />
+    <ClCompile Include="..\sources\core\domaine.cpp" />
+    <ClCompile Include="..\sources\core\main.cpp" />
+    <ClCompile Include="..\sources\core\my_time.cpp" />
+    <ClCompile Include="..\sources\core\program_state.cpp" />
+    <ClCompile Include="..\sources\events\close_event.cpp" />
+    <ClCompile Include="..\sources\events\event.cpp" />
+    <ClCompile Include="..\sources\events\key_event.cpp" />
+    <ClCompile Include="..\sources\game\date.cpp" />
+    <ClCompile Include="..\sources\game\game.cpp" />
+    <ClCompile Include="..\sources\game\game_object.cpp" />
+    <ClCompile Include="..\sources\gui\background.cpp" />
+    <ClCompile Include="..\sources\gui\drawable.cpp" />
+    <ClCompile Include="..\sources\gui\gui.cpp" />
+    <ClCompile Include="..\sources\gui\window.cpp" />
+    <ClCompile Include="..\sources\space\player.cpp" />
+    <ClCompile Include="..\sources\space\spaceship.cpp" />
+    <ClCompile Include="..\sources\space\space_object.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\headers\core\core.hpp" />
     <ClInclude Include="..\headers\core\domain.hpp" />
-    <ClInclude Include="..\headers\core\drawable.hpp" />
-    <ClInclude Include="..\headers\core\event.hpp" />
-    <ClInclude Include="..\headers\core\game.hpp" />
-    <ClInclude Include="..\headers\core\game_object.hpp" />
-    <ClInclude Include="..\headers\core\gui.hpp" />
+    <ClInclude Include="..\headers\core\getCPUTime.h" />
+    <ClInclude Include="..\headers\core\my_time.hpp" />
     <ClInclude Include="..\headers\core\program_state.hpp" />
-    <ClInclude Include="..\headers\core\window.hpp" />
-    <ClInclude Include="..\headers\space\background.hpp" />
+    <ClInclude Include="..\headers\events\close_event.hpp" />
+    <ClInclude Include="..\headers\events\event.hpp" />
+    <ClInclude Include="..\headers\events\key_event.hpp" />
+    <ClInclude Include="..\headers\game\date.hpp" />
+    <ClInclude Include="..\headers\game\game.hpp" />
+    <ClInclude Include="..\headers\game\game_object.hpp" />
+    <ClInclude Include="..\headers\gui\background.hpp" />
+    <ClInclude Include="..\headers\gui\drawable.hpp" />
+    <ClInclude Include="..\headers\gui\gui.hpp" />
+    <ClInclude Include="..\headers\gui\window.hpp" />
     <ClInclude Include="..\headers\space\player.hpp" />
     <ClInclude Include="..\headers\space\spaceship.hpp" />
     <ClInclude Include="..\headers\space\space_object.hpp" />
@@ -127,7 +136,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN_BY_ME;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers\core;D:\projects\VS_2019\SR3\headers\space;D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,7 +153,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN_BY_ME;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers\core;D:\projects\VS_2019\SR3\headers\space;D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -161,7 +170,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN_BY_ME;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers\core;D:\projects\VS_2019\SR3\headers\space;D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -178,7 +187,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN_BY_ME;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers\core;D:\projects\VS_2019\SR3\headers\space;D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\projects\VS_2019\SR3\headers;$(SolutionDir)\resources\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

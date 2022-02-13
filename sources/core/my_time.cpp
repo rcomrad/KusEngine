@@ -3,15 +3,15 @@
 #define TARGET_FPS 100
 #define SECOND_SIZE 1000
 
-MyTime::MyTime() {}
-MyTime::~MyTime() {}
+sr::Time::Time() {}
+sr::Time::~Time() {}
 
-double MyTime::allLastTimeValue(0);
-double MyTime::allDTimeValue(0);
-double MyTime::all—umulativeTimeValue(0);
+double sr::Time::allLastTimeValue(0);
+double sr::Time::allDTimeValue(0);
+double sr::Time::all—umulativeTimeValue(0);
 
 void
-MyTime::updateTime()
+sr::Time::updateTime()
 {
 	sint_64 newTimeValue = getCPUTime();
 	allDTimeValue = newTimeValue - allLastTimeValue;
@@ -21,7 +21,7 @@ MyTime::updateTime()
 }
 
 double
-MyTime::getFPSDCount()
+sr::Time::getFPSDCount()
 {
     //uint_16 gg = (SECOND_SIZE / TARGET_FPS);
 	uint_16 result = all—umulativeTimeValue / (SECOND_SIZE / TARGET_FPS);
@@ -31,7 +31,7 @@ MyTime::getFPSDCount()
 }
 
 double
-MyTime::getDTime()
+sr::Time::getDTime()
 {
     return allDTimeValue;
 }

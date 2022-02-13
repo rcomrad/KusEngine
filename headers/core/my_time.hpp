@@ -6,22 +6,25 @@
 #include "domain.hpp"
 #include "getCPUTime.h"
 
-class MyTime
+namespace sr
 {
-public:
-	MyTime();
-	virtual ~MyTime();
+	class Time
+	{
+	public:
+		Time();
+		virtual ~Time();
 
-	static void updateTime();
-	static double getFPSDCount();
-	static double getDTime();
+		static void updateTime();
+		static double getFPSDCount();
+		static double getDTime();
 
-private:
-	static double allLastTimeValue;
-	static double allDTimeValue;
+	private:
+		static double allLastTimeValue;
+		static double allDTimeValue;
 
-	static double all—umulativeTimeValue;
-};
+		static double all—umulativeTimeValue;
+	};
+}
 
 double getCPUTime();
 

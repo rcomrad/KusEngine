@@ -1,16 +1,16 @@
-#include "player.hpp"
+#include "space/player.hpp"
 
 //Player::Player(std::string aTexturePath, sf::RenderWindow& aWindow) :
 //	Drawable(aTexturePath, aWindow)
-Player::Player(std::string aTexturePath) :
+sr::Player::Player(std::string aTexturePath) :
 	Spaceship(aTexturePath, 2)
 {
-	MyDrawable::setScale({ 0.35, 0.35 });
+	Drawable::setScale({ 0.35, 0.35 });
 }
-Player::~Player() {}
+sr::Player::~Player() {}
 
 void
-Player::processEvent(Event* aEvent)
+sr::Player::processEvent(Event* aEvent)
 {
 	if (aEvent->getEventType() == Event::EventType::MOVE)
 	{
