@@ -9,6 +9,8 @@
 #include "events/event.hpp"
 #include "gui/drawable.hpp"
 
+#define SET_DRAWEBLE_TYPE std::set<sr::GuiOutputBase*, sr::GuiOutputBaseComparator>
+
 namespace sr
 {
 	class ProgramState
@@ -19,7 +21,7 @@ namespace sr
 
 		virtual bool run(std::vector<Event*> aEvents) = 0;
 		virtual
-			const std::set<Drawable*, DrawableComparator>*
+			const SET_DRAWEBLE_TYPE*
 			getPresentation() const = 0;
 	};
 }

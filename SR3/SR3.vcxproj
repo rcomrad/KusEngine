@@ -32,8 +32,11 @@
     <ClCompile Include="..\sources\game\game_object.cpp" />
     <ClCompile Include="..\sources\gui\background.cpp" />
     <ClCompile Include="..\sources\gui\drawable.cpp" />
+    <ClCompile Include="..\sources\gui\drawable_and_writable.cpp" />
     <ClCompile Include="..\sources\gui\gui.cpp" />
+    <ClCompile Include="..\sources\gui\gui_output_base.cpp" />
     <ClCompile Include="..\sources\gui\window.cpp" />
+    <ClCompile Include="..\sources\gui\writable.cpp" />
     <ClCompile Include="..\sources\space\player.cpp" />
     <ClCompile Include="..\sources\space\spaceship.cpp" />
     <ClCompile Include="..\sources\space\space_object.cpp" />
@@ -52,8 +55,11 @@
     <ClInclude Include="..\headers\game\game_object.hpp" />
     <ClInclude Include="..\headers\gui\background.hpp" />
     <ClInclude Include="..\headers\gui\drawable.hpp" />
+    <ClInclude Include="..\headers\gui\drawable_and_writable.hpp" />
     <ClInclude Include="..\headers\gui\gui.hpp" />
+    <ClInclude Include="..\headers\gui\gui_output_base.hpp" />
     <ClInclude Include="..\headers\gui\window.hpp" />
+    <ClInclude Include="..\headers\gui\writable.hpp" />
     <ClInclude Include="..\headers\space\player.hpp" />
     <ClInclude Include="..\headers\space\spaceship.hpp" />
     <ClInclude Include="..\headers\space\space_object.hpp" />

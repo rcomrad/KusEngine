@@ -10,6 +10,8 @@
 #include "gui/background.hpp"
 #include "events//key_event.hpp"
 
+#include "game/date.hpp"
+
 namespace sr
 {
 	class Game : public ProgramState
@@ -20,15 +22,18 @@ namespace sr
 
 		virtual bool run(std::vector<sr::Event*> aEvents);
 		virtual
-			const std::set<Drawable*, DrawableComparator>*
+			const SET_DRAWEBLE_TYPE*
 			getPresentation() const;
 	private:
 		bool mPause;
-		std::set<Drawable*, DrawableComparator> mObjects;
+		SET_DRAWEBLE_TYPE mObjectsDrawSide;
+		std::set<GameObject*> mObjectsLogicSide;;
 		//std::vector<MyDrawable*> mObjectss;
 
 		void mouseEventsHandler(Event* aEvent);
 		void keyEventsHandler(Event* aEvent);
+
+		//Date* d;
 	};
 }
 

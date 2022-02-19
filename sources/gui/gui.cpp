@@ -72,7 +72,7 @@ void
 sr::GUI::drawObjects
 (
     const
-    std::set<Drawable*, DrawableComparator>*
+    SET_DRAWEBLE_TYPE*
     aDrawableObjects
 )
 {
@@ -82,7 +82,7 @@ sr::GUI::drawObjects
     //d.draw();
     //mWindow.draw(cartoon);
     
-    for (Drawable* drawTarget : *aDrawableObjects) drawTarget->draw();
+    for (void* drawTarget : *aDrawableObjects) ((GuiOutputBase*) drawTarget)->draw();
 
     Window::allWindow.display();
 }

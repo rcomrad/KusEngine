@@ -3,7 +3,7 @@
 //Player::Player(std::string aTexturePath, sf::RenderWindow& aWindow) :
 //	Drawable(aTexturePath, aWindow)
 sr::Player::Player(std::string aTexturePath) :
-	Spaceship(aTexturePath, 2)
+	Spaceship(aTexturePath, 10)
 {
 	Drawable::setScale({ 0.35, 0.35 });
 }

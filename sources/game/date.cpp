@@ -1,6 +1,7 @@
 #include "game/date.hpp"
 
 sr::Date::Date() :
+	Writable(15),
 	mDate(0)
 {
 	mMonthNames =
@@ -25,6 +26,13 @@ void
 sr::Date::update()
 {
 	++mDate;
+	setText(getPresentation());
+}
+
+void
+sr::Date::processEvent(Event* aEvent)
+{
+
 }
 
 std::string 

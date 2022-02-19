@@ -21,6 +21,8 @@
 #include "events/event.hpp"
 #include "events/key_event.hpp"
 
+#include "core/program_state.hpp"
+
 namespace sr
 {
 	class GUI
@@ -45,7 +47,7 @@ namespace sr
 		void drawObjects
 		(
 			const
-			std::set<Drawable*, DrawableComparator>*
+			SET_DRAWEBLE_TYPE*
 			aDrawableObjects
 		);
 

@@ -3,17 +3,58 @@
 sr::Game::Game() :
 	mPause(false)
 {
-	mObjects.insert(new Player(TEXTURES + "player.png"));
-	mObjects.insert(new Background(TEXTURES + "background.png"));
+
+	//Player p(TEXTURES + "player.png");
+	//Background b(TEXTURES + "background.png");
+	//Date d;
+
+	//void* gg = (void*) &p;
+	//Player* p3 = (Player*)gg;
+
+	//std::set<void*> af;
+	//af.insert((GuiOutputBase*)&p);
+	//af.insert((GuiOutputBase*)&p);
+	//Player* p4 = (Player*)((*(-- -- af.begin())));
+	//Spaceship* p44 = (Spaceship*)((*(-- --af.begin())));
+	//SpaceObject* p443 = (SpaceObject*)((*(-- --af.begin())));
+	//Drawable* p444 = (Drawable*)((*(-- --af.begin())));
+	//GuiOutputBase* p5 = (GuiOutputBase*)((*(-- --af.begin())));
+
+	//mObjects.insert((void*) &p);
+	//mObjects.insert((void*) &b);
+	//mObjects.insert((void*) &d);
+	//mObjects.insert((Background*)(*(--mObjects.end())));
+
+	//Player* pp = (Player*) (*(--mObjects.end()));
+	//Date* dd = (Date*)(*(-- --mObjects.end()));
+	//Background* bb = (Background*)(*(-- -- --mObjects.end()));
+
+
+	//mObjects.insert((GuiOutputBase*)new Player(TEXTURES + "player.png"));
+	//mObjects.insert((GuiOutputBase*)new Background(TEXTURES + "background.png"));
+	//mObjects.insert((GuiOutputBase*)new Date());
 
 	//mObjectss.push_back(new Player(TEXTURES + "background.png"));
 	//mObjectss.push_back(new Player(TEXTURES + "background.png"));
 	//mObjectss.push_back(new Player(TEXTURES + "background.png"));
+
+	Player* p = new Player(TEXTURES + "player.png");
+	Background* b = new Background(TEXTURES + "background.png");
+	Date* d = new Date();
+
+	mObjectsDrawSide.insert(p);
+	mObjectsDrawSide.insert(b);
+	mObjectsDrawSide.insert(d);
+
+	mObjectsLogicSide.insert(p);
+	mObjectsLogicSide.insert(b);
+	mObjectsLogicSide.insert(d);
 }
 
 sr::Game::~Game()
 {
-	for (auto i : mObjects) delete i;
+	//for (auto i : mObjects) delete i;
+	for (auto i : mObjectsDrawSide) delete i;
 }
 
 //struct A
@@ -39,7 +80,24 @@ sr::Game::run(std::vector<Event*> aEvents)
 	//A* a = new C;
 	//a->foo();
 
-	if (!mPause) ((SpaceObject*)(*(--mObjects.end())))->update();
+	//void* ii = (*(--mObjects.end()));
+	//GuiOutputBase* sus = static_cast<GuiOutputBase*> (ii);
+	//GameObject* sus2 = static_cast<GameObject*> (ii);
+	//Player* sus3 = static_cast<Player*> (sus2);
+	//sus3->update();
+
+	if (!mPause)
+	{
+		//((SpaceObject*)(*(--mObjects.end())))->update();
+		//for (auto i : mObjects)
+		for (auto i : mObjectsLogicSide)
+		{
+			////GameObject* sus = ((GameObject*)i);
+			//GuiOutputBase* sus = static_cast<GuiOutputBase*> (i);
+			//GameObject* sus2 = static_cast<GameObject*> (i);
+			i->update();
+		}
+	}
 
 	//std::set<Drawable*, DrawableComparator> mmm;
 
@@ -57,6 +115,7 @@ sr::Game::run(std::vector<Event*> aEvents)
 			break;
 		case Event::EventType::KEY_PRESSED:
 			keyEventsHandler(i);
+			break;
 		case Event::EventType::CLOSE:
 			return true;
 			break;
@@ -90,8 +149,16 @@ sr::Game::mouseEventsHandler(Event* aEvent)
 	//GameObject* ggg = (GameObject*)(gg);
 	//ggg->processEvent(i);
 
-	((GameObject*)(*(--mObjects.end())))->
-		processEvent(aEvent);
+	//((GameObject*)(*(--mObjects.end())))->
+	//	processEvent(aEvent);
+
+	for (auto i : mObjectsLogicSide)
+	{
+		////GameObject* sus = ((GameObject*)i);
+		//GuiOutputBase* sus = static_cast<GuiOutputBase*> (i);
+		//GameObject* sus2 = static_cast<GameObject*> (i);
+		i->processEvent(aEvent);
+	}
 }
 
 void 
@@ -105,11 +172,17 @@ sr::Game::keyEventsHandler(Event* aEvent)
 		mPause = !mPause;
 		break;
 	}
+
+	//mObjectsDrawSide.erase(d);
+	//mObjectsLogicSide.erase(d);
 }
 
 
-const std::set<sr::Drawable*, sr::DrawableComparator>*
+const SET_DRAWEBLE_TYPE*
 sr::Game::getPresentation() const
 {
-	return &mObjects;
+	//Player* pp = (Player*)(*(--mObjects.end()));
+
+	//return &mObjects;
+	return &mObjectsDrawSide;
 }

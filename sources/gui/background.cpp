@@ -7,3 +7,11 @@ sr::Background::Background(std::string aTexturePath) :
 {
 }
 sr::Background::~Background() {}
+
+void
+sr::Background::update() {}
+
+void
+sr::Background::processEvent(Event* aEvent)
+{
+}

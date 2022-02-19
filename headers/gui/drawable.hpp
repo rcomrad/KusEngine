@@ -4,9 +4,11 @@
 #include "gui/window.hpp"
 #include "core/domain.hpp"
 
+#include "gui/gui_output_base.hpp"
+
 namespace sr
 {
-	class Drawable
+	class Drawable : public GuiOutputBase
 	{
 	public:
 		//Drawable(std::string aTexturePath, sf::RenderWindow& aWindow);
@@ -18,21 +20,23 @@ namespace sr
 
 
 	protected:
+		Pair<float> getPosition();
+
 		void moveSprite(Pair<float> aCoord);
 		void resetSprite(Pair<float> aCoord);
 		void setScale(Pair<float> aCoord);
-		Pair<float> getPosition();
 
 	private:
 		sf::Texture mTexture;
 		sf::Sprite mSprite;
-		uint_8 mLayer;
+
+		//uint_8 mLayer;
 		Pair<int> mCoordOffset;
 	};
 
-	struct DrawableComparator {
-		bool operator() (Drawable* a, Drawable* b) const;
-	};
+	//struct DrawableComparator {
+	//	bool operator() (Drawable* a, Drawable* b) const;
+	//};
 }
 
 #endif // !DRAWABLE_H

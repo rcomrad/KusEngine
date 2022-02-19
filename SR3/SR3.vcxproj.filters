@@ -99,6 +99,15 @@
     <ClCompile Include="..\sources\events\close_event.cpp">
       <Filter>Исходные файлы\events</Filter>
     </ClCompile>
+    <ClCompile Include="..\sources\gui\drawable_and_writable.cpp">
+      <Filter>Исходные файлы\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sources\gui\writable.cpp">
+      <Filter>Исходные файлы\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sources\gui\gui_output_base.cpp">
+      <Filter>Исходные файлы\gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\headers\core\core.hpp">
@@ -146,14 +155,23 @@
     <ClInclude Include="..\headers\space\spaceship.hpp">
       <Filter>Файлы заголовков\space</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\game\game_object.hpp">
-      <Filter>Файлы заголовков\space</Filter>
-    </ClInclude>
     <ClInclude Include="..\headers\game\date.hpp">
       <Filter>Файлы заголовков\game</Filter>
     </ClInclude>
     <ClInclude Include="..\headers\events\close_event.hpp">
       <Filter>Файлы заголовков\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\gui\drawable_and_writable.hpp">
+      <Filter>Файлы заголовков\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\gui\writable.hpp">
+      <Filter>Файлы заголовков\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\gui\gui_output_base.hpp">
+      <Filter>Файлы заголовков\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\game\game_object.hpp">
+      <Filter>Файлы заголовков\game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

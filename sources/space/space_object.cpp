@@ -5,7 +5,8 @@ sr::SpaceObject::SpaceObject
 	std::string aTexturePath, 
 	uint_8 aLayer
 ) :
-	GameObject(aTexturePath, aLayer)
+	//GameObject(aTexturePath, aLayer)
+	Drawable(aTexturePath, aLayer)
 {}
 
 sr::SpaceObject::~SpaceObject() {}

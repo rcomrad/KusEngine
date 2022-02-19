@@ -2,8 +2,13 @@
 
 //Drawable::Drawable(std::string aTexturePath, sf::RenderWindow& aWindow) :
 //    mWindow(aWindow)
-sr::Drawable::Drawable(std::string aTexturePath, uint_8 aLayer) :
-    mLayer      (aLayer)
+sr::Drawable::Drawable
+(
+    std::string aTexturePath,
+    uint_8 aLayer
+) :
+    //mLayer      (aLayer)
+    GuiOutputBase       (GuiOutputBase::SPRITE, aLayer)
 {
     mTexture.loadFromFile(aTexturePath);
     mSprite.setTexture(mTexture);
@@ -30,21 +35,20 @@ sr::Drawable::draw()
     //    states.texture = nullptr;
     //    target.draw(m_outlineVertices, states);
     //}
-
     Window::allWindow.draw(mSprite);
 }
 
-bool 
-sr::Drawable::operator<(const Drawable& aOther) const
-{
-    if (mLayer == aOther.mLayer) return this < &aOther;
-    return mLayer < aOther.mLayer;
-}
+//bool 
+//sr::Drawable::operator<(const Drawable& aOther) const
+//{
+//    if (mLayer == aOther.mLayer) return this < &aOther;
+//    return mLayer < aOther.mLayer;
+//}
 
-bool 
-sr::DrawableComparator::operator() (Drawable* a, Drawable* b) const {
-    return (*a) < (*b);
-}
+//bool 
+//sr::DrawableComparator::operator() (Drawable* a, Drawable* b) const {
+//    return (*a) < (*b);
+//}
 
 void
 sr::Drawable::moveSprite(Pair<float> aCoord)

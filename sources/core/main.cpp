@@ -7,23 +7,70 @@
 
 #include "game/date.hpp"
 
+class A
+{
+public:
+	A(int a):
+		n (a)
+	{
+
+	}
+
+	int n;
+};
+
+class B : public A
+{
+public:
+	B() :
+		A(2)
+	{
+
+	}
+};
+
+class C : public A
+{
+public:
+	C() :
+		A(4)
+	{
+
+	}
+};
+
+class D : public B, public C
+{
+public:
+	D(){}
+};
+
+
 int main()
 {
-	sr::Date d;
 
-	while (true)
-	{
-		std::cout << d.getPresentation() << std::endl;
-		d.update();
-		for (int i = 0; i < 1e7; ++i);
-	}
+	//B b;
+	//std::cout << b.n;
+	//C c;
+	//std::cout << c.n;
+	//D d;
+	//std::cout << d.n;
+
+	//sr::Date d;
+
+	//while (true)
+	//{
+	//	std::cout << d.getPresentation() << std::endl;
+	//	d.update();
+	//	for (int i = 0; i < 1e7; ++i);
+	//}
 
 	//uint64_t rr1 = nDays(1000, 7, 12);
 	//uint64_t rr2 = nDays(2023, 7, 12);
 	//std::cout << rr2 - rr1 << std::endl;
 
-	//sr::Core g;
-	//g.run();
+	sr::Core g;
+	g.run();
 }
 
 
