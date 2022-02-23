@@ -6,6 +6,7 @@ sr::Player::Player(std::string aTexturePath) :
 	Spaceship(aTexturePath, 10)
 {
 	Drawable::setScale({ 0.35, 0.35 });
+	//Drawable::resetSprite({ 10000, 10000 });
 }
 sr::Player::~Player() {}
 

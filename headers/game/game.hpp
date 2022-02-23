@@ -11,6 +11,7 @@
 #include "events//key_event.hpp"
 
 #include "game/date.hpp"
+#include "space/planet.hpp"
 
 namespace sr
 {

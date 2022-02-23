@@ -46,6 +46,7 @@
 #define MAIN_PATH       getMainPath()
 #define RESOURCES       MAIN_PATH   + "resources\\"
 #define TEXTURES        RESOURCES   + "textures\\"
+#define FONTS			RESOURCES   + "fonts\\"
 
 #define _(aName) #aName
 
@@ -188,5 +189,12 @@ union Pair
 	}
 };
 
+#define PI 3.14159265 
+
+namespace sr
+{
+	double cos(double aParametr);
+	double sin(double aParametr);
+}
 
 #endif //DOMAIN_H

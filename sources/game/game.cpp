@@ -1,5 +1,8 @@
 #include "game/game.hpp"
 
+
+
+
 sr::Game::Game() :
 	mPause(false)
 {
@@ -38,17 +41,20 @@ sr::Game::Game() :
 	//mObjectss.push_back(new Player(TEXTURES + "background.png"));
 	//mObjectss.push_back(new Player(TEXTURES + "background.png"));
 
-	Player* p = new Player(TEXTURES + "player.png");
-	Background* b = new Background(TEXTURES + "background.png");
+	Player* p = new Player();
+	Background* b = new Background();
+	Planet* pp = new Planet();
 	Date* d = new Date();
 
 	mObjectsDrawSide.insert(p);
 	mObjectsDrawSide.insert(b);
 	mObjectsDrawSide.insert(d);
+	mObjectsDrawSide.insert(pp);
 
 	mObjectsLogicSide.insert(p);
 	mObjectsLogicSide.insert(b);
 	mObjectsLogicSide.insert(d);
+	mObjectsLogicSide.insert(pp);
 }
 
 sr::Game::~Game()

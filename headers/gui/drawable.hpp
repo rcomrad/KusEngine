@@ -31,7 +31,7 @@ namespace sr
 		sf::Sprite mSprite;
 
 		//uint_8 mLayer;
-		Pair<int> mCoordOffset;
+		Pair<float> mCoordOffset;
 	};
 
 	//struct DrawableComparator {

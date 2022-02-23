@@ -26,3 +26,15 @@ getMainPath() {
     //return str.substr(0, str.rfind('/'));
 #endif
 }
+
+double
+sr::cos(double aParametr)
+{
+    return std::cos(aParametr * PI / 180.);
+}
+
+double
+sr::sin(double aParametr)
+{
+    return std::sin(aParametr * PI / 180.);
+}

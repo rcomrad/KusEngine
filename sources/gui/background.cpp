@@ -5,6 +5,7 @@
 sr::Background::Background(std::string aTexturePath) :
 	Drawable(aTexturePath, 1)
 {
+	//Drawable::resetSprite({ 10000, 10000 });
 }
 sr::Background::~Background() {}
 

@@ -1,6 +1,6 @@
 #include "gui/writable.hpp"
 
-#define STANDART_FONT_PATH "font.ttf"
+#define STANDART_FONT_PATH FONTS  + "font.ttf"
 
 sf::Font* sr::Writable::allFont(NULL);
 

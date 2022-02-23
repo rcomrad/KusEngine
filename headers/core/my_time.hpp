@@ -3,6 +3,8 @@
 
 //--------------------------------------------------------------------------------
 
+#include "SFML/System/Clock.hpp"
+
 #include "domain.hpp"
 #include "getCPUTime.h"
 
@@ -23,6 +25,8 @@ namespace sr
 		static double allDTimeValue;
 
 		static double all—umulativeTimeValue;
+
+		static sf::Clock allClock;
 	};
 }
 
