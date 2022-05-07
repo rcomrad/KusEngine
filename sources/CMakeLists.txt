@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 3.21)
-
 set(DIRS core domain events game gui main space)
 foreach(DIR IN LISTS DIRS)
     add_subdirectory(${DIR})
