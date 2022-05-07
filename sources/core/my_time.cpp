@@ -8,7 +8,7 @@ sr::Time::~Time() {}
 
 double sr::Time::allLastTimeValue(0);
 double sr::Time::allDTimeValue(0);
-double sr::Time::allÑumulativeTimeValue(0);
+double sr::Time::allCumulativeTimeValue(0);
 sf::Clock sr::Time::allClock;
 
 void
@@ -18,28 +18,28 @@ sr::Time::updateTime()
 	allDTimeValue = newTimeValue - allLastTimeValue;
 	allLastTimeValue = newTimeValue;
 
-	allÑumulativeTimeValue += allDTimeValue;*/
+	allï¿½umulativeTimeValue += allDTimeValue;*/
 
     double time = allClock.getElapsedTime().asMicroseconds() / 1000.;
     allClock.restart();
     allDTimeValue = time;
-    allÑumulativeTimeValue += time;
+    allCumulativeTimeValue += time;
     std::cout << allDTimeValue << std::endl;
 }
 
 double
 sr::Time::getFPSDCount()
 {
-    if (allÑumulativeTimeValue > 1000 / 80)
+    if (allCumulativeTimeValue > 1000 / 80)
     {
-        allÑumulativeTimeValue = 0;
+        allCumulativeTimeValue = 0;
         return 1;
     }
     else return 0;
  //   //uint_16 gg = (SECOND_SIZE / TARGET_FPS);
-	//uint_16 result = allÑumulativeTimeValue / (SECOND_SIZE / TARGET_FPS);
-	//allÑumulativeTimeValue = 
- //       uint_64(allÑumulativeTimeValue) % (SECOND_SIZE / TARGET_FPS);
+	//uint_16 result = allï¿½umulativeTimeValue / (SECOND_SIZE / TARGET_FPS);
+	//allï¿½umulativeTimeValue = 
+ //       uint_64(allï¿½umulativeTimeValue) % (SECOND_SIZE / TARGET_FPS);
 	//return result;
 }
 
