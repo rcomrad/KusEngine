@@ -9,6 +9,9 @@ add_library(
 
     "dom_flags.hpp"
 
+    "dom_math.hpp"
+    "dom_math.cpp"
+
     "dom_pair.hpp"
 
     "dom_path.hpp"

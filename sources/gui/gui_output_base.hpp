@@ -11,7 +11,7 @@ namespace sr
 	class GuiOutputBase
 	{
 	public:
-		enum GuiOutputType
+		enum class GuiOutputType
 		{
 			NUN = 0,
 			SPRITE = 1,
@@ -19,21 +19,22 @@ namespace sr
 			SPRITE_AND_TEXT = 3
 		};
 
-		GuiOutputBase(GuiOutputType aType, uint_8 aLayer);
+		GuiOutputBase(uint_8 aLayer, Pair<float> aCoordOffset);
 		virtual ~GuiOutputBase();
 		void draw();
 
 		bool operator<(const GuiOutputBase& aOther) const;
 
+	protected:
+		void setType(GuiOutputType aType);
+
 	private:
 		GuiOutputType mType;
 		uint_8 mLayer;
+
+		Pair<float> mCoordOffset;
 	};
-
-	//struct GuiOutputBaseComparator {
-	//	bool operator() (void* a, void* b) const;
-	//};
-
+	
 	struct GuiOutputBaseComparator {
 		bool operator() (GuiOutputBase* a, GuiOutputBase* b) const;
 	};

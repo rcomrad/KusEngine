@@ -1,12 +1,12 @@
 #include "gui/writable.hpp"
 
-#define STANDART_FONT_PATH FONTS  + "font.ttf"
 
-sf::Font* sr::Writable::allFont(NULL);
 
-//sr::Writable::Writable(uint_8 aLayer, std::string aFontPath):
+//sf::Font* sr::Writable::allFont(NULL);
+std::vector<sf::Font*> allFont = {new sf::Font(STANDART_FONT_PATH)};
+
 sr::Writable::Writable(uint_8 aLayer) :
-GuiOutputBase(GuiOutputBase::TEXT, aLayer)
+    GuiOutputBase(aLayer)
 {
 	if (allFont == NULL)
 	{

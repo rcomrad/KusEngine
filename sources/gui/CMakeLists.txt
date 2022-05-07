@@ -10,6 +10,9 @@ add_library(
     "drawable.cpp"
     "drawable.hpp"
 
+    "fonts_storage.hpp"
+    "fonts_storage.cpp"
+
     "gui_output_base.cpp"
     "gui_output_base.hpp"
 

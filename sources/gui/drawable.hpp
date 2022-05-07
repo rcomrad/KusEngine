@@ -8,13 +8,11 @@
 
 namespace sr
 {
-	class Drawable : public GuiOutputBase
+	class Drawable : virtual public GuiOutputBase
 	{
 	public:
-		//Drawable(std::string aTexturePath, sf::RenderWindow& aWindow);
 		Drawable(std::string aTexturePath, uint_8 aLayer = 0);
 		virtual ~Drawable();
-		//virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
 		void draw();
 		bool operator<(const Drawable& aOther) const;
 
@@ -22,8 +20,8 @@ namespace sr
 	protected:
 		Pair<float> getPosition();
 
-		void moveSprite(Pair<float> aCoord);
-		void resetSprite(Pair<float> aCoord);
+		void move(Pair<float> aCoord);
+		void resetPosition(Pair<float> aCoord);
 		void setScale(Pair<float> aCoord);
 
 	private:
@@ -31,7 +29,6 @@ namespace sr
 		sf::Sprite mSprite;
 
 		//uint_8 mLayer;
-		Pair<float> mCoordOffset;
 	};
 
 	//struct DrawableComparator {
