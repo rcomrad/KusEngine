@@ -9,7 +9,7 @@ namespace dom
 	class Math
 	{
 	public:
-		static uint_64 getHash(std_const_ref aStr);
+		static uint_64 getHash(str_const_ref aStr);
 	};
 }
 

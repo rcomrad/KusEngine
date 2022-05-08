@@ -184,7 +184,7 @@ sr::Game::keyEventsHandler(Event* aEvent)
 }
 
 
-const SET_DRAWEBLE_TYPE*
+const SetDrawebleType*
 sr::Game::getPresentation() const
 {
 	//Player* pp = (Player*)(*(--mObjects.end()));

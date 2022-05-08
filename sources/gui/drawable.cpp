@@ -1,89 +1,57 @@
 #include "gui/drawable.hpp"
 
-//Drawable::Drawable(std::string aTexturePath, sf::RenderWindow& aWindow) :
-//    mWindow(aWindow)
-sr::Drawable::Drawable
+gui::Drawable::Drawable
 (
     std::string aTexturePath,
     uint_8 aLayer
 ) :
-    //mLayer      (aLayer)
-    GuiOutputBase       (GuiOutputBase::SPRITE, aLayer)
+    GuiOutputBase       (aLayer)
 {
-    mTexture.loadFromFile(aTexturePath);
-    mSprite.setTexture(mTexture);
+    mSprite.setTexture(mTextureStorage.getCell(aTexturePath).val);
 
     mCoordOffset.x = mSprite.getGlobalBounds().height / 2;
     mCoordOffset.y = mSprite.getGlobalBounds().width / 2;
+
+    setType(gui::GuiOutputBase::GuiOutputType::SPRITE);
 }
 
-sr::Drawable::~Drawable(){}
-
-void 
-//Drawable::draw(sf::RenderTarget& target, sf::RenderStates states) const
-sr::Drawable::draw()
-{
-    //states.transform *= getTransform();
-
-    //// Render the inside
-    //states.texture = m_texture;
-    //target.draw(m_vertices, states);
-
-    //// Render the outline
-    //if (m_outlineThickness != 0)
-    //{
-    //    states.texture = nullptr;
-    //    target.draw(m_outlineVertices, states);
-    //}
-    Window::allWindow.draw(mSprite);
-}
-
-//bool 
-//sr::Drawable::operator<(const Drawable& aOther) const
-//{
-//    if (mLayer == aOther.mLayer) return this < &aOther;
-//    return mLayer < aOther.mLayer;
-//}
-
-//bool 
-//sr::DrawableComparator::operator() (Drawable* a, Drawable* b) const {
-//    return (*a) < (*b);
-//}
+gui::Drawable::~Drawable(){}
 
 void
-sr::Drawable::moveSprite(Pair<float> aCoord)
+gui::Drawable::draw()
 {
-    mSprite.move
-        ({
-            (aCoord.x),
-            (aCoord.y)
-        });
+    Window::draw(mSprite);
+}
+
+dom::Pair<float>
+gui::Drawable::getPosition()
+{
+    sf::Vector2f pos = mSprite.getPosition();
+    return  { mCoordOffset.x + pos.x, mCoordOffset.y + pos.y };
 }
 
 void
-sr::Drawable::resetSprite(Pair<float> aCoord)
+gui::Drawable::move(dom::Pair<float> aCoord)
+{
+    mSprite.move({aCoord.x, aCoord.y});
+}
+
+void
+gui::Drawable::resetPosition(dom::Pair<float> aCoord)
 {
     mSprite.setPosition
     ({
         (aCoord.x - mCoordOffset.x),
         (aCoord.y - mCoordOffset.y)
-        });
+    });
 }
 
 
 void
-sr::Drawable::setScale(Pair<float> aCoord)
+gui::Drawable::setScale(dom::Pair<float> aCoord)
 {
     mSprite.setScale({ float(aCoord.x), float(aCoord.y) });
 
     mCoordOffset.x = mSprite.getGlobalBounds().height / 2;
     mCoordOffset.y = mSprite.getGlobalBounds().width / 2;
-}
-
-Pair<float>
-sr::Drawable::getPosition()
-{
-    sf::Vector2f pos = mSprite.getPosition();
-    return  { (mCoordOffset.x + pos.x),
-        (mCoordOffset.y + pos.y) };
 }

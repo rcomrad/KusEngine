@@ -1,10 +1,12 @@
 #ifndef DRAWABLE_AND_WRITABLE_H
 #define DRAWABLE_AND_WRITABLE_H
 
-#include "gui/drawable.hpp"
-#include "gui/writable.hpp"
+#include "domain/dom_pair.hpp"
 
-namespace sr
+#include "drawable.hpp"
+#include "writable.hpp"
+
+namespace gui
 {
 	class DrawableAndWritable : public Drawable, public Writable
 	{
@@ -17,16 +19,6 @@ namespace sr
 		);
 		virtual ~DrawableAndWritable();
 		void draw();
-
-	protected:
-		Pair<float> getPosition();
-
-		void move(Pair<float> aCoord);
-		void resetPosition(Pair<float> aCoord);
-		void setScale(Pair<float> aCoord);
-
-	private:
-		Pair<int> mCoordOffset;
 	};
 }
 

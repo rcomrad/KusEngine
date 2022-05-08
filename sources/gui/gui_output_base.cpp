@@ -3,41 +3,60 @@
 #include "gui/drawable.hpp"
 #include "gui/writable.hpp"
 
-sr::GuiOutputBase::GuiOutputBase
-(
-    uint_8 aLayer, 
-    Pair<float> aCoordOffset
-) :
+gui::GuiOutputBase::GuiOutputBase(uint_8 aLayer) :
     mType           (GuiOutputType::NUN),
-    mLayer          (aLayer),
-    mCoordOffset    (aCoordOffset)
+    mLayer          (aLayer)
 {}
 
-sr::GuiOutputBase::~GuiOutputBase(){}
+gui::GuiOutputBase::~GuiOutputBase(){}
+
+#define CALL_METHOD(type, class, method)\
+    if (sint_32(mType) & sint_32(type)) dynamic_cast<class*> (this)->method
 
 void
-sr::GuiOutputBase::draw()
+gui::GuiOutputBase::draw()
 {
-    if (int(mType) & 1) dynamic_cast<Drawable*> (this)->draw();
-    if (int(mType) & 2) dynamic_cast<Writable*> (this)->draw();
+    CALL_METHOD(GuiOutputType::SPRITE, Drawable, draw());
+    CALL_METHOD(GuiOutputType::SPRITE, Writable, draw());
+    //if (int(mType) & 1) dynamic_cast<Drawable*> (this)->draw();
+    //if (int(mType) & 2) dynamic_cast<Writable*> (this)->draw();
+}
+
+void
+gui::GuiOutputBase::move(dom::Pair<float> aCoord)
+{
+    CALL_METHOD(GuiOutputType::SPRITE, Drawable, move(aCoord));
+    CALL_METHOD(GuiOutputType::SPRITE, Writable, move(aCoord));
+}
+
+void
+gui::GuiOutputBase::resetPosition(dom::Pair<float> aCoord)
+{
+    CALL_METHOD(GuiOutputType::SPRITE, Drawable, resetPosition(aCoord));
+    CALL_METHOD(GuiOutputType::SPRITE, Writable, resetPosition(aCoord));
+}
+
+void
+gui::GuiOutputBase::setScale(dom::Pair<float> aCoord)
+{
+    CALL_METHOD(GuiOutputType::SPRITE, Drawable, setScale(aCoord));
+    CALL_METHOD(GuiOutputType::SPRITE, Writable, setScale(aCoord));
 }
 
 bool 
-sr::GuiOutputBase::operator<(const GuiOutputBase& aOther) const
+gui::GuiOutputBase::operator<(const GuiOutputBase& aOther) const
 {
     if (mLayer == aOther.mLayer) return this < &aOther;
     return mLayer < aOther.mLayer;
 }
 
 void 
-sr::GuiOutputBase::setType(GuiOutputType aType)
+gui::GuiOutputBase::setType(GuiOutputType aType)
 {
-    mType = GuiOutputType(int(mType) + int(aType));
+    mType = GuiOutputType(sint_32(mType) | sint_32(aType));
 }
 
 bool
-sr::GuiOutputBaseComparator::operator() (GuiOutputBase* a, GuiOutputBase* b) const {
-    GuiOutputBase* bb = (GuiOutputBase*)b;
-    int nn;
+gui::GuiOutputBaseComparator::operator() (GuiOutputBase* a, GuiOutputBase* b) const {
     return (*((GuiOutputBase*)a)) < (*((GuiOutputBase*)b));
 }

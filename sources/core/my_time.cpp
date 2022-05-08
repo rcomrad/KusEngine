@@ -1,5 +1,7 @@
 #include "core/my_time.hpp"
 
+#include <iostream>
+
 #define TARGET_FPS 100
 #define SECOND_SIZE 1000
 

@@ -10,7 +10,7 @@
 #include "domain/dom_flags.hpp"
 #include "domain/dom_type.hpp"
 #include "domain/dom_string.hpp"
-#include "domain/dom_path.hpp"
+#include "domain/dom_paths.hpp"
 
 #ifdef BILL_WINDOWS
 #include <windows.h>

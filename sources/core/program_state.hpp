@@ -9,7 +9,8 @@
 #include "events/event.hpp"
 #include "gui/drawable.hpp"
 
-#define SET_DRAWEBLE_TYPE std::set<sr::GuiOutputBase*, sr::GuiOutputBaseComparator>
+//#define SET_DRAWEBLE_TYPE std::set<sr::GuiOutputBase*, sr::GuiOutputBaseComparator>
+typedef std::set<gui::GuiOutputBase*, gui::GuiOutputBaseComparator> SetDrawebleType;
 
 namespace sr
 {
@@ -21,7 +22,7 @@ namespace sr
 
 		virtual bool run(std::vector<Event*> aEvents) = 0;
 		virtual
-			const SET_DRAWEBLE_TYPE*
+			const SetDrawebleType*
 			getPresentation() const = 0;
 	};
 }

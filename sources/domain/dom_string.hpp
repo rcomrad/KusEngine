@@ -12,6 +12,9 @@ using namespace std::literals;
 typedef std::string			str_val;
 typedef std::string&		str_ref;
 typedef const std::string&	str_const_ref;
+// #define str_val             std::string
+// #define str_ref             std::string&
+// #define str_const_ref const std::string&
 
 #define newStrCopy(str) \
 std::strcpy(new char[str.size() + 1], str.c_str())

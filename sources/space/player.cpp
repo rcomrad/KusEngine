@@ -1,13 +1,12 @@
 #include "space/player.hpp"
 
-//Player::Player(std::string aTexturePath, sf::RenderWindow& aWindow) :
-//	Drawable(aTexturePath, aWindow)
-sr::Player::Player(std::string aTexturePath) :
-	Spaceship(aTexturePath, 10)
+sr::Player::Player(str_const_ref aTexturePath) :
+	Spaceship(aTexturePath, 10),
+	GuiOutputBase(10)
 {
-	Drawable::setScale({ 0.35, 0.35 });
-	//Drawable::resetSprite({ 10000, 10000 });
+	setScale({ 0.35, 0.35 });
 }
+
 sr::Player::~Player() {}
 
 void

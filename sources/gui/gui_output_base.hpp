@@ -1,12 +1,10 @@
 #ifndef GUI_OUTPUT_BASE_H
 #define GUI_OUTPUT_BASE_H
 
-#include "gui/window.hpp"
-#include "core/domain.hpp"
+#include "domain/dom_type.hpp"
+#include "domain/dom_pair.hpp"
 
-#include "gui/drawable_and_writable.hpp"
-
-namespace sr
+namespace gui
 {
 	class GuiOutputBase
 	{
@@ -19,9 +17,13 @@ namespace sr
 			SPRITE_AND_TEXT = 3
 		};
 
-		GuiOutputBase(uint_8 aLayer, Pair<float> aCoordOffset);
+		GuiOutputBase(uint_8 aLayer);
 		virtual ~GuiOutputBase();
 		void draw();
+
+		void move(dom::Pair<float> aCoord);
+		void resetPosition(dom::Pair<float> aCoord);
+		void setScale(dom::Pair<float> aCoord);
 
 		bool operator<(const GuiOutputBase& aOther) const;
 
@@ -31,8 +33,6 @@ namespace sr
 	private:
 		GuiOutputType mType;
 		uint_8 mLayer;
-
-		Pair<float> mCoordOffset;
 	};
 	
 	struct GuiOutputBaseComparator {

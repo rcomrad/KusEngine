@@ -1,22 +1,22 @@
 #include "game/date.hpp"
 
 sr::Date::Date() :
-	Writable(15),
-	mDate(0)
+	GuiOutputBase	(15),
+	mDate			(0)
 {
 	mMonthNames =
 	{
-		"miden",
-		"monary",
-		"diary",
-		"triary",
-		"tetrary",
-		"pentary",
-		"hexary",
-		"heptary",
-		"octary",
-		"enneary",
-		"decary"
+		"miden"s,
+		"monary"s,
+		"diary"s,
+		"triary"s,
+		"tetrary"s,
+		"pentary"s,
+		"hexary"s,
+		"heptary"s,
+		"octary"s,
+		"enneary"s,
+		"decary"s
 	};
 }
 
@@ -35,7 +35,7 @@ sr::Date::processEvent(Event* aEvent)
 
 }
 
-std::string 
+str_val
 sr::Date::getPresentation()
 {
 	std::string result;

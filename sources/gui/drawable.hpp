@@ -1,12 +1,14 @@
 #ifndef DRAWABLE_H
 #define DRAWABLE_H
 
-#include "gui/window.hpp"
-#include "core/domain.hpp"
+#include "domain/dom_paths.hpp"
+#include "domain/dom_storage.hpp"
+
+#include "window.hpp"
 
 #include "gui/gui_output_base.hpp"
 
-namespace sr
+namespace gui
 {
 	class Drawable : virtual public GuiOutputBase
 	{
@@ -14,26 +16,27 @@ namespace sr
 		Drawable(std::string aTexturePath, uint_8 aLayer = 0);
 		virtual ~Drawable();
 		void draw();
-		bool operator<(const Drawable& aOther) const;
 
+		dom::Pair<float> getPosition();
 
-	protected:
-		Pair<float> getPosition();
-
-		void move(Pair<float> aCoord);
-		void resetPosition(Pair<float> aCoord);
-		void setScale(Pair<float> aCoord);
+		void move(dom::Pair<float> aCoord);
+		void resetPosition(dom::Pair<float> aCoord);
+		void setScale(dom::Pair<float> aCoord);
 
 	private:
-		sf::Texture mTexture;
+		struct TextureCell{
+			sf::Texture val;
+			TextureCell(str_const_ref aName)
+			{
+				val.loadFromFile(aName);
+			}
+		};
+
+		dom::Storage<TextureCell> mTextureStorage;
 		sf::Sprite mSprite;
 
-		//uint_8 mLayer;
+		dom::Pair<float> mCoordOffset;
 	};
-
-	//struct DrawableComparator {
-	//	bool operator() (Drawable* a, Drawable* b) const;
-	//};
 }
 
 #endif // !DRAWABLE_H

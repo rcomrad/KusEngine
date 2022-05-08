@@ -3,24 +3,28 @@
 
 //--------------------------------------------------------------------------------
 
-#include "core/domain.hpp"
 #include <vector>
+
+#include "domain/dom_string.hpp"
+
 #include "gui/writable.hpp"
+
 #include "game/game_object.hpp"
 
 namespace sr
 {
-	class Date : public GameObject, public Writable
+	class Date : public GameObject, public gui::Writable
 	{
 	public:
 		Date();
 		virtual ~Date();
 		void update();
-		std::string getPresentation();
+		str_val getPresentation();
 		virtual void processEvent(Event* aEvent);
 	private:
 		sint_64 mDate;
-		std::vector<std::string> mMonthNames;
+		std::vector<str_val> mMonthNames;
+		//std::vector<str_const_ref> mMonthNames;
 	};
 }
 

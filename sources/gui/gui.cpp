@@ -14,23 +14,15 @@
 #define TEXT_DY                     -20.f
 #define TEXT_SINGLE_DX              10.f
 
-//#define SHOW_CELLS_COORDINATES
-
-sr::GUI::GUI(sint_16 aN, sint_16 aM) //:
-    //s(cmp = [](int a, int b) { return a < b; })
-    //mDrawableObjects([](MyDrawable* a, MyDrawable* b) { return a < b; })
-    //mWindow     (sf::VideoMode(aN, aM), "Evolution"),
+sr::GUI::GUI(sint_16 aN, sint_16 aM) 
 {
     mHotkeys[sf::Keyboard::Space] = KeyEvent::KeyEventType::SPACE_PAUSE;
-
-    //mDrawableObjects.insert(new Player(TEXTURES + "player.png"));
-    //mDrawableObjects.insert(new Background(TEXTURES + "background.png"));
 }
 
 bool
 sr::GUI::isAppClosed() const
 {
-    return !Window::allWindow.isOpen();
+    return !gui::Window::isOpen();
 }
 
 std::vector<sr::Event*>
@@ -38,19 +30,19 @@ sr::GUI::getEvents()
 {
     std::vector<Event*> result;
     sf::Event event;
-    while (Window::allWindow.pollEvent(event))
+    while (gui::Window::pollEvent(event))
     {
         
         switch (event.type)
         {
         case sf::Event::Closed:
-            Window::allWindow.close();
+            gui::Window::close();
             result.push_back(new CloseEvent());
             break;
         case sf::Event::MouseButtonReleased:
             result.push_back(new MoveEvent(
-                sf::Mouse::getPosition(Window::allWindow).x,
-                sf::Mouse::getPosition(Window::allWindow).y)
+                sf::Mouse::getPosition(gui::Window::allWindow).x,
+                sf::Mouse::getPosition(gui::Window::allWindow).y)
             );
             break;
         case sf::Event::KeyReleased:
@@ -71,20 +63,14 @@ sr::GUI::getEvents()
 void 
 sr::GUI::drawObjects
 (
-    const
-    SET_DRAWEBLE_TYPE*
-    aDrawableObjects
+    const SetDrawebleType* aDrawableObjects
 )
 {
-    Window::allWindow.clear(sf::Color::Black);
-
-    //Drawable d(TEXTURES + "1.png", mWindow);
-    //d.draw();
-    //mWindow.draw(cartoon);
+    gui::Window::clear();
     
-    for (void* drawTarget : *aDrawableObjects) ((GuiOutputBase*) drawTarget)->draw();
+    for (void* drawTarget : *aDrawableObjects) ((gui::GuiOutputBase*) drawTarget)->draw();
 
-    Window::allWindow.display();
+    gui::Window::display();
 }
 
 //--------------------------------------------------------------------------------

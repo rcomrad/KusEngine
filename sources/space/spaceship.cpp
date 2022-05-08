@@ -18,7 +18,7 @@ sr::Spaceship::Spaceship
 sr::Spaceship::~Spaceship(){}
 
 void
-sr::Spaceship::move(Pair<float> aCoord)
+sr::Spaceship::move(dom::Pair<float> aCoord)
 {
 	mTargetCoord = aCoord;
 	//Pair<int> dist = aCoord - MyDrawable::getPosition();
@@ -29,9 +29,9 @@ sr::Spaceship::move(Pair<float> aCoord)
 void 
 sr::Spaceship::update()
 {
-	Pair<float> dist = mTargetCoord - Drawable::getPosition();
+	dom::Pair<float> dist = mTargetCoord - Drawable::getPosition();
 	double dSpace = Time::getDTime() / DAY_SPEED * mSpeed;
 	dist.x *= dSpace;
 	dist.y *= dSpace;
-	Drawable::moveSprite(dist);
+	Drawable::move(dist);
 }

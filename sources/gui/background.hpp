@@ -2,16 +2,14 @@
 #define BACKGROUND_H
 
 #include "gui/drawable.hpp"
+#include "gui/gui_paths.hpp"
 #include "game/game_object.hpp"
-
-#define BACKGROUND_TEXTURE_PATH TEXTURES + "background.png"
 
 namespace sr
 {
-	class Background : public GameObject, public Drawable
+	class Background : public GameObject, public gui::Drawable
 	{
 	public:
-		//Background(std::string aTexturePath, sf::RenderWindow& aWindow);
 		Background(std::string aTexturePath = BACKGROUND_TEXTURE_PATH);
 		virtual ~Background();
 		virtual void update();

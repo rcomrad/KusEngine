@@ -46,9 +46,7 @@ namespace sr
 
 		void drawObjects
 		(
-			const
-			SET_DRAWEBLE_TYPE*
-			aDrawableObjects
+			const SetDrawebleType* aDrawableObjects
 		);
 
 	private:

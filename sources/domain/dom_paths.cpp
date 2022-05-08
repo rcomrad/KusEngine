@@ -1,4 +1,4 @@
-#include "domain/dom_path.hpp"
+#include "domain/dom_paths.hpp"
 
 str_const_ref
 dom::MainPath::getPath()

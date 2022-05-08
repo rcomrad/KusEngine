@@ -3,9 +3,10 @@
 #define PLANET_TEXTURE TEXTURES "planet.png"
 
 sr::Planet::Planet() :
-	SpaceObject	(PLANET_TEXTURE, 7)
+	SpaceObject	(PLANET_TEXTURE, 7),
+	GuiOutputBase(7)
 {
-	Drawable::setScale({0.1, 0.1});
+	setScale({0.1, 0.1});
 	//Drawable::resetSprite({ 10000, 10000 });
 	//x0 = 10000;
 	//y0 = 10000;
@@ -30,7 +31,7 @@ sr::Planet::update()
 	//dist.y *= dSpace;
 	//std::cout << x1 << " " << y1 << std::endl;
 	//Drawable::moveSprite({x1, y1});
-	Drawable::resetSprite({ x1, y1 });
+	resetPosition({ x1, y1 });
 }
 
 void
@@ -39,7 +40,7 @@ sr::Planet::processEvent(Event* aEvent)
 }
 
 void
-sr::Planet::move(Pair<float> aCoord)
+sr::Planet::move(dom::Pair<float> aCoord)
 {
 
 }

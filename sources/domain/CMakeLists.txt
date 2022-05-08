@@ -14,12 +14,14 @@ add_library(
 
     "dom_pair.hpp"
 
-    "dom_path.hpp"
-    "dom_path.cpp"
+    "dom_paths.hpp"
+    "dom_paths.cpp"
+
+    "dom_type.hpp"
+
+    "dom_storage.hpp"
 
     "dom_string.hpp"
     "dom_string.cpp"
-
-    "dom_type.hpp"
 )
 

@@ -3,7 +3,7 @@
 
 //--------------------------------------------------------------------------------
 
-#include "core/domain.hpp"
+#include "domain/dom_pair.hpp"
 
 namespace sr
 {
@@ -30,7 +30,7 @@ namespace sr
 	struct MoveEvent : public Event
 	{
 		MoveEvent(float aX, float aY);
-		Pair<float> mCoord;
+		dom::Pair<float> mCoord;
 	};
 }
 

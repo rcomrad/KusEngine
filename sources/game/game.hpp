@@ -23,11 +23,11 @@ namespace sr
 
 		virtual bool run(std::vector<sr::Event*> aEvents);
 		virtual
-			const SET_DRAWEBLE_TYPE*
+			const SetDrawebleType*
 			getPresentation() const;
 	private:
 		bool mPause;
-		SET_DRAWEBLE_TYPE mObjectsDrawSide;
+		SetDrawebleType mObjectsDrawSide;
 		std::set<GameObject*> mObjectsLogicSide;;
 		//std::vector<MyDrawable*> mObjectss;
 

@@ -1,52 +1,51 @@
-#include "gui/writable.hpp"
+#include "writable.hpp"
 
+gui::Writable::Writable(uint_8 aLayer) :
+    gui::Writable("", aLayer)
+{}
 
-
-//sf::Font* sr::Writable::allFont(NULL);
-std::vector<sf::Font*> allFont = {new sf::Font(STANDART_FONT_PATH)};
-
-sr::Writable::Writable(uint_8 aLayer) :
-    GuiOutputBase(aLayer)
+gui::Writable::Writable(str_const_ref aFontPath, uint_8 aLayer) :
+    GuiOutputBase(aLayer),
+    mCoordOffset({0.f, 0.f})
 {
-	if (allFont == NULL)
-	{
-        allFont = new sf::Font();
-		allFont->loadFromFile(STANDART_FONT_PATH);
-	}
-	mText.setFont(*allFont);
+	mText.setFont(mFontsStorage.getCell(aFontPath).val);
+    setType(gui::GuiOutputBase::GuiOutputType::TEXT);
 }
 
-sr::Writable::~Writable() {}
+
+gui::Writable::~Writable() {}
 
 void 
-sr::Writable::draw()
+gui::Writable::draw()
 {
-	Window::allWindow.draw(mText);
+	Window::draw(mText);
+}
+
+dom::Pair<float>
+gui::Writable::getPosition()
+{
+    sf::Vector2f pos = mText.getPosition();
+    return  { mCoordOffset.x + pos.x, mCoordOffset.y + pos.y };
 }
 
 void
-sr::Writable::moveText(Pair<float> aCoord)
+gui::Writable::move(dom::Pair<float> aCoord)
 {
-    mText.move
-    ({
-        (aCoord.x),
-        (aCoord.y)
-        });
+    mText.move({aCoord.x,aCoord.y});
 }
 
 void
-sr::Writable::resetTextPosition(Pair<float> aCoord)
+gui::Writable::resetPosition(dom::Pair<float> aCoord)
 {
     mText.setPosition
     ({
         (aCoord.x - mCoordOffset.x),
         (aCoord.y - mCoordOffset.y)
-        });
+    });
 }
 
-
 void
-sr::Writable::setScale(Pair<float> aCoord)
+gui::Writable::setScale(dom::Pair<float> aCoord)
 {
     mText.setScale({ float(aCoord.x), float(aCoord.y) });
 
@@ -54,16 +53,8 @@ sr::Writable::setScale(Pair<float> aCoord)
     mCoordOffset.y = mText.getGlobalBounds().width / 2;
 }
 
-Pair<float>
-sr::Writable::getPosition()
-{
-    sf::Vector2f pos = mText.getPosition();
-    return  { (mCoordOffset.x + pos.x),
-        (mCoordOffset.y + pos.y) };
-}
-
 void 
-sr::Writable::setText(std::string aText)
+gui::Writable::setText(std::string aText)
 {
     mText.setString(aText);
 }
