@@ -32,9 +32,9 @@ namespace gui
 			}
 		};
 
-		dom::Storage<TextureCell> mTextureStorage;
+		static dom::Storage<TextureCell> mTextureStorage;
 		sf::Sprite mSprite;
-
+		sf::Texture ttf;
 		dom::Pair<float> mCoordOffset;
 	};
 }

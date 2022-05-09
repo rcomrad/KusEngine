@@ -1,17 +1,24 @@
 #include "writable.hpp"
 
+dom::Storage<gui::Writable::FontCell> gui::Writable::mFontsStorage;
+
 gui::Writable::Writable(uint_8 aLayer) :
-    gui::Writable("", aLayer)
+    gui::Writable(STANDART_FONT_PATH, aLayer)
 {}
 
 gui::Writable::Writable(str_const_ref aFontPath, uint_8 aLayer) :
     GuiOutputBase(aLayer),
     mCoordOffset({0.f, 0.f})
 {
-	mText.setFont(mFontsStorage.getCell(aFontPath).val);
+    //TODO:
+    FontCell ff = (mFontsStorage.getCell(aFontPath));
+    // sf::Font val = ff.val;
+    // FontCell af("jj");
+    // sf::Font vall = af.val;
+	// mText.setFont((mFontsStorage.getCell(aFontPath)).val);
+    mText.setFont(ff.val);
     setType(gui::GuiOutputBase::GuiOutputType::TEXT);
 }
-
 
 gui::Writable::~Writable() {}
 

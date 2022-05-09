@@ -48,7 +48,7 @@ namespace dom
     };
 }
 
-
-
+#undef min
+#undef max
 
 #endif // !DOM_PATHS_HPP

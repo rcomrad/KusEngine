@@ -1,5 +1,7 @@
 #include "gui/drawable.hpp"
 
+dom::Storage<gui::Drawable::TextureCell> gui::Drawable::mTextureStorage;
+
 gui::Drawable::Drawable
 (
     std::string aTexturePath,
@@ -7,7 +9,12 @@ gui::Drawable::Drawable
 ) :
     GuiOutputBase       (aLayer)
 {
-    mSprite.setTexture(mTextureStorage.getCell(aTexturePath).val);
+    //TODO:
+    //TextureCell temp = mTextureStorage.getCell(aTexturePath);
+    //mSprite.setTexture(temp.val);
+
+    ttf.loadFromFile(aTexturePath);
+    mSprite.setTexture(ttf);
 
     mCoordOffset.x = mSprite.getGlobalBounds().height / 2;
     mCoordOffset.y = mSprite.getGlobalBounds().width / 2;

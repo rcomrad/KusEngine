@@ -11,13 +11,13 @@ gui::GuiOutputBase::GuiOutputBase(uint_8 aLayer) :
 gui::GuiOutputBase::~GuiOutputBase(){}
 
 #define CALL_METHOD(type, class, method)\
-    if (sint_32(mType) & sint_32(type)) dynamic_cast<class*> (this)->method
+    if (sint_32(mType) & sint_32(type)) (dynamic_cast<class*> (this))->method
 
 void
 gui::GuiOutputBase::draw()
 {
-    CALL_METHOD(GuiOutputType::SPRITE, Drawable, draw());
-    CALL_METHOD(GuiOutputType::SPRITE, Writable, draw());
+    CALL_METHOD(GuiOutputType::SPRITE,  Drawable, draw());
+    //CALL_METHOD(GuiOutputType::TEXT,    Writable, draw());
     //if (int(mType) & 1) dynamic_cast<Drawable*> (this)->draw();
     //if (int(mType) & 2) dynamic_cast<Writable*> (this)->draw();
 }
@@ -25,22 +25,22 @@ gui::GuiOutputBase::draw()
 void
 gui::GuiOutputBase::move(dom::Pair<float> aCoord)
 {
-    CALL_METHOD(GuiOutputType::SPRITE, Drawable, move(aCoord));
-    CALL_METHOD(GuiOutputType::SPRITE, Writable, move(aCoord));
+    CALL_METHOD(GuiOutputType::SPRITE,  Drawable, move(aCoord));
+    CALL_METHOD(GuiOutputType::TEXT,    Writable, move(aCoord));
 }
 
 void
 gui::GuiOutputBase::resetPosition(dom::Pair<float> aCoord)
 {
-    CALL_METHOD(GuiOutputType::SPRITE, Drawable, resetPosition(aCoord));
-    CALL_METHOD(GuiOutputType::SPRITE, Writable, resetPosition(aCoord));
+    CALL_METHOD(GuiOutputType::SPRITE,  Drawable, resetPosition(aCoord));
+    CALL_METHOD(GuiOutputType::TEXT,    Writable, resetPosition(aCoord));
 }
 
 void
 gui::GuiOutputBase::setScale(dom::Pair<float> aCoord)
 {
-    CALL_METHOD(GuiOutputType::SPRITE, Drawable, setScale(aCoord));
-    CALL_METHOD(GuiOutputType::SPRITE, Writable, setScale(aCoord));
+    CALL_METHOD(GuiOutputType::SPRITE,  Drawable, setScale(aCoord));
+    CALL_METHOD(GuiOutputType::TEXT,    Writable, setScale(aCoord));
 }
 
 bool 

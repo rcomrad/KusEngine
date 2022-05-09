@@ -7,6 +7,7 @@
 
 #include "window.hpp"
 #include "gui_output_base.hpp"
+#include "gui_paths.hpp"
 
 //#define STANDART_FONT_PATH "font.ttf"
 
