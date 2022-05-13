@@ -23,6 +23,11 @@ namespace gui
 		void resetPosition(dom::Pair<float> aCoord);
 		void setScale(dom::Pair<float> aCoord);
 
+		auto getCoord()
+		{
+			return mSprite.getPosition();
+		}
+
 	private:
 		struct TextureCell{
 			sf::Texture val;

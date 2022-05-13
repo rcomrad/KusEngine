@@ -1,7 +1,7 @@
 #include "gui/window.hpp"
 
-#define WINDOW_SIZE_X	1000
-#define WINDOW_SIZE_Y	1000
+#define WINDOW_SIZE_X	700
+#define WINDOW_SIZE_Y	700
 
 gui::Window::Window() {}
 

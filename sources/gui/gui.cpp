@@ -32,7 +32,8 @@ sr::GUI::getEvents()
     sf::Event event;
     while (gui::Window::pollEvent(event))
     {
-        
+        sf::Vector2i pixelPos;
+        sf::Vector2f worldPos;
         switch (event.type)
         {
         case sf::Event::Closed:
@@ -40,9 +41,18 @@ sr::GUI::getEvents()
             result.push_back(new CloseEvent());
             break;
         case sf::Event::MouseButtonReleased:
+            pixelPos = sf::Mouse::getPosition(gui::Window::allWindow);
+            worldPos = gui::Window::allWindow.mapPixelToCoords(pixelPos);
+
+            // sf::View view;
+            // gui::GuiOutputBase* ggg = (*(++ ++ array.begin()));
+            // Player* pp = dynamic_cast<Player*> (ggg);
+            // view.setCenter(pp->getCoord());
+
             result.push_back(new MoveEvent(
-                sf::Mouse::getPosition(gui::Window::allWindow).x,
-                sf::Mouse::getPosition(gui::Window::allWindow).y)
+                // sf::Mouse::getPosition(gui::Window::allWindow).x,
+                // sf::Mouse::getPosition(gui::Window::allWindow).y)
+                worldPos.x, worldPos.y)
             );
             break;
         case sf::Event::KeyReleased:
@@ -60,6 +70,8 @@ sr::GUI::getEvents()
     return result;
 }
 
+#include <space/player.hpp>
+
 void 
 sr::GUI::drawObjects
 (
@@ -67,9 +79,32 @@ sr::GUI::drawObjects
 )
 {
     gui::Window::clear();
-    
-    for (void* drawTarget : *aDrawableObjects) ((gui::GuiOutputBase*) drawTarget)->draw();
 
+    std::vector<gui::GuiOutputBase*> array;
+    for (auto drawTarget : *aDrawableObjects) array.emplace_back(((gui::GuiOutputBase*) drawTarget));
+    // for (auto drawTarget : *aDrawableObjects) ((gui::GuiOutputBase*) drawTarget)->draw();
+
+
+    //gui::Window::display();
+
+    gui::Window::allWindow.setView(gui::Window::allWindow.getDefaultView());
+
+    (*(array.begin()))->draw();
+    (*(++ ++ ++ array.begin()))->draw();
+
+
+	sf::View view;
+
+    gui::GuiOutputBase* ggg = (*(++ ++ array.begin()));
+    Player* pp = dynamic_cast<Player*> (ggg);
+    view.setCenter(pp->getCoord());
+    std::cout << "  ->  " << pp->getCoord().x << " " << pp->getCoord().y << "\n";
+
+    gui::Window::allWindow.setView(view);
+    (*(++ array.begin()))->draw(); 
+    (*(++ ++ array.begin()))->draw();
+    //
+ 
     gui::Window::display();
 }
 

@@ -1,8 +1,5 @@
 #include "game/game.hpp"
 
-
-
-
 sr::Game::Game() :
 	mPause(false)
 {

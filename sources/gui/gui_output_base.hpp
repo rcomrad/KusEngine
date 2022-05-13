@@ -33,6 +33,10 @@ namespace gui
 	private:
 		GuiOutputType mType;
 		uint_8 mLayer;
+
+		// 0 - Default
+		// 255 - NUN
+		uint_8 mViewNumber;
 	};
 	
 	struct GuiOutputBaseComparator {

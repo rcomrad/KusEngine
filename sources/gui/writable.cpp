@@ -15,8 +15,8 @@ gui::Writable::Writable(str_const_ref aFontPath, uint_8 aLayer) :
     // sf::Font val = ff.val;
     // FontCell af("jj");
     // sf::Font vall = af.val;
-	// mText.setFont((mFontsStorage.getCell(aFontPath)).val);
-    mText.setFont(ff.val);
+	mText.setFont((mFontsStorage.getCell(aFontPath)).val);
+    // mText.setFont(ff.val);
     setType(gui::GuiOutputBase::GuiOutputType::TEXT);
 }
 

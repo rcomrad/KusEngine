@@ -17,7 +17,7 @@ void
 gui::GuiOutputBase::draw()
 {
     CALL_METHOD(GuiOutputType::SPRITE,  Drawable, draw());
-    //CALL_METHOD(GuiOutputType::TEXT,    Writable, draw());
+    CALL_METHOD(GuiOutputType::TEXT,    Writable, draw());
     //if (int(mType) & 1) dynamic_cast<Drawable*> (this)->draw();
     //if (int(mType) & 2) dynamic_cast<Writable*> (this)->draw();
 }

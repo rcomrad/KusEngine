@@ -26,7 +26,7 @@ sr::Time::updateTime()
     allClock.restart();
     allDTimeValue = time;
     allCumulativeTimeValue += time;
-    std::cout << allDTimeValue << std::endl;
+    //std::cout << allDTimeValue << std::endl;
 }
 
 double

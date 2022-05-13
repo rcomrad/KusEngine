@@ -11,10 +11,10 @@ gui::Drawable::Drawable
 {
     //TODO:
     //TextureCell temp = mTextureStorage.getCell(aTexturePath);
-    //mSprite.setTexture(temp.val);
+    mSprite.setTexture( mTextureStorage.getCell(aTexturePath).val);
 
-    ttf.loadFromFile(aTexturePath);
-    mSprite.setTexture(ttf);
+    // ttf.loadFromFile(aTexturePath);
+    // mSprite.setTexture(ttf);
 
     mCoordOffset.x = mSprite.getGlobalBounds().height / 2;
     mCoordOffset.y = mSprite.getGlobalBounds().width / 2;
