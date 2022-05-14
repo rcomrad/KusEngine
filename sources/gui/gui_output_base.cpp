@@ -3,44 +3,63 @@
 #include "gui/drawable.hpp"
 #include "gui/writable.hpp"
 
-gui::GuiOutputBase::GuiOutputBase(uint_8 aLayer) :
-    mType           (GuiOutputType::NUN),
-    mLayer          (aLayer)
+#define DELEMITER_BIT (16)
+
+#define TAG_PART    (0b1111'1111'1111'1111)
+#define LAYER_PART  (0b1111'1111'1111'1111 << DELEMITER_BIT)
+
+gui::GuiOutputBase::GuiOutputBase() :
+    mType           (GuiObjectType::NUN),
+    mLayer          (0)
 {}
 
 gui::GuiOutputBase::~GuiOutputBase(){}
 
-#define CALL_METHOD(type, class, method)\
-    if (sint_32(mType) & sint_32(type)) (dynamic_cast<class*> (this))->method
+#define thisIsSprite    (sint_32(mType) & sint_32(GuiObjectType::SPRITE))
+#define thisIsText      (sint_32(mType) & sint_32(GuiObjectType::TEXT))
+
+#define thisToDrawable (dynamic_cast<Drawable*> (this))
+#define thisToWritable (dynamic_cast<Writable*> (this))
 
 void
 gui::GuiOutputBase::draw()
 {
-    CALL_METHOD(GuiOutputType::SPRITE,  Drawable, draw());
-    CALL_METHOD(GuiOutputType::TEXT,    Writable, draw());
-    //if (int(mType) & 1) dynamic_cast<Drawable*> (this)->draw();
-    //if (int(mType) & 2) dynamic_cast<Writable*> (this)->draw();
+    gui::Window::globalWindow.setView(mViewNumber);
+    if (thisIsSprite)   thisToDrawable->draw();
+    if (thisIsText)     thisToWritable->draw();
 }
 
 void
 gui::GuiOutputBase::move(dom::Pair<float> aCoord)
 {
-    CALL_METHOD(GuiOutputType::SPRITE,  Drawable, move(aCoord));
-    CALL_METHOD(GuiOutputType::TEXT,    Writable, move(aCoord));
+    if (thisIsSprite)   thisToDrawable->move(aCoord);
+    if (thisIsText)     thisToWritable->move(aCoord);
 }
 
 void
 gui::GuiOutputBase::resetPosition(dom::Pair<float> aCoord)
 {
-    CALL_METHOD(GuiOutputType::SPRITE,  Drawable, resetPosition(aCoord));
-    CALL_METHOD(GuiOutputType::TEXT,    Writable, resetPosition(aCoord));
+    if (thisIsSprite)   thisToDrawable->resetPosition(aCoord);
+    if (thisIsText)     thisToWritable->resetPosition(aCoord);
 }
 
 void
 gui::GuiOutputBase::setScale(dom::Pair<float> aCoord)
 {
-    CALL_METHOD(GuiOutputType::SPRITE,  Drawable, setScale(aCoord));
-    CALL_METHOD(GuiOutputType::TEXT,    Writable, setScale(aCoord));
+    if (thisIsSprite)   thisToDrawable->setScale(aCoord);
+    if (thisIsText)     thisToWritable->setScale(aCoord);
+}
+
+void
+gui::GuiOutputBase::centrateViewOnObject(str_const_ref aViewName = "")
+{
+    sf_2f_val coord;
+    if (thisIsSprite)   coord = thisToDrawable->getPosition();
+    else                coord = thisToWritable->getPosition();
+    if (aViewName.empty()) 
+    {
+        gui::Window::globalWindow.centrateView(mViewNumber, coord);
+    }
 }
 
 bool 
@@ -51,9 +70,43 @@ gui::GuiOutputBase::operator<(const GuiOutputBase& aOther) const
 }
 
 void 
-gui::GuiOutputBase::setType(GuiOutputType aType)
+gui::GuiOutputBase::setType(GuiObjectType aType)
 {
-    mType = GuiOutputType(sint_32(mType) | sint_32(aType));
+    mType = GuiObjectType(sint_32(mType) | sint_32(aType));
+}
+
+void 
+gui::GuiOutputBase::setLayer(str_const_ref aLayerName)
+{
+    //mLayer = aLayerNumber;
+    mLayer &= TAG_PART;
+    auto it = globalLayerNumbers.find(aLayerName);
+    if (it == globalLayerNumbers.end())
+    {
+        globalLayerNumbers[aLayerName] = globalLayerNumbers.size();
+        it = globalLayerNumbers.find(aLayerName);
+    }
+    mLayer |= it->second << DELEMITER_BIT;
+}
+
+void 
+gui::GuiOutputBase::setTag(str_const_ref aTagName)
+{
+    //mLayer = aLayerNumber;
+    mLayer &= LAYER_PART;
+    auto it = globalTagNumbers.find(aTagName);
+    if (it == globalTagNumbers.end())
+    {
+        globalTagNumbers[aTagName] = globalTagNumbers.size();
+        it = globalTagNumbers.find(aTagName);
+    }
+    mLayer |= it->second;
+}
+
+void 
+gui::GuiOutputBase::setView(str_const_ref aViewName)
+{
+    mViewNumber = gui::Window::globalWindow.getViewNumber(aViewName);
 }
 
 bool

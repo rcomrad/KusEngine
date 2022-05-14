@@ -16,31 +16,42 @@ namespace gui
 	class Writable : virtual public GuiOutputBase
 	{
 	public:
-		Writable(uint_8 aLayer = 0);
-		Writable(str_const_ref aFontPath, uint_8 aLayer = 0);
+		Writable		
+		(
+			str_const_ref	aLayerName		= "Default",
+			str_const_ref	aViewName		= "Default"
+		);
+		Writable
+		(
+			std::string		aFontPath		, 
+			str_const_ref	aLayerName	= "Default",
+			str_const_ref	aViewName		= "Default"
+		);
 		virtual ~Writable();
 
 		void draw();
 
-		dom::Pair<float> getPosition();
-		void move(dom::Pair<float> aCoord);
-		void resetPosition(dom::Pair<float> aCoord);
-		void setScale(dom::Pair<float> aCoord);
+		void move			(dom::Pair<float> aCoord);
+		void resetPosition	(dom::Pair<float> aCoord);
+		void setScale		(dom::Pair<float> aCoord);
+		
+		sf_2f_val getPosition();
 
-		void setText(std::string aText);
+		void setText		(std::string aText);
 
 	private:
-		struct FontCell{
+		struct FontCell
+		{
 			sf::Font val;
 			FontCell(str_const_ref aName)
 			{
 				val.loadFromFile(aName);
 			}
 		};
-
-		sf::Text mText;
 		static dom::Storage<FontCell> mFontsStorage;
-		dom::Pair<float> mCoordOffset;
+
+		sf::Text			mText;
+		dom::Pair<float>	mCoordOffset;
 	};
 }
 

@@ -23,5 +23,7 @@ add_library(
     "writable.hpp"
 
     "gui_paths.hpp"
+
+    "gui_types.hpp"
 )
 

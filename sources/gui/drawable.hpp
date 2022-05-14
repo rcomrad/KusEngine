@@ -13,15 +13,20 @@ namespace gui
 	class Drawable : virtual public GuiOutputBase
 	{
 	public:
-		Drawable(std::string aTexturePath, uint_8 aLayer = 0);
+		Drawable
+		(
+			std::string		aTexturePath	, 
+			str_const_ref	aLayerName		= "Default",
+			str_const_ref	aViewName		= "Default"
+		);
 		virtual ~Drawable();
 		void draw();
 
 		dom::Pair<float> getPosition();
 
-		void move(dom::Pair<float> aCoord);
-		void resetPosition(dom::Pair<float> aCoord);
-		void setScale(dom::Pair<float> aCoord);
+		void move			(dom::Pair<float> aCoord);
+		void resetPosition	(dom::Pair<float> aCoord);
+		void setScale		(dom::Pair<float> aCoord);
 
 		auto getCoord()
 		{
@@ -29,18 +34,18 @@ namespace gui
 		}
 
 	private:
-		struct TextureCell{
+		struct TextureCell
+		{
 			sf::Texture val;
 			TextureCell(str_const_ref aName)
 			{
 				val.loadFromFile(aName);
 			}
 		};
-
 		static dom::Storage<TextureCell> mTextureStorage;
-		sf::Sprite mSprite;
-		sf::Texture ttf;
-		dom::Pair<float> mCoordOffset;
+
+		sf::Sprite			mSprite;
+		dom::Pair<float>	mCoordOffset;
 	};
 }
 

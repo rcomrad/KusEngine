@@ -3,13 +3,14 @@
 
 #include "domain/dom_type.hpp"
 #include "domain/dom_pair.hpp"
+#include "domain/dom_string.hpp"
 
 namespace gui
 {
 	class GuiOutputBase
 	{
 	public:
-		enum class GuiOutputType
+		enum class GuiObjectType
 		{
 			NUN = 0,
 			SPRITE = 1,
@@ -17,26 +18,32 @@ namespace gui
 			SPRITE_AND_TEXT = 3
 		};
 
-		GuiOutputBase(uint_8 aLayer);
+		GuiOutputBase();
 		virtual ~GuiOutputBase();
+
 		void draw();
 
-		void move(dom::Pair<float> aCoord);
-		void resetPosition(dom::Pair<float> aCoord);
-		void setScale(dom::Pair<float> aCoord);
+		void move			(dom::Pair<float> aCoord);
+		void resetPosition	(dom::Pair<float> aCoord);
+		void setScale		(dom::Pair<float> aCoord);
+
+		void centrateViewOnObject(str_const_ref aViewName = "");
 
 		bool operator<(const GuiOutputBase& aOther) const;
 
 	protected:
-		void setType(GuiOutputType aType);
+		void setType	(GuiObjectType aType);
+		void setLayer	(str_const_ref aLayerName);
+		void setTag		(str_const_ref aTagName);
+		void setView	(str_const_ref aViewName);
 
 	private:
-		GuiOutputType mType;
-		uint_8 mLayer;
+		GuiObjectType	mType;
+		uint_8			mLayer;
+		uint_8			mViewNumber;
 
-		// 0 - Default
-		// 255 - NUN
-		uint_8 mViewNumber;
+		static std::map<std::string, uint_16> globalLayerNumbers;
+		static std::map<std::string, uint_16> globalTagNumbers;
 	};
 	
 	struct GuiOutputBaseComparator {

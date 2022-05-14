@@ -4,22 +4,19 @@ dom::Storage<gui::Drawable::TextureCell> gui::Drawable::mTextureStorage;
 
 gui::Drawable::Drawable
 (
-    std::string aTexturePath,
-    uint_8 aLayer
-) :
-    GuiOutputBase       (aLayer)
+    std::string     aTexturePath,
+    str_const_ref   aLayerName,
+    str_const_ref   aViewName
+)
 {
-    //TODO:
-    //TextureCell temp = mTextureStorage.getCell(aTexturePath);
     mSprite.setTexture( mTextureStorage.getCell(aTexturePath).val);
-
-    // ttf.loadFromFile(aTexturePath);
-    // mSprite.setTexture(ttf);
 
     mCoordOffset.x = mSprite.getGlobalBounds().height / 2;
     mCoordOffset.y = mSprite.getGlobalBounds().width / 2;
 
-    setType(gui::GuiOutputBase::GuiOutputType::SPRITE);
+    setType(gui::GuiOutputBase::GuiObjectType::SPRITE);
+    setLayer(aLayerName);
+    setView(aViewName);
 }
 
 gui::Drawable::~Drawable(){}
@@ -27,7 +24,7 @@ gui::Drawable::~Drawable(){}
 void
 gui::Drawable::draw()
 {
-    Window::draw(mSprite);
+    gui::Window::globalWindow.draw(mSprite);
 }
 
 dom::Pair<float>
@@ -52,7 +49,6 @@ gui::Drawable::resetPosition(dom::Pair<float> aCoord)
         (aCoord.y - mCoordOffset.y)
     });
 }
-
 
 void
 gui::Drawable::setScale(dom::Pair<float> aCoord)

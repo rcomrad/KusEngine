@@ -19,11 +19,11 @@ sr::GUI::GUI(sint_16 aN, sint_16 aM)
     mHotkeys[sf::Keyboard::Space] = KeyEvent::KeyEventType::SPACE_PAUSE;
 }
 
-bool
-sr::GUI::isAppClosed() const
-{
-    return !gui::Window::isOpen();
-}
+// bool
+// sr::GUI::isAppClosed() const
+// {
+//     return !gui::Window::isOpen();
+// }
 
 std::vector<sr::Event*>
 sr::GUI::getEvents()

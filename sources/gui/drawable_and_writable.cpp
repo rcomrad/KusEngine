@@ -4,13 +4,13 @@
 //    mWindow(aWindow)
 gui::DrawableAndWritable::DrawableAndWritable
 (
-   std::string  aTexturePath, 
-   std::string  aFontPath,
-   uint_8       aLayer
+   std::string		aTexturePath, 
+   std::string		aFontPath, 
+   str_const_ref  aLayerName,
+   str_const_ref	aViewName
 ) :
-    Drawable      (aTexturePath, aLayer),
-    Writable      (aFontPath, aLayer),
-    GuiOutputBase (aLayer)
+    Drawable      (aTexturePath, aLayerName, aViewName),
+    Writable      (aFontPath,    aLayerName, aViewName)
 {
    // mFont.loadFromFile(aTexturePath);
    // mText.setFont(mFont);

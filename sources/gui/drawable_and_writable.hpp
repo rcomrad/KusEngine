@@ -13,9 +13,10 @@ namespace gui
 	public:
 		DrawableAndWritable
 		(
-			std::string aTexturePath, 
-			std::string aFontPath, 
-			uint_8 aLayer = 0
+			std::string		aTexturePath	, 
+			std::string		aFontPath		, 
+			str_const_ref	aLayerName		= "Default",
+			str_const_ref	aViewName		= "Default"
 		);
 		virtual ~DrawableAndWritable();
 		void draw();

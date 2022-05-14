@@ -29,7 +29,7 @@ namespace sr
 		//class GUI
 	{
 	public:
-		enum EventType
+		enum class EventType
 		{
 			NUN = 0,
 			SWITCH_DRAW_MODE = 1,
@@ -41,7 +41,7 @@ namespace sr
 
 		GUI(sint_16 aN, sint_16 aM);
 
-		bool isAppClosed() const;
+		// bool isAppClosed() const;
 		std::vector<Event*> getEvents();
 
 		void drawObjects
