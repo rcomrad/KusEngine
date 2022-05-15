@@ -4,24 +4,33 @@ dom::Storage<gui::Writable::FontCell> gui::Writable::mFontsStorage;
 
 gui::Writable::Writable
 (
-    str_const_ref   aLayerName,
-    str_const_ref   aViewName
-) :
-    gui::Writable(STANDART_FONT_PATH, aLayerName, aViewName)
-{}
-
-gui::Writable::Writable
-(
-    std::string     aFontPath,
-    str_const_ref   aLayerName,
-    str_const_ref   aViewName
+    std::string     aFontPath
 ) :
     mCoordOffset({0.f, 0.f})
 {
     setType(gui::GuiOutputBase::GuiObjectType::TEXT);
-    setLayer(aLayerName);
-    setView(aViewName);
 }
+
+// gui::Writable::Writable
+// (
+//     str_const_ref   aLayerName,
+//     str_const_ref   aViewName
+// ) :
+//     gui::Writable(STANDART_FONT_PATH, aLayerName, aViewName)
+// {}
+
+// gui::Writable::Writable
+// (
+//     std::string     aFontPath,
+//     str_const_ref   aLayerName,
+//     str_const_ref   aViewName
+// ) :
+//     mCoordOffset({0.f, 0.f})
+// {
+//     setType(gui::GuiOutputBase::GuiObjectType::TEXT);
+//     setLayer(aLayerName);
+//     setView(aViewName);
+// }
 
 gui::Writable::~Writable() {}
 
@@ -64,7 +73,7 @@ gui::Writable::setScale(dom::Pair<float> aCoord)
 }
 
 sf_2f_val
-gui::Writable::getPosition()
+gui::Writable::getTextPosition()
 {
     return mText.getPosition();
 }

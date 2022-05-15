@@ -30,19 +30,19 @@ sr::GUI::getEvents()
 {
     std::vector<Event*> result;
     sf::Event event;
-    while (gui::Window::pollEvent(event))
+    while (gui::Window::globalWindow.mWindow.pollEvent(event))
     {
         sf::Vector2i pixelPos;
         sf::Vector2f worldPos;
         switch (event.type)
         {
         case sf::Event::Closed:
-            gui::Window::close();
+            gui::Window::globalWindow.mWindow.close();
             result.push_back(new CloseEvent());
             break;
         case sf::Event::MouseButtonReleased:
-            pixelPos = sf::Mouse::getPosition(gui::Window::allWindow);
-            worldPos = gui::Window::allWindow.mapPixelToCoords(pixelPos);
+            pixelPos = sf::Mouse::getPosition(gui::Window::globalWindow.mWindow);
+            worldPos = gui::Window::globalWindow.mWindow.mapPixelToCoords(pixelPos);
 
             // sf::View view;
             // gui::GuiOutputBase* ggg = (*(++ ++ array.begin()));
@@ -78,7 +78,7 @@ sr::GUI::drawObjects
     const SetDrawebleType* aDrawableObjects
 )
 {
-    gui::Window::clear();
+    gui::Window::globalWindow.clear();
 
     std::vector<gui::GuiOutputBase*> array;
     for (auto drawTarget : *aDrawableObjects) array.emplace_back(((gui::GuiOutputBase*) drawTarget));
@@ -87,7 +87,7 @@ sr::GUI::drawObjects
 
     //gui::Window::display();
 
-    gui::Window::allWindow.setView(gui::Window::allWindow.getDefaultView());
+    gui::Window::globalWindow.mWindow.setView(gui::Window::globalWindow.mWindow.getDefaultView());
 
     (*(array.begin()))->draw();
     (*(++ ++ ++ array.begin()))->draw();
@@ -100,12 +100,12 @@ sr::GUI::drawObjects
     view.setCenter(pp->getCoord());
     std::cout << "  ->  " << pp->getCoord().x << " " << pp->getCoord().y << "\n";
 
-    gui::Window::allWindow.setView(view);
+    gui::Window::globalWindow.mWindow.setView(view);
     (*(++ array.begin()))->draw(); 
     (*(++ ++ array.begin()))->draw();
     //
  
-    gui::Window::display();
+    gui::Window::globalWindow.mWindow.display();
 }
 
 //--------------------------------------------------------------------------------

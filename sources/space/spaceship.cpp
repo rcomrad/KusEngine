@@ -7,13 +7,13 @@
 sr::Spaceship::Spaceship
 (
 	std::string aTexturePath, 
-	uint_8 aLayer
+	str_const_ref aLayer
 ) :
 	SpaceObject(aTexturePath, aLayer),
 	mSpeed(1)
 {
 	mSpeed = 10;
-	mTargetCoord = Drawable::getPosition();
+	mTargetCoord = getPosition();
 }
 sr::Spaceship::~Spaceship(){}
 

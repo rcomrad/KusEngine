@@ -2,22 +2,39 @@
 
 //Drawable::Drawable(std::string aTexturePath, sf::RenderWindow& aWindow) :
 //    mWindow(aWindow)
+
 gui::DrawableAndWritable::DrawableAndWritable
 (
    std::string		aTexturePath, 
-   std::string		aFontPath, 
-   str_const_ref  aLayerName,
-   str_const_ref	aViewName
+   std::string		aFontPath
 ) :
-    Drawable      (aTexturePath, aLayerName, aViewName),
-    Writable      (aFontPath,    aLayerName, aViewName)
-{
-   // mFont.loadFromFile(aTexturePath);
-   // mText.setFont(mFont);
+    Drawable      (aTexturePath),
+    Writable      (aFontPath)
+{}
 
-   // mCoordOffset.x = 100;
-   // mCoordOffset.y = 100;
-}
+gui::DrawableAndWritable::DrawableAndWritable
+(
+   std::string		aTexturePath
+) :
+    Drawable      (aTexturePath)
+{}
+
+// gui::DrawableAndWritable::DrawableAndWritable
+// (
+//    std::string		aTexturePath, 
+//    std::string		aFontPath, 
+//    str_const_ref  aLayerName,
+//    str_const_ref	aViewName
+// ) :
+//     Drawable      (aTexturePath, aLayerName, aViewName),
+//     Writable      (aFontPath,    aLayerName, aViewName)
+// {
+//    // mFont.loadFromFile(aTexturePath);
+//    // mText.setFont(mFont);
+
+//    // mCoordOffset.x = 100;
+//    // mCoordOffset.y = 100;
+// }
 
 gui::DrawableAndWritable::~DrawableAndWritable() {}
 

@@ -3,8 +3,7 @@
 #define PLANET_TEXTURE TEXTURES "planet.png"
 
 sr::Planet::Planet() :
-	SpaceObject	(PLANET_TEXTURE, 7),
-	GuiOutputBase(7)
+	SpaceObject	(PLANET_TEXTURE, "Planet")
 {
 	setScale({0.1, 0.1});
 	//Drawable::resetSprite({ 10000, 10000 });

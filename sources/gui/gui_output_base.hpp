@@ -1,14 +1,21 @@
 #ifndef GUI_OUTPUT_BASE_H
 #define GUI_OUTPUT_BASE_H
 
+#include <vector>
+
 #include "domain/dom_type.hpp"
 #include "domain/dom_pair.hpp"
 #include "domain/dom_string.hpp"
+#include "domain/dom_error_message.hpp"
+
+#include "gui_types.hpp"
 
 namespace gui
 {
 	class GuiOutputBase
 	{
+		struct PositionUnion;
+
 	public:
 		enum class GuiObjectType
 		{
@@ -27,9 +34,14 @@ namespace gui
 		void resetPosition	(dom::Pair<float> aCoord);
 		void setScale		(dom::Pair<float> aCoord);
 
+		PositionUnion getPosition();
+
 		void centrateViewOnObject(str_const_ref aViewName = "");
 
 		bool operator<(const GuiOutputBase& aOther) const;
+
+		static void addLayer(const dom::Pair<str_val, uint_16>& aLayer);
+		static void addLayer(const std::vector<dom::Pair<str_val, uint_16>>& aLayerArray);
 
 	protected:
 		void setType	(GuiObjectType aType);
@@ -40,10 +52,35 @@ namespace gui
 	private:
 		GuiObjectType	mType;
 		uint_8			mLayer;
+		uint_8			mTag;
 		uint_8			mViewNumber;
 
-		static std::map<std::string, uint_16> globalLayerNumbers;
-		static std::map<std::string, uint_16> globalTagNumbers;
+		static std::map<str_val, uint_16> globalLayerNumbers;
+		static std::map<str_val, uint_16> globalTagNumbers;
+
+		struct PositionUnion
+		{
+			sf_2f_val sfmlPos;
+			dom::Pair<float> domPos;
+
+			PositionUnion(sf_2f_val aSfmlPos);
+			PositionUnion(dom::Pair<float> aDomPos);
+
+			operator sf_2f_val();
+			operator dom::Pair<float>();
+		};	
+
+		static void addComponentToDictionary
+		(
+			std::map<str_val, uint_16>& aDictionary,
+			const std::vector<dom::Pair<str_val, uint_16>>& aComponentArray
+		);
+
+		static uint_16 getComponentNumber
+		(
+			const std::map<str_val, uint_16>& aDictionary,
+			str_const_ref aComponentName
+		);
 	};
 	
 	struct GuiOutputBaseComparator {

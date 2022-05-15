@@ -1,9 +1,10 @@
 #include "game/date.hpp"
 
 sr::Date::Date() :
-	GuiOutputBase	(15),
 	mDate			(0)
 {
+	setLayer("Data");
+
 	mMonthNames =
 	{
 		"miden"s,

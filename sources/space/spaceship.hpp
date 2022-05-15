@@ -10,7 +10,7 @@ namespace sr
 	{
 	public:
 		//Spaceship(std::string aTexturePath, sf::RenderWindow& aWindow);
-		Spaceship(std::string aTexturePath, uint_8 aLayer = 0);
+		Spaceship(std::string aTexturePath, str_const_ref aLayer = "Default");
 		virtual ~Spaceship();
 		virtual void move(dom::Pair<float> aCoord);
 		virtual void update();

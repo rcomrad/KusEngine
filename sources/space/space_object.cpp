@@ -3,10 +3,11 @@
 sr::SpaceObject::SpaceObject
 (
 	std::string aTexturePath, 
-	uint_8 aLayer
+	str_const_ref aLayer
 ) :
-	Drawable		(aTexturePath),
-	GuiOutputBase	(aLayer)
-{}
+	Drawable		(aTexturePath)
+{
+	setLayer(aLayer);
+}
 
 sr::SpaceObject::~SpaceObject() {}

@@ -8,6 +8,15 @@
 #define TAG_PART    (0b1111'1111'1111'1111)
 #define LAYER_PART  (0b1111'1111'1111'1111 << DELEMITER_BIT)
 
+std::map<std::string, uint_16> gui::GuiOutputBase::globalLayerNumbers =
+{
+    {"Default", TAG_PART}
+};
+std::map<std::string, uint_16> gui::GuiOutputBase::globalTagNumbers =
+{
+    {"Default", TAG_PART}
+};
+
 gui::GuiOutputBase::GuiOutputBase() :
     mType           (GuiObjectType::NUN),
     mLayer          (0)
@@ -50,12 +59,19 @@ gui::GuiOutputBase::setScale(dom::Pair<float> aCoord)
     if (thisIsText)     thisToWritable->setScale(aCoord);
 }
 
+gui::GuiOutputBase::PositionUnion 
+gui::GuiOutputBase::getPosition()
+{
+    if (thisIsSprite)   return thisToDrawable->getSpritePosition();
+    else                return thisToWritable->getTextPosition();
+}
+
 void
-gui::GuiOutputBase::centrateViewOnObject(str_const_ref aViewName = "")
+gui::GuiOutputBase::centrateViewOnObject(str_const_ref aViewName)
 {
     sf_2f_val coord;
-    if (thisIsSprite)   coord = thisToDrawable->getPosition();
-    else                coord = thisToWritable->getPosition();
+    if (thisIsSprite)   coord = thisToDrawable->getSpritePosition();
+    else                coord = thisToWritable->getTextPosition();
     if (aViewName.empty()) 
     {
         gui::Window::globalWindow.centrateView(mViewNumber, coord);
@@ -65,8 +81,21 @@ gui::GuiOutputBase::centrateViewOnObject(str_const_ref aViewName = "")
 bool 
 gui::GuiOutputBase::operator<(const GuiOutputBase& aOther) const
 {
-    if (mLayer == aOther.mLayer) return this < &aOther;
-    return mLayer < aOther.mLayer;
+    if (mLayer  != aOther.mLayer)   return mLayer   < aOther.mLayer;
+    if (mTag    != aOther.mTag  )   return mTag     < aOther.mTag;
+    return this < &aOther;
+}
+
+void 
+gui::GuiOutputBase::addLayer(const dom::Pair<str_val, uint_16>& aLayer)
+{
+    addLayer({aLayer});
+}
+
+void 
+gui::GuiOutputBase::addLayer(const std::vector<dom::Pair<str_val, uint_16>>& aLayerArray)
+{
+    addComponentToDictionary(globalLayerNumbers, aLayerArray);
 }
 
 void 
@@ -79,34 +108,101 @@ void
 gui::GuiOutputBase::setLayer(str_const_ref aLayerName)
 {
     //mLayer = aLayerNumber;
-    mLayer &= TAG_PART;
-    auto it = globalLayerNumbers.find(aLayerName);
-    if (it == globalLayerNumbers.end())
-    {
-        globalLayerNumbers[aLayerName] = globalLayerNumbers.size();
-        it = globalLayerNumbers.find(aLayerName);
-    }
-    mLayer |= it->second << DELEMITER_BIT;
+    // mLayer &= TAG_PART;
+    // uint_16 num = getComponentNumber(globalLayerNumbers, aLayerName);
+    // mLayer |= num << DELEMITER_BIT;
+    mLayer = getComponentNumber(globalLayerNumbers, aLayerName);
 }
 
 void 
 gui::GuiOutputBase::setTag(str_const_ref aTagName)
 {
     //mLayer = aLayerNumber;
-    mLayer &= LAYER_PART;
-    auto it = globalTagNumbers.find(aTagName);
-    if (it == globalTagNumbers.end())
-    {
-        globalTagNumbers[aTagName] = globalTagNumbers.size();
-        it = globalTagNumbers.find(aTagName);
-    }
-    mLayer |= it->second;
+    // mLayer &= LAYER_PART;
+    // uint_16 num = getComponentNumber(globalTagNumbers, aTagName);
+    // mLayer |= num;
+    mTag = getComponentNumber(globalTagNumbers, aTagName);
 }
 
 void 
 gui::GuiOutputBase::setView(str_const_ref aViewName)
 {
     mViewNumber = gui::Window::globalWindow.getViewNumber(aViewName);
+}
+
+gui::GuiOutputBase::PositionUnion::PositionUnion(sf_2f_val aSfmlPos)
+{
+    domPos = {aSfmlPos.x, aSfmlPos.y};
+}
+
+gui::GuiOutputBase::PositionUnion::PositionUnion(dom::Pair<float> aDomPos)
+{
+    sfmlPos = {aDomPos.x, aDomPos.y};
+}
+
+gui::GuiOutputBase::PositionUnion::operator sf_2f_val()
+{
+    return sfmlPos;
+}
+
+gui::GuiOutputBase::PositionUnion::operator dom::Pair<float>()
+{
+    return domPos;
+}
+
+void 
+gui::GuiOutputBase::addComponentToDictionary
+(
+    std::map<str_val, uint_16>& aDictionary,
+    const std::vector<dom::Pair<str_val, uint_16>>& aComponentArray
+)
+{
+    for(auto& newComponent : aComponentArray)
+    {
+        #ifdef _DBG_
+        for(auto& existComponent : aDictionary)
+        {
+            if (existComponent.second == newComponent.second)
+            {
+                dom::ErrorMessages::writeError
+                (
+                    "Component number is already occupied in dictionary", 
+                    "Component name = ",
+                    newComponent.first, 
+                    "Component number = ",
+                    newComponent.second,
+                    "Existing component name = ",
+                    existComponent.first
+                );          
+            }
+        }
+        #endif
+
+        aDictionary[newComponent.first] = newComponent.second;
+    }
+}
+
+uint_16 
+gui::GuiOutputBase::getComponentNumber
+(
+    const std::map<str_val, uint_16>& aDictionary,
+    str_const_ref aComponentName
+)
+{
+    auto result = aDictionary.find(aComponentName);
+    if (result == aDictionary.end())
+    {
+        #ifdef _DBG_
+            dom::ErrorMessages::writeError
+            (
+                "Dictionary lack the component", 
+                "Component name = ",
+                aComponentName
+            );          
+        #endif
+        result = globalLayerNumbers.find("Default");
+    }
+    return result->second;
 }
 
 bool

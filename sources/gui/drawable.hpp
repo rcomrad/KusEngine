@@ -13,16 +13,17 @@ namespace gui
 	class Drawable : virtual public GuiOutputBase
 	{
 	public:
-		Drawable
-		(
-			std::string		aTexturePath	, 
-			str_const_ref	aLayerName		= "Default",
-			str_const_ref	aViewName		= "Default"
-		);
+		Drawable(std::string aTexturePath);
+		// Drawable
+		// (
+		// 	std::string		aTexturePath	, 
+		// 	str_const_ref	aLayerName		= "Default",
+		// 	str_const_ref	aViewName		= "Default"
+		// );
 		virtual ~Drawable();
 		void draw();
 
-		dom::Pair<float> getPosition();
+		virtual sf_2f_val getSpritePosition();
 
 		void move			(dom::Pair<float> aCoord);
 		void resetPosition	(dom::Pair<float> aCoord);

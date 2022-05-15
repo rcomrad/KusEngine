@@ -16,17 +16,18 @@ namespace gui
 	class Writable : virtual public GuiOutputBase
 	{
 	public:
-		Writable		
-		(
-			str_const_ref	aLayerName		= "Default",
-			str_const_ref	aViewName		= "Default"
-		);
-		Writable
-		(
-			std::string		aFontPath		, 
-			str_const_ref	aLayerName	= "Default",
-			str_const_ref	aViewName		= "Default"
-		);
+		 Writable(std::string aFontPath = STANDART_FONT_PATH);
+		// Writable		
+		// (
+		// 	str_const_ref	aLayerName		= "Default",
+		// 	str_const_ref	aViewName		= "Default"
+		// );
+		// Writable
+		// (
+		// 	std::string		aFontPath		, 
+		// 	str_const_ref	aLayerName		= "Default",
+		// 	str_const_ref	aViewName		= "Default"
+		// );
 		virtual ~Writable();
 
 		void draw();
@@ -35,7 +36,7 @@ namespace gui
 		void resetPosition	(dom::Pair<float> aCoord);
 		void setScale		(dom::Pair<float> aCoord);
 		
-		sf_2f_val getPosition();
+		virtual sf_2f_val getTextPosition();
 
 		void setText		(std::string aText);
 

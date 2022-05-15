@@ -3,9 +3,9 @@
 //Background::Background(std::string aTexturePath, sf::RenderWindow& aWindow) :
 //	Drawable(aTexturePath, aWindow)
 sr::Background::Background(std::string aTexturePath) :
-	Drawable		(aTexturePath, 1),
-	GuiOutputBase	(1)
+	Drawable		(aTexturePath)
 {
+	setLayer("Background");
 	//Drawable::resetSprite({ 10000, 10000 });
 }
 sr::Background::~Background() {}
