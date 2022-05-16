@@ -9,6 +9,8 @@ gui::Writable::Writable
     mCoordOffset({0.f, 0.f})
 {
     setType(gui::GuiOutputBase::GuiObjectType::TEXT);
+
+    mText.setFont(mFontsStorage.getCell(aFontPath).val);
 }
 
 // gui::Writable::Writable

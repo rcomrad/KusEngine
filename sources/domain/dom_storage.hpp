@@ -28,7 +28,7 @@ namespace dom
 			return getCell(getId(aFontName));
 		}
 
-		const T& getCell(uint_64 aId) const
+		const T& getCell(uint_64 aId)
 		{
 			return *(mStorage.find(aId)->second);
 		}

@@ -3,19 +3,20 @@
 #include "gui/drawable.hpp"
 #include "gui/writable.hpp"
 
-#define DELEMITER_BIT (16)
+// #define DELEMITER_BIT (16)
 
-#define TAG_PART    (0b1111'1111'1111'1111)
-#define LAYER_PART  (0b1111'1111'1111'1111 << DELEMITER_BIT)
+// #define TAG_PART    (0b1111'1111'1111'1111)
+// #define LAYER_PART  (0b1111'1111'1111'1111 << DELEMITER_BIT)
 
-std::map<std::string, uint_16> gui::GuiOutputBase::globalLayerNumbers =
+std::map<std::string, layer_type> gui::GuiOutputBase::globalLayerNumbers =
 {
-    {"Default", TAG_PART}
+    //{"Default", TAG_PART}
+    {"Default", 255}
 };
-std::map<std::string, uint_16> gui::GuiOutputBase::globalTagNumbers =
-{
-    {"Default", TAG_PART}
-};
+// std::map<std::string, uint_16> gui::GuiOutputBase::globalTagNumbers =
+// {
+//     {"Default", TAG_PART}
+// };
 
 gui::GuiOutputBase::GuiOutputBase() :
     mType           (GuiObjectType::NUN),
@@ -62,8 +63,8 @@ gui::GuiOutputBase::setScale(dom::Pair<float> aCoord)
 gui::GuiOutputBase::PositionUnion 
 gui::GuiOutputBase::getPosition()
 {
-    if (thisIsSprite)   return thisToDrawable->getSpritePosition();
-    else                return thisToWritable->getTextPosition();
+    if (thisIsSprite)   return {thisToDrawable->getSpritePosition()};
+    else                return {thisToWritable->getTextPosition()};
 }
 
 void
@@ -82,7 +83,7 @@ bool
 gui::GuiOutputBase::operator<(const GuiOutputBase& aOther) const
 {
     if (mLayer  != aOther.mLayer)   return mLayer   < aOther.mLayer;
-    if (mTag    != aOther.mTag  )   return mTag     < aOther.mTag;
+    // if (mTag    != aOther.mTag  )   return mTag     < aOther.mTag;
     return this < &aOther;
 }
 
@@ -114,15 +115,15 @@ gui::GuiOutputBase::setLayer(str_const_ref aLayerName)
     mLayer = getComponentNumber(globalLayerNumbers, aLayerName);
 }
 
-void 
-gui::GuiOutputBase::setTag(str_const_ref aTagName)
-{
-    //mLayer = aLayerNumber;
-    // mLayer &= LAYER_PART;
-    // uint_16 num = getComponentNumber(globalTagNumbers, aTagName);
-    // mLayer |= num;
-    mTag = getComponentNumber(globalTagNumbers, aTagName);
-}
+// void 
+// gui::GuiOutputBase::setTag(str_const_ref aTagName)
+// {
+//     //mLayer = aLayerNumber;
+//     // mLayer &= LAYER_PART;
+//     // uint_16 num = getComponentNumber(globalTagNumbers, aTagName);
+//     // mLayer |= num;
+//     mTag = getComponentNumber(globalTagNumbers, aTagName);
+// }
 
 void 
 gui::GuiOutputBase::setView(str_const_ref aViewName)
@@ -130,15 +131,15 @@ gui::GuiOutputBase::setView(str_const_ref aViewName)
     mViewNumber = gui::Window::globalWindow.getViewNumber(aViewName);
 }
 
-gui::GuiOutputBase::PositionUnion::PositionUnion(sf_2f_val aSfmlPos)
-{
-    domPos = {aSfmlPos.x, aSfmlPos.y};
-}
+// gui::GuiOutputBase::PositionUnion::PositionUnion(sf_2f_val aSfmlPos)
+// {
+//     domPos = {aSfmlPos.x, aSfmlPos.y};
+// }
 
-gui::GuiOutputBase::PositionUnion::PositionUnion(dom::Pair<float> aDomPos)
-{
-    sfmlPos = {aDomPos.x, aDomPos.y};
-}
+// gui::GuiOutputBase::PositionUnion::PositionUnion(dom::Pair<float> aDomPos)
+// {
+//     sfmlPos = {aDomPos.x, aDomPos.y};
+// }
 
 gui::GuiOutputBase::PositionUnion::operator sf_2f_val()
 {
@@ -147,14 +148,14 @@ gui::GuiOutputBase::PositionUnion::operator sf_2f_val()
 
 gui::GuiOutputBase::PositionUnion::operator dom::Pair<float>()
 {
-    return domPos;
+    return  {sfmlPos.x, sfmlPos.y};
 }
 
 void 
 gui::GuiOutputBase::addComponentToDictionary
 (
-    std::map<str_val, uint_16>& aDictionary,
-    const std::vector<dom::Pair<str_val, uint_16>>& aComponentArray
+    std::map<str_val, layer_type>& aDictionary,
+    const std::vector<dom::Pair<str_val, layer_type>>& aComponentArray
 )
 {
     for(auto& newComponent : aComponentArray)
@@ -166,12 +167,12 @@ gui::GuiOutputBase::addComponentToDictionary
             {
                 dom::ErrorMessages::writeError
                 (
-                    "Component number is already occupied in dictionary", 
-                    "Component name = ",
+                    "Component_number_is_already_occupied_in_dictionary", 
+                    "Component_name:",
                     newComponent.first, 
-                    "Component number = ",
+                    "Component_number:",
                     newComponent.second,
-                    "Existing component name = ",
+                    "Existing_component_name:",
                     existComponent.first
                 );          
             }
@@ -182,10 +183,10 @@ gui::GuiOutputBase::addComponentToDictionary
     }
 }
 
-uint_16 
+layer_type 
 gui::GuiOutputBase::getComponentNumber
 (
-    const std::map<str_val, uint_16>& aDictionary,
+    const std::map<str_val, layer_type>& aDictionary,
     str_const_ref aComponentName
 )
 {
@@ -195,8 +196,8 @@ gui::GuiOutputBase::getComponentNumber
         #ifdef _DBG_
             dom::ErrorMessages::writeError
             (
-                "Dictionary lack the component", 
-                "Component name = ",
+                "Dictionary_lack_the_component", 
+                "Component_name:",
                 aComponentName
             );          
         #endif

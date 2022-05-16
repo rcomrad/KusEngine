@@ -43,6 +43,7 @@ namespace gui
 	private:
 		struct FontCell
 		{
+			public:
 			sf::Font val;
 			FontCell(str_const_ref aName)
 			{

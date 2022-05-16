@@ -4,12 +4,12 @@ dom::Storage<gui::Drawable::TextureCell> gui::Drawable::mTextureStorage;
 
 gui::Drawable::Drawable(std::string aTexturePath)
 {
-    mSprite.setTexture( mTextureStorage.getCell(aTexturePath).val);
+    setType(gui::GuiOutputBase::GuiObjectType::SPRITE);
+
+    mSprite.setTexture(mTextureStorage.getCell(aTexturePath).val);
 
     mCoordOffset.x = mSprite.getGlobalBounds().height / 2;
     mCoordOffset.y = mSprite.getGlobalBounds().width / 2;
-
-    setType(gui::GuiOutputBase::GuiObjectType::SPRITE);
 }
 
 // gui::Drawable::Drawable
