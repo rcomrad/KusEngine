@@ -14,25 +14,15 @@ namespace gui
 	{
 	public:
 		Drawable(std::string aTexturePath);
-		// Drawable
-		// (
-		// 	std::string		aTexturePath	, 
-		// 	str_const_ref	aLayerName		= "Default",
-		// 	str_const_ref	aViewName		= "Default"
-		// );
+
 		virtual ~Drawable();
-		void draw();
+		void drawSprite();
 
 		virtual sf_2f_val getSpritePosition();
 
-		void move			(dom::Pair<float> aCoord);
-		void resetPosition	(dom::Pair<float> aCoord);
-		void setScale		(dom::Pair<float> aCoord);
-
-		auto getCoord()
-		{
-			return mSprite.getPosition();
-		}
+		void moveSprite				(dom::Pair<float> aCoord);
+		void resetSpritePosition	(dom::Pair<float> aCoord);
+		void setSpriteScale			(dom::Pair<float> aCoord);
 
 	private:
 		struct TextureCell

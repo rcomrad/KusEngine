@@ -5,15 +5,15 @@
 
 #include "domain/dom_pair.hpp"
 
-namespace sr
+namespace evn
 {
 	class Event
 	{
 	public:
-		enum EventType
+		enum class EventType
 		{
 			NUN = 0,
-			MOVE = 1,
+			MOUSE_MOVE = 1,
 			KEY_PRESSED = 2,
 			CLOSE = 3
 		};
@@ -25,12 +25,6 @@ namespace sr
 
 	private:
 		EventType mType;
-	};
-
-	struct MoveEvent : public Event
-	{
-		MoveEvent(float aX, float aY);
-		dom::Pair<float> mCoord;
 	};
 }
 

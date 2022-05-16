@@ -26,7 +26,6 @@
 namespace sr
 {
 	class GUI
-		//class GUI
 	{
 	public:
 		enum class EventType

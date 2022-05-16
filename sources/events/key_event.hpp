@@ -6,16 +6,10 @@
 #include "core/domain.hpp"
 #include "events/event.hpp"
 
-namespace sr
+namespace evn
 {
-	struct KeyEvent : public sr::Event
+	class KeyEvent : public Event
 	{
-		enum KeyEventType
-		{
-			NUN = 0,
-			SPACE_PAUSE = 1
-		};
-
 		KeyEvent(KeyEventType aType);
 		~KeyEvent();
 

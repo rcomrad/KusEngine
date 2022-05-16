@@ -18,18 +18,13 @@ sr::GUI::GUI(sint_16 aN, sint_16 aM)
 {
     mHotkeys[sf::Keyboard::Space] = KeyEvent::KeyEventType::SPACE_PAUSE;
 
-    gui::GuiOutputBase::addLayer({"Player", 10});
-    gui::GuiOutputBase::addLayer({"Background", 1});
-    gui::GuiOutputBase::addLayer({"Planet", 5});
-    gui::GuiOutputBase::addLayer({"Data", 5});
-    gui::GuiOutputBase::addLayer({{"Data", 5}, {"Data", 5}});
+    gui::GuiOutputBase::addLayer({
+        {"Player", 10},
+        {"Background", 1},
+        {"Planet", 5},
+        {"Data", 5}
+    });
 }
-
-// bool
-// sr::GUI::isAppClosed() const
-// {
-//     return !gui::Window::isOpen();
-// }
 
 std::vector<sr::Event*>
 sr::GUI::getEvents()

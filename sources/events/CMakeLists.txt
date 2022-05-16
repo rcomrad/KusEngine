@@ -9,5 +9,8 @@ add_library(
 
     "key_event.cpp"
     "key_event.hpp"
+
+    "evn_mouse_move.cpp"
+    "evn_mouse_move.hpp"
 )
 

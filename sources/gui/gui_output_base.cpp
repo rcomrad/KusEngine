@@ -3,24 +3,14 @@
 #include "gui/drawable.hpp"
 #include "gui/writable.hpp"
 
-// #define DELEMITER_BIT (16)
-
-// #define TAG_PART    (0b1111'1111'1111'1111)
-// #define LAYER_PART  (0b1111'1111'1111'1111 << DELEMITER_BIT)
-
 std::map<std::string, layer_type> gui::GuiOutputBase::globalLayerNumbers =
 {
-    //{"Default", TAG_PART}
-    {"Default", 255}
+    {"Default", 250}
 };
-// std::map<std::string, uint_16> gui::GuiOutputBase::globalTagNumbers =
-// {
-//     {"Default", TAG_PART}
-// };
 
 gui::GuiOutputBase::GuiOutputBase() :
     mType           (GuiObjectType::NUN),
-    mLayer          (0)
+    mLayer          (250)
 {}
 
 gui::GuiOutputBase::~GuiOutputBase(){}
@@ -28,36 +18,36 @@ gui::GuiOutputBase::~GuiOutputBase(){}
 #define thisIsSprite    (sint_32(mType) & sint_32(GuiObjectType::SPRITE))
 #define thisIsText      (sint_32(mType) & sint_32(GuiObjectType::TEXT))
 
-#define thisToDrawable (dynamic_cast<Drawable*> (this))
-#define thisToWritable (dynamic_cast<Writable*> (this))
+#define thisToDrawable  (dynamic_cast<Drawable*> (this))
+#define thisToWritable  (dynamic_cast<Writable*> (this))
 
 void
 gui::GuiOutputBase::draw()
 {
     gui::Window::globalWindow.setView(mViewNumber);
-    if (thisIsSprite)   thisToDrawable->draw();
-    if (thisIsText)     thisToWritable->draw();
+    if (thisIsSprite)   thisToDrawable->drawSprite();
+    if (thisIsText)     thisToWritable->drawText();
 }
 
 void
 gui::GuiOutputBase::move(dom::Pair<float> aCoord)
 {
-    if (thisIsSprite)   thisToDrawable->move(aCoord);
-    if (thisIsText)     thisToWritable->move(aCoord);
+    if (thisIsSprite)   thisToDrawable->moveSprite(aCoord);
+    if (thisIsText)     thisToWritable->moveText(aCoord);
 }
 
 void
 gui::GuiOutputBase::resetPosition(dom::Pair<float> aCoord)
 {
-    if (thisIsSprite)   thisToDrawable->resetPosition(aCoord);
-    if (thisIsText)     thisToWritable->resetPosition(aCoord);
+    if (thisIsSprite)   thisToDrawable->resetSpritePosition(aCoord);
+    if (thisIsText)     thisToWritable->resetTextPosition(aCoord);
 }
 
 void
 gui::GuiOutputBase::setScale(dom::Pair<float> aCoord)
 {
-    if (thisIsSprite)   thisToDrawable->setScale(aCoord);
-    if (thisIsText)     thisToWritable->setScale(aCoord);
+    if (thisIsSprite)   thisToDrawable->setSpriteScale(aCoord);
+    if (thisIsText)     thisToWritable->setTextScale(aCoord);
 }
 
 gui::GuiOutputBase::PositionUnion 
@@ -82,15 +72,13 @@ gui::GuiOutputBase::centrateViewOnObject(str_const_ref aViewName)
 bool 
 gui::GuiOutputBase::operator<(const GuiOutputBase& aOther) const
 {
-    if (mLayer  != aOther.mLayer)   return mLayer   < aOther.mLayer;
-    // if (mTag    != aOther.mTag  )   return mTag     < aOther.mTag;
+    if (mLayer != aOther.mLayer) return mLayer < aOther.mLayer;
     return this < &aOther;
 }
 
 void 
 gui::GuiOutputBase::addLayer(const dom::Pair<const char*, layer_type>& aLayer)
 {
-    //std::vector<dom::Pair<str_val, layer_type>> temp{aLayer};
     addLayer(std::vector<dom::Pair<const char*, layer_type>> {aLayer});
 }
 
@@ -109,38 +97,14 @@ gui::GuiOutputBase::setType(GuiObjectType aType)
 void 
 gui::GuiOutputBase::setLayer(str_const_ref aLayerName)
 {
-    //mLayer = aLayerNumber;
-    // mLayer &= TAG_PART;
-    // uint_16 num = getComponentNumber(globalLayerNumbers, aLayerName);
-    // mLayer |= num << DELEMITER_BIT;
     mLayer = getComponentNumber(globalLayerNumbers, aLayerName);
 }
-
-// void 
-// gui::GuiOutputBase::setTag(str_const_ref aTagName)
-// {
-//     //mLayer = aLayerNumber;
-//     // mLayer &= LAYER_PART;
-//     // uint_16 num = getComponentNumber(globalTagNumbers, aTagName);
-//     // mLayer |= num;
-//     mTag = getComponentNumber(globalTagNumbers, aTagName);
-// }
 
 void 
 gui::GuiOutputBase::setView(str_const_ref aViewName)
 {
     mViewNumber = gui::Window::globalWindow.getViewNumber(aViewName);
 }
-
-// gui::GuiOutputBase::PositionUnion::PositionUnion(sf_2f_val aSfmlPos)
-// {
-//     domPos = {aSfmlPos.x, aSfmlPos.y};
-// }
-
-// gui::GuiOutputBase::PositionUnion::PositionUnion(dom::Pair<float> aDomPos)
-// {
-//     sfmlPos = {aDomPos.x, aDomPos.y};
-// }
 
 gui::GuiOutputBase::PositionUnion::operator sf_2f_val()
 {

@@ -1,21 +1,14 @@
 #include "events/event.hpp"
 
-sr::Event::Event(EventType aType)
+evn::Event::Event(EventType aType)
 {
 	mType = aType;
 }
 
-sr::Event::~Event(){}
+evn::Event::~Event(){}
 
-sr::Event::EventType
-sr::Event::getEventType()
+evn::Event::EventType
+evn::Event::getEventType()
 {
 	return mType;
-}
-
-sr::MoveEvent::MoveEvent(float aX, float aY) :
-	Event		(EventType::MOVE),
-	mCoord		(aX, aY)
-{
-
 }

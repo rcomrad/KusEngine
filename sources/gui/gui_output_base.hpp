@@ -46,25 +46,18 @@ namespace gui
 	protected:
 		void setType	(GuiObjectType aType);
 		void setLayer	(str_const_ref aLayerName);
-		// void setTag		(str_const_ref aTagName);
 		void setView	(str_const_ref aViewName);
 
 	private:
 		GuiObjectType	mType;
 		layer_type			mLayer;
-		// uint_8			mTag;
 		view_type			mViewNumber;
 
 		static std::map<str_val, layer_type> globalLayerNumbers;
-		// static std::map<str_val, uint_16> globalTagNumbers;
 
 		struct PositionUnion
 		{
 			sf_2f_val sfmlPos;
-			// dom::Pair<float> domPos;
-
-			// PositionUnion(sf_2f_val aSfmlPos);
-			// PositionUnion(dom::Pair<float> aDomPos);
 
 			operator sf_2f_val();
 			operator dom::Pair<float>();

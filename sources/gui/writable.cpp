@@ -13,50 +13,22 @@ gui::Writable::Writable
     mText.setFont(mFontsStorage.getCell(aFontPath).val);
 }
 
-// gui::Writable::Writable
-// (
-//     str_const_ref   aLayerName,
-//     str_const_ref   aViewName
-// ) :
-//     gui::Writable(STANDART_FONT_PATH, aLayerName, aViewName)
-// {}
-
-// gui::Writable::Writable
-// (
-//     std::string     aFontPath,
-//     str_const_ref   aLayerName,
-//     str_const_ref   aViewName
-// ) :
-//     mCoordOffset({0.f, 0.f})
-// {
-//     setType(gui::GuiOutputBase::GuiObjectType::TEXT);
-//     setLayer(aLayerName);
-//     setView(aViewName);
-// }
-
 gui::Writable::~Writable() {}
 
 void
-gui::Writable::draw()
+gui::Writable::drawText()
 {
     gui::Window::globalWindow.draw(mText);
 }
 
-// dom::Pair<float>
-// gui::Writable::getPosition()
-// {
-//     sf::Vector2f pos = mText.getPosition();
-//     return  { mCoordOffset.x + pos.x, mCoordOffset.y + pos.y };
-// }
-
 void
-gui::Writable::move(dom::Pair<float> aCoord)
+gui::Writable::moveText(dom::Pair<float> aCoord)
 {
     mText.move({aCoord.x,aCoord.y});
 }
 
 void
-gui::Writable::resetPosition(dom::Pair<float> aCoord)
+gui::Writable::resetTextPosition(dom::Pair<float> aCoord)
 {
     mText.setPosition
     ({
@@ -66,7 +38,7 @@ gui::Writable::resetPosition(dom::Pair<float> aCoord)
 }
 
 void
-gui::Writable::setScale(dom::Pair<float> aCoord)
+gui::Writable::setTextScale(dom::Pair<float> aCoord)
 {
     mText.setScale({ float(aCoord.x), float(aCoord.y) });
 
