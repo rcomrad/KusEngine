@@ -72,6 +72,7 @@ gui::Window::getViewNumber(str_const_ref aViewName)
     if (it == mViewNumbers.end())
     {
         mViewNumbers[aViewName] = mViewNumbers.size();
+        mViews.push_back(sf::View());
         it = mViewNumbers.find(aViewName);
     }
     return it->second;
@@ -90,4 +91,11 @@ void
 gui::Window::centrateView(uint_8 aViewNumber, sf_2f_const_ref aCoord)
 {
     mViews[aViewNumber].setCenter(aCoord);
+}
+
+
+void
+gui::Window::centrateView(str_const_ref aViewName, sf_2f_const_ref aCoord)
+{
+    mViews[mViewNumbers[aViewName]].setCenter(aCoord);
 }

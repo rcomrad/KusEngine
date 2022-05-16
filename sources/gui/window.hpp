@@ -34,6 +34,8 @@ namespace gui
 		uint_8	getViewNumber	(str_const_ref aViewName);
 		void	setView			(uint_8 aViewNumber);
 		void	centrateView	(uint_8 aViewNumber, sf_2f_const_ref aCoord);
+		//TODO:
+		void	centrateView	(str_const_ref aViewName, sf_2f_const_ref aCoord);
 
 	public:
 		sf::RenderWindow mWindow;

@@ -40,8 +40,8 @@ namespace gui
 
 		bool operator<(const GuiOutputBase& aOther) const;
 
-		static void addLayer(const dom::Pair<str_val, layer_type>& aLayer);
-		static void addLayer(const std::vector<dom::Pair<str_val, layer_type>>& aLayerArray);
+		static void addLayer(const dom::Pair<const char*, layer_type>& aLayer);
+		static void addLayer(const std::vector<dom::Pair<const char*, layer_type>>& aLayerArray);
 
 	protected:
 		void setType	(GuiObjectType aType);
@@ -73,7 +73,7 @@ namespace gui
 		static void addComponentToDictionary
 		(
 			std::map<str_val, layer_type>& aDictionary,
-			const std::vector<dom::Pair<str_val, layer_type>>& aComponentArray
+			const std::vector<dom::Pair<const char*, layer_type>>& aComponentArray
 		);
 
 		static layer_type getComponentNumber

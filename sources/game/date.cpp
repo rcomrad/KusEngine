@@ -4,6 +4,7 @@ sr::Date::Date() :
 	mDate			(0)
 {
 	setLayer("Data");
+	setView("Static");
 
 	mMonthNames =
 	{

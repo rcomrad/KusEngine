@@ -17,6 +17,12 @@
 sr::GUI::GUI(sint_16 aN, sint_16 aM) 
 {
     mHotkeys[sf::Keyboard::Space] = KeyEvent::KeyEventType::SPACE_PAUSE;
+
+    gui::GuiOutputBase::addLayer({"Player", 10});
+    gui::GuiOutputBase::addLayer({"Background", 1});
+    gui::GuiOutputBase::addLayer({"Planet", 5});
+    gui::GuiOutputBase::addLayer({"Data", 5});
+    gui::GuiOutputBase::addLayer({{"Data", 5}, {"Data", 5}});
 }
 
 // bool
@@ -84,26 +90,28 @@ sr::GUI::drawObjects
     for (auto drawTarget : *aDrawableObjects) array.emplace_back(((gui::GuiOutputBase*) drawTarget));
     // for (auto drawTarget : *aDrawableObjects) ((gui::GuiOutputBase*) drawTarget)->draw();
 
-
+    gui::Window::globalWindow.centrateView("Player", (*(array.begin() + 3))->getPosition());
     //gui::Window::display();
 
-    gui::Window::globalWindow.mWindow.setView(gui::Window::globalWindow.mWindow.getDefaultView());
+    // gui::Window::globalWindow.mWindow.setView(gui::Window::globalWindow.mWindow.getDefaultView());
 
-    (*(array.begin()))->draw();
-    (*(++ ++ ++ array.begin()))->draw();
+    // (*(array.begin()))->draw();
+    // (*(array.begin() + 3))->draw();
 
 
-	sf::View view;
+	// sf::View view;
 
-    gui::GuiOutputBase* ggg = (*(++ ++ array.begin()));
-    Player* pp = dynamic_cast<Player*> (ggg);
-    view.setCenter(pp->getCoord());
-    std::cout << "  ->  " << pp->getCoord().x << " " << pp->getCoord().y << "\n";
+    // gui::GuiOutputBase* ggg = (*(++ ++ array.begin()));
+    // Player* pp = dynamic_cast<Player*> (ggg);
+    // view.setCenter(pp->getCoord());
+    // std::cout << "  ->  " << pp->getCoord().x << " " << pp->getCoord().y << "\n";
 
-    gui::Window::globalWindow.mWindow.setView(view);
-    (*(++ array.begin()))->draw(); 
-    (*(++ ++ array.begin()))->draw();
+    // gui::Window::globalWindow.mWindow.setView(view);
+    // (*(array.begin() + 1))->draw(); 
+    //(*(array.begin() + 2))->draw();
     //
+
+    for (auto drawTarget : *aDrawableObjects) drawTarget->draw();
  
     gui::Window::globalWindow.mWindow.display();
 }

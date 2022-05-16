@@ -88,13 +88,14 @@ gui::GuiOutputBase::operator<(const GuiOutputBase& aOther) const
 }
 
 void 
-gui::GuiOutputBase::addLayer(const dom::Pair<str_val, uint_16>& aLayer)
+gui::GuiOutputBase::addLayer(const dom::Pair<const char*, layer_type>& aLayer)
 {
-    addLayer({aLayer});
+    //std::vector<dom::Pair<str_val, layer_type>> temp{aLayer};
+    addLayer(std::vector<dom::Pair<const char*, layer_type>> {aLayer});
 }
 
 void 
-gui::GuiOutputBase::addLayer(const std::vector<dom::Pair<str_val, uint_16>>& aLayerArray)
+gui::GuiOutputBase::addLayer(const std::vector<dom::Pair<const char*, layer_type>>& aLayerArray)
 {
     addComponentToDictionary(globalLayerNumbers, aLayerArray);
 }
@@ -155,7 +156,7 @@ void
 gui::GuiOutputBase::addComponentToDictionary
 (
     std::map<str_val, layer_type>& aDictionary,
-    const std::vector<dom::Pair<str_val, layer_type>>& aComponentArray
+    const std::vector<dom::Pair<const char*, layer_type>>& aComponentArray
 )
 {
     for(auto& newComponent : aComponentArray)

@@ -27,7 +27,12 @@ namespace dom
 			T2 second;
 		};
 
-		Pair(){}
+		Pair()
+		{
+				int yy = 0;
+				++yy;
+
+		}
 		Pair(const Pair& p)
 		{
 			i = p.i;
@@ -36,7 +41,10 @@ namespace dom
 		Pair(const T1 iInit, const T2 jInit) :
 			i(iInit),
 			j(jInit)
-		{}
+		{
+						int yy = 0;
+				++yy;	
+		}
 
 		~Pair(){}
 
@@ -87,8 +95,9 @@ namespace dom
 
 		Pair& operator=(const Pair& other)
 		{
-			i = other.i;
 			j = other.j;
+			i = other.i;
+
 			return *this;
 		}
 	};

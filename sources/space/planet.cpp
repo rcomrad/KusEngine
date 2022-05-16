@@ -6,6 +6,7 @@ sr::Planet::Planet() :
 	SpaceObject	(PLANET_TEXTURE, "Planet")
 {
 	setScale({0.1, 0.1});
+	setView("Player");
 	//Drawable::resetSprite({ 10000, 10000 });
 	//x0 = 10000;
 	//y0 = 10000;
