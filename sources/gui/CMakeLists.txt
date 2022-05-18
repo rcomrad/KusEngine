@@ -4,11 +4,11 @@ add_library(
     "background.cpp"
     "background.hpp"
 
-    "drawable_and_writable.cpp"
-    "drawable_and_writable.hpp"
+    "gui_drawable_and_writable.cpp"
+    "gui_drawable_and_writable.hpp"
 
-    "drawable.cpp"
-    "drawable.hpp"
+    "gui_drawable.cpp"
+    "gui_drawable.hpp"
 
     "gui_output_base.cpp"
     "gui_output_base.hpp"
@@ -16,14 +16,26 @@ add_library(
     "gui.cpp"
     "gui.hpp"
 
-    "window.cpp"
-    "window.hpp"
+    "gui_window.cpp"
+    "gui_window.hpp"
 
-    "writable.cpp"
-    "writable.hpp"
+    "gui_writable.cpp"
+    "gui_writable.hpp"
 
     "gui_paths.hpp"
 
     "gui_types.hpp"
+
+    "gui_close_event.cpp"
+    "gui_close_event.hpp"
+
+    "gui_event.cpp"
+    "gui_event.hpp"
+
+    "gui_key_event.cpp"
+    "gui_key_event.hpp"
+
+    "gui_mouse_event.cpp"
+    "gui_mouse_event.hpp"
 )
 

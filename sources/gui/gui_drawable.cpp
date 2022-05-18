@@ -1,4 +1,4 @@
-#include "gui/drawable.hpp"
+#include "gui_drawable.hpp"
 
 dom::Storage<gui::Drawable::TextureCell> gui::Drawable::mTextureStorage;
 

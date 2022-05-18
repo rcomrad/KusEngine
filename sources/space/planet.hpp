@@ -15,7 +15,7 @@ namespace sr
 	public:
 		Planet();
 		virtual ~Planet();
-		virtual void processEvent(Event* aEvent);
+		virtual void processEvent(gui::Event* aEvent);
 		virtual void update();
 		virtual void move(dom::Pair<float> aCoord);
 

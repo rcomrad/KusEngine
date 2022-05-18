@@ -4,7 +4,7 @@
 //--------------------------------------------------------------------------------
 
 #include "game/game_object.hpp"
-#include "gui/drawable.hpp"
+#include "gui/gui_drawable.hpp"
 
 namespace sr
 {

@@ -4,9 +4,8 @@
 #include "domain/dom_paths.hpp"
 #include "domain/dom_storage.hpp"
 
-#include "window.hpp"
-
-#include "gui/gui_output_base.hpp"
+#include "gui_window.hpp"
+#include "gui_output_base.hpp"
 
 namespace gui
 {

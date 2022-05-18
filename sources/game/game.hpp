@@ -6,12 +6,15 @@
 #include <iostream>
 
 #include "core/program_state.hpp"
-#include "space/player.hpp"
-#include "gui/background.hpp"
-#include "events//key_event.hpp"
+
+#include "gui/gui_key_event.hpp"
+#include "gui/gui_close_event.hpp"
+#include "gui/gui_mouse_event.hpp"
 
 #include "game/date.hpp"
 #include "space/planet.hpp"
+#include "space/player.hpp"
+#include "gui/background.hpp"
 
 namespace sr
 {
@@ -21,18 +24,19 @@ namespace sr
 		Game();
 		virtual ~Game();
 
-		virtual bool run(std::vector<sr::Event*> aEvents);
-		virtual
-			const SetDrawebleType*
-			getPresentation() const;
+		// virtual bool run(std::vector<gui::Event*> aEvents);
+		virtual const SetDrawebleType* getPresentation() const;
+		virtual void processEvents(std::vector<gui::Event*> aEvents);
+		virtual void update();
+
 	private:
 		bool mPause;
 		SetDrawebleType mObjectsDrawSide;
 		std::set<GameObject*> mObjectsLogicSide;;
 		//std::vector<MyDrawable*> mObjectss;
 
-		void mouseEventsHandler(Event* aEvent);
-		void keyEventsHandler(Event* aEvent);
+		void mouseEventsHandler(gui::Event* aEvent);
+		void keyEventsHandler(gui::Event* aEvent);
 
 		//Date* d;
 	};

@@ -1,7 +1,7 @@
-#include "gui/gui_output_base.hpp"
+#include "gui_output_base.hpp"
 
-#include "gui/drawable.hpp"
-#include "gui/writable.hpp"
+#include "gui_drawable.hpp"
+#include "gui_writable.hpp"
 
 std::map<std::string, layer_type> gui::GuiOutputBase::globalLayerNumbers =
 {

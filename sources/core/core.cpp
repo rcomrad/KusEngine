@@ -9,8 +9,7 @@
 
 #define PAUSE_DELTA		7
 
-sr::Core::Core() :
-	mView	(0, 0)
+sr::Core::Core()
 {
 	mCurrentState = new Game();
 	Time::updateTime();
@@ -26,8 +25,12 @@ sr::Core::run()
 	{
 		Time::updateTime();
 		if (Time::getFPSDCount())
+		{
 			mView.drawObjects(mCurrentState->getPresentation());
-		if (mCurrentState->run(mView.getEvents())) break;
+		}
+
+		mCurrentState->processEvents(mView.getEvents());
+		mCurrentState->update();
 		//for (int i = 0; i < 1e7; ++i);
 	}
 

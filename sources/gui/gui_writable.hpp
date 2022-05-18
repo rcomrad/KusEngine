@@ -5,7 +5,7 @@
 #include "domain/dom_string.hpp"
 #include "domain/dom_storage.hpp"
 
-#include "window.hpp"
+#include "gui_window.hpp"
 #include "gui_output_base.hpp"
 #include "gui_paths.hpp"
 

@@ -1,4 +1,4 @@
-#include "drawable_and_writable.hpp"
+#include "gui_drawable_and_writable.hpp"
 
 //Drawable::Drawable(std::string aTexturePath, sf::RenderWindow& aWindow) :
 //    mWindow(aWindow)

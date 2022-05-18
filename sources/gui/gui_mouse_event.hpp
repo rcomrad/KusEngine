@@ -5,14 +5,16 @@
 
 #include "domain/dom_pair.hpp"
 
-#include "event.hpp"
+#include "gui_event.hpp"
 
-namespace evn
+namespace gui
 {
-	class MoveEvent : public Event
+	class MouseEvent : public Event
 	{
     public:
-		MoveEvent(float aX, float aY);
+		MouseEvent(float aX, float aY);
+		virtual ~MouseEvent() = default;
+		dom::Pair<float> getPosition();
 
     public:
 		dom::Pair<float> mCoord;

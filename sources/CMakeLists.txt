@@ -1,4 +1,4 @@
-set(DIRS core domain events game gui main space)
+set(DIRS core domain game gui main space)
 foreach(DIR IN LISTS DIRS)
     add_subdirectory(${DIR})
     target_include_directories(${DIR} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")

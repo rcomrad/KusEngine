@@ -3,8 +3,8 @@
 
 #include "domain/dom_pair.hpp"
 
-#include "drawable.hpp"
-#include "writable.hpp"
+#include "gui_drawable.hpp"
+#include "gui_writable.hpp"
 
 namespace gui
 {

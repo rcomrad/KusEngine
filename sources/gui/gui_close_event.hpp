@@ -3,12 +3,11 @@
 
 //--------------------------------------------------------------------------------
 
-#include "core/domain.hpp"
-#include "events/event.hpp"
+#include "gui_event.hpp"
 
-namespace sr
+namespace gui
 {
-	struct CloseEvent : public sr::Event
+	struct CloseEvent : public Event
 	{
 		CloseEvent();
 		virtual ~CloseEvent();

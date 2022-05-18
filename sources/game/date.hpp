@@ -7,7 +7,7 @@
 
 #include "domain/dom_string.hpp"
 
-#include "gui/writable.hpp"
+#include "gui/gui_writable.hpp"
 
 #include "game/game_object.hpp"
 
@@ -20,7 +20,7 @@ namespace sr
 		virtual ~Date();
 		void update();
 		str_val getPresentation();
-		virtual void processEvent(Event* aEvent);
+		virtual void processEvent(gui::Event* aEvent);
 	private:
 		sint_64 mDate;
 		std::vector<str_val> mMonthNames;

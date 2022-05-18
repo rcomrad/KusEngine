@@ -15,6 +15,6 @@ void
 sr::Background::update() {}
 
 void
-sr::Background::processEvent(Event* aEvent)
+sr::Background::processEvent(gui::Event* aEvent)
 {
 }

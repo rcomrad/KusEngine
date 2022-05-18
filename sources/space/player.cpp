@@ -11,11 +11,11 @@ sr::Player::Player(str_const_ref aTexturePath) :
 sr::Player::~Player() {}
 
 void
-sr::Player::processEvent(Event* aEvent)
+sr::Player::processEvent(gui::Event* aEvent)
 {
-	if (aEvent->getEventType() == Event::EventType::MOVE)
+	if (aEvent->getEventType() == gui::Event::EventType::MOUSE_RELEASED)
 	{
-		MoveEvent* me = static_cast <MoveEvent*> (aEvent);
+		gui::MouseEvent* me = static_cast <gui::MouseEvent*> (aEvent);
 		Spaceship::move(me->mCoord);
 	}
 }

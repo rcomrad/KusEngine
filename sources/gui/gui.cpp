@@ -2,21 +2,21 @@
 
 //--------------------------------------------------------------------------------
 
-#define HEXAGON_DX                  0.f
-#define HEXAGON_DY                  50.f
+// #define HEXAGON_DX                  0.f
+// #define HEXAGON_DY                  50.f
 
-#define HEXAGON_SIZE                25.f
-#define HEXAGON_OTLINE_THICKNESS    5.f
+// #define HEXAGON_SIZE                25.f
+// #define HEXAGON_OTLINE_THICKNESS    5.f
 
-#define FONT_PATH                   "font.ttf"
+// #define FONT_PATH                   "font.ttf"
 
-#define TEXT_DX                     -18.f
-#define TEXT_DY                     -20.f
-#define TEXT_SINGLE_DX              10.f
+// #define TEXT_DX                     -18.f
+// #define TEXT_DY                     -20.f
+// #define TEXT_SINGLE_DX              10.f
 
-sr::GUI::GUI(sint_16 aN, sint_16 aM) 
+sr::GUI::GUI() 
 {
-    mHotkeys[sf::Keyboard::Space] = KeyEvent::KeyEventType::SPACE_PAUSE;
+   // mHotkeys[sf::Keyboard::Space] = KeyEvent::KeyEventType::SPACE_PAUSE;
 
     gui::GuiOutputBase::addLayer({
         {"Player", 10},
@@ -26,45 +26,23 @@ sr::GUI::GUI(sint_16 aN, sint_16 aM)
     });
 }
 
-std::vector<sr::Event*>
+std::vector<gui::Event*>
 sr::GUI::getEvents()
 {
-    std::vector<Event*> result;
+    std::vector<gui::Event*> result;
     sf::Event event;
     while (gui::Window::globalWindow.mWindow.pollEvent(event))
     {
-        sf::Vector2i pixelPos;
-        sf::Vector2f worldPos;
         switch (event.type)
         {
         case sf::Event::Closed:
-            gui::Window::globalWindow.mWindow.close();
-            result.push_back(new CloseEvent());
+            result.push_back(makeCloseEvent(&event));
             break;
         case sf::Event::MouseButtonReleased:
-            pixelPos = sf::Mouse::getPosition(gui::Window::globalWindow.mWindow);
-            worldPos = gui::Window::globalWindow.mWindow.mapPixelToCoords(pixelPos);
-
-            // sf::View view;
-            // gui::GuiOutputBase* ggg = (*(++ ++ array.begin()));
-            // Player* pp = dynamic_cast<Player*> (ggg);
-            // view.setCenter(pp->getCoord());
-
-            result.push_back(new MoveEvent(
-                // sf::Mouse::getPosition(gui::Window::allWindow).x,
-                // sf::Mouse::getPosition(gui::Window::allWindow).y)
-                worldPos.x, worldPos.y)
-            );
+            result.push_back(makeMouseEvent(&event));
             break;
         case sf::Event::KeyReleased:
-            for (auto& i : mHotkeys)
-            {
-                if (i.first == event.key.code)
-                {
-                    result.push_back(new KeyEvent(i.second));
-                    break;
-                }
-            }
+            result.push_back(makeKeyEvent(&event));
             break;
         }
     }
@@ -80,12 +58,13 @@ sr::GUI::drawObjects
 )
 {
     gui::Window::globalWindow.clear();
-
-    std::vector<gui::GuiOutputBase*> array;
-    for (auto drawTarget : *aDrawableObjects) array.emplace_back(((gui::GuiOutputBase*) drawTarget));
+    gui::Window::globalWindow.centrateView("Player", (*(--aDrawableObjects->end()))->getPosition());
+    for (auto drawTarget : *aDrawableObjects) drawTarget->draw();
+    gui::Window::globalWindow.mWindow.display();
+   
     // for (auto drawTarget : *aDrawableObjects) ((gui::GuiOutputBase*) drawTarget)->draw();
 
-    gui::Window::globalWindow.centrateView("Player", (*(array.begin() + 3))->getPosition());
+ 
     //gui::Window::display();
 
     // gui::Window::globalWindow.mWindow.setView(gui::Window::globalWindow.mWindow.getDefaultView());
@@ -106,9 +85,44 @@ sr::GUI::drawObjects
     //(*(array.begin() + 2))->draw();
     //
 
-    for (auto drawTarget : *aDrawableObjects) drawTarget->draw();
- 
-    gui::Window::globalWindow.mWindow.display();
+}
+
+gui::CloseEvent* 
+sr::GUI::makeCloseEvent(sf::Event* aEvent)
+{
+    gui::CloseEvent* result = new gui::CloseEvent();
+    gui::Window::globalWindow.mWindow.close();
+    return result;
+}
+
+gui::MouseEvent* 
+sr::GUI::makeMouseEvent(sf::Event* aEvent)
+{
+    sf::Vector2i pixelPos;
+    sf::Vector2f worldPos;
+    
+    pixelPos = sf::Mouse::getPosition(gui::Window::globalWindow.mWindow);
+    worldPos = gui::Window::globalWindow.mWindow.mapPixelToCoords(pixelPos);
+
+    gui::MouseEvent* result = new gui::MouseEvent(worldPos.x, worldPos.y);
+    return result;
+}
+
+gui::KeyEvent* 
+sr::GUI::makeKeyEvent(sf::Event* aEvent)
+{
+    gui::KeyEvent* result = new gui::KeyEvent(aEvent->key.code);
+    gui::Window::globalWindow.mWindow.close();
+    return result;
+
+    // for (auto& i : mHotkeys)
+    // {
+    //     if (i.first == event.key.code)
+    //     {
+    //         result.push_back(new KeyEvent(i.second));
+    //         break;
+    //     }
+    // }
 }
 
 //--------------------------------------------------------------------------------

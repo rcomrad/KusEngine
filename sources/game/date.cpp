@@ -32,7 +32,7 @@ sr::Date::update()
 }
 
 void
-sr::Date::processEvent(Event* aEvent)
+sr::Date::processEvent(gui::Event* aEvent)
 {
 
 }

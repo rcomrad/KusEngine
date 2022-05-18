@@ -1,7 +1,7 @@
 #ifndef BACKGROUND_H
 #define BACKGROUND_H
 
-#include "gui/drawable.hpp"
+#include "gui/gui_drawable.hpp"
 #include "gui/gui_paths.hpp"
 #include "game/game_object.hpp"
 
@@ -13,7 +13,7 @@ namespace sr
 		Background(std::string aTexturePath = BACKGROUND_TEXTURE_PATH);
 		virtual ~Background();
 		virtual void update();
-		virtual void processEvent(Event* aEvent);
+		virtual void processEvent(gui::Event* aEvent);
 
 	private:
 	};

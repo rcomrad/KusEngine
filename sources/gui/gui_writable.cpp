@@ -1,4 +1,4 @@
-#include "writable.hpp"
+#include "gui_writable.hpp"
 
 dom::Storage<gui::Writable::FontCell> gui::Writable::mFontsStorage;
 

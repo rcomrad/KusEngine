@@ -12,14 +12,16 @@
 #include <SFML/Graphics.hpp>
 
 #include "core/domain.hpp"
-#include "gui/window.hpp"
 #include "space/player.hpp"
-#include "gui/background.hpp"
-#include "gui/drawable.hpp"
-#include "events/close_event.hpp"
+#include "background.hpp"
 
-#include "events/event.hpp"
-#include "events/key_event.hpp"
+#include "gui_window.hpp"
+#include "gui_drawable.hpp"
+#include "gui_close_event.hpp"
+#include "gui_event.hpp"
+#include "gui_mouse_event.hpp"
+#include "gui_close_event.hpp"
+#include "gui_key_event.hpp"
 
 #include "core/program_state.hpp"
 
@@ -28,20 +30,20 @@ namespace sr
 	class GUI
 	{
 	public:
-		enum class EventType
-		{
-			NUN = 0,
-			SWITCH_DRAW_MODE = 1,
-			SWITCH_PAUSE = 2,
-			INCREASE_SPEED = 3,
-			DECREASE_SPEED = 4,
-			STANDART_PAUSE = 5
-		};
+		// enum class EventType
+		// {
+		// 	NUN = 0,
+		// 	SWITCH_DRAW_MODE = 1,
+		// 	SWITCH_PAUSE = 2,
+		// 	INCREASE_SPEED = 3,
+		// 	DECREASE_SPEED = 4,
+		// 	STANDART_PAUSE = 5
+		// };
 
-		GUI(sint_16 aN, sint_16 aM);
+		GUI();
 
 		// bool isAppClosed() const;
-		std::vector<Event*> getEvents();
+		std::vector<gui::Event*> getEvents();
 
 		void drawObjects
 		(
@@ -49,12 +51,16 @@ namespace sr
 		);
 
 	private:
+		gui::CloseEvent* makeCloseEvent(sf::Event* aEvent);
+		gui::MouseEvent* makeMouseEvent(sf::Event* aEvent);
+		gui::KeyEvent* makeKeyEvent(sf::Event* aEvent);
+
 		//std::set<MyDrawable*> mDrawableObjects;
 		//std::set<MyDrawable*> mDrawableObjects;
 		//sf::RenderWindow mWindow;
 		//auto ;
 		//std::set<int, decltype(cmp)> s;
-		std::map< sf::Keyboard::Key, KeyEvent::KeyEventType> mHotkeys;
+		//std::map< sf::Keyboard::Key, KeyEvent::KeyEventType> mHotkeys;
 	};
 }
 

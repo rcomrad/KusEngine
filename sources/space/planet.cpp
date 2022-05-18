@@ -35,7 +35,7 @@ sr::Planet::update()
 }
 
 void
-sr::Planet::processEvent(Event* aEvent)
+sr::Planet::processEvent(gui::Event* aEvent)
 {
 }
 

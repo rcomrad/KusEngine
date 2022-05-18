@@ -5,17 +5,19 @@
 
 #include "domain/dom_pair.hpp"
 
-namespace evn
+namespace gui
 {
 	class Event
 	{
 	public:
 		enum class EventType
 		{
-			NUN = 0,
-			MOUSE_MOVE = 1,
-			KEY_PRESSED = 2,
-			CLOSE = 3
+			NUN,
+			MOUSE_PRESSED,
+			MOUSE_RELEASED,
+			KEY_PRESSED,
+			KEY_RELEASED,
+			WINDOW_CLOSED
 		};
 
 		Event(EventType aType);
