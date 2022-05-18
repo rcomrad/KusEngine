@@ -11,7 +11,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "core/domain.hpp"
 #include "space/player.hpp"
 #include "background.hpp"
 
@@ -23,7 +22,7 @@
 #include "gui_close_event.hpp"
 #include "gui_key_event.hpp"
 
-#include "core/program_state.hpp"
+#include "logic/program_state.hpp"
 
 namespace sr
 {

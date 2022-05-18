@@ -1,29 +1,13 @@
 add_library(
-    gui
+    logic
 
-    "background.cpp"
-    "background.hpp"
+    "log_program_state.cpp"
+    "log_program_state.hpp"
 
-    "drawable_and_writable.cpp"
-    "drawable_and_writable.hpp"
+    "logic_object.cpp"
+    "logic_object.hpp"
 
-    "drawable.cpp"
-    "drawable.hpp"
-
-    "gui_output_base.cpp"
-    "gui_output_base.hpp"
-
-    "gui.cpp"
-    "gui.hpp"
-
-    "window.cpp"
-    "window.hpp"
-
-    "writable.cpp"
-    "writable.hpp"
-
-    "gui_paths.hpp"
-
-    "gui_types.hpp"
+    "log_objects_storage.cpp"
+    "log_objects_storage.hpp"
 )
 
