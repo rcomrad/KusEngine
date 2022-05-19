@@ -6,9 +6,10 @@
 #include <iostream>
 
 #include "gui/gui.hpp"
-#include "core/program_state.hpp"
 #include "game/game.hpp"
 #include "core/my_time.hpp"
+
+#include "logic/program_state.hpp"
 
 namespace sr
 {
@@ -21,9 +22,9 @@ namespace sr
 		void run();
 
 	private:
-		GUI mView;
+		gui::GUI mView;
 
-		ProgramState* mCurrentState;
+		lgc::ProgramState* mCurrentState;
 	};
 }
 

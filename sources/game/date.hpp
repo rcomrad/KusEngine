@@ -9,11 +9,11 @@
 
 #include "gui/gui_writable.hpp"
 
-#include "game/game_object.hpp"
+#include "logic/logic_object.hpp"
 
 namespace sr
 {
-	class Date : public GameObject, public gui::Writable
+	class Date : public gui::Writable, public lgc::LogicObject
 	{
 	public:
 		Date();

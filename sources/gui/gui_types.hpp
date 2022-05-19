@@ -3,9 +3,11 @@
 
 //#include "domain/"
 
+#include <set>
+
 #include <SFML/Graphics.hpp>
 
-#include "gui/gui_event.hpp"
+#include "gui_event.hpp"
 
 typedef const sf::Vector2f&     sf_2f_const_ref;
 typedef sf::Vector2f            sf_2f_val;

@@ -21,10 +21,9 @@
 #include "gui_mouse_event.hpp"
 #include "gui_close_event.hpp"
 #include "gui_key_event.hpp"
+#include "gui_types.hpp"
 
-#include "logic/program_state.hpp"
-
-namespace sr
+namespace gui
 {
 	class GUI
 	{
@@ -44,22 +43,17 @@ namespace sr
 		// bool isAppClosed() const;
 		std::vector<gui::Event*> getEvents();
 
-		void drawObjects
-		(
-			const SetDrawebleType* aDrawableObjects
-		);
+		void drawObjects();
+
+		static void addDrawable(gui::GuiOutputBase* aDrawable);
+		static void removeDrawable(gui::GuiOutputBase* aDrawable);
 
 	private:
 		gui::CloseEvent* makeCloseEvent(sf::Event* aEvent);
 		gui::MouseEvent* makeMouseEvent(sf::Event* aEvent);
 		gui::KeyEvent* makeKeyEvent(sf::Event* aEvent);
 
-		//std::set<MyDrawable*> mDrawableObjects;
-		//std::set<MyDrawable*> mDrawableObjects;
-		//sf::RenderWindow mWindow;
-		//auto ;
-		//std::set<int, decltype(cmp)> s;
-		//std::map< sf::Keyboard::Key, KeyEvent::KeyEventType> mHotkeys;
+		static DraweblesSet mDrawebles;
 	};
 }
 

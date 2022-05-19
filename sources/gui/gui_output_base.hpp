@@ -8,11 +8,13 @@
 #include "domain/dom_string.hpp"
 #include "domain/dom_error_message.hpp"
 
+#include "logic/basic_object.hpp"
+
 #include "gui_types.hpp"
 
 namespace gui
 {
-	class GuiOutputBase
+	class GuiOutputBase : virtual public lgc::BasicObject
 	{
 		struct PositionUnion;
 
@@ -49,7 +51,7 @@ namespace gui
 		void setView	(str_const_ref aViewName);
 
 	private:
-		GuiObjectType	mType;
+		GuiObjectType		mType;
 		layer_type			mLayer;
 		view_type			mViewNumber;
 
@@ -80,5 +82,7 @@ namespace gui
 		bool operator() (GuiOutputBase* a, GuiOutputBase* b) const;
 	};
 }
+
+typedef std::set<gui::GuiOutputBase*, gui::GuiOutputBaseComparator> DraweblesSet;
 
 #endif // !GUI_OUTPUT_BASE_H

@@ -5,8 +5,6 @@
 
 #include "SFML/System/Clock.hpp"
 
-#include "domain.hpp"
-
 namespace sr
 {
 	class Time

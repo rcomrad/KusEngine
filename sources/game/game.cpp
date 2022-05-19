@@ -8,27 +8,27 @@ sr::Game::Game() :
 	Planet* pp = new Planet();
 	Date* d = new Date();
 
-	mObjectsDrawSide.insert(p);
-	mObjectsDrawSide.insert(b);
-	mObjectsDrawSide.insert(d);
-	mObjectsDrawSide.insert(pp);
+	// mObjectsDrawSide.insert(p);
+	// mObjectsDrawSide.insert(b);
+	// mObjectsDrawSide.insert(d);
+	// mObjectsDrawSide.insert(pp);
 
-	mObjectsLogicSide.insert(p);
-	mObjectsLogicSide.insert(b);
-	mObjectsLogicSide.insert(d);
-	mObjectsLogicSide.insert(pp);
+	// mObjectsLogicSide.insert(p);
+	// mObjectsLogicSide.insert(b);
+	// mObjectsLogicSide.insert(d);
+	// mObjectsLogicSide.insert(pp);
 }
 
 sr::Game::~Game()
 {
-	for (auto i : mObjectsDrawSide) delete i;
+	//for (auto i : mObjectsDrawSide) delete i;
 }
 
-const SetDrawebleType*
-sr::Game::getPresentation() const
-{
-	return &mObjectsDrawSide;
-}
+// const SetDrawebleType*
+// sr::Game::getPresentation() const
+// {
+// 	return &mObjectsDrawSide;
+// }
 
 void
 sr::Game::processEvents(std::vector<gui::Event*> aEvents)
@@ -55,9 +55,9 @@ sr::Game::update()
 {
 	if (!mPause)
 	{
-		for (auto i : mObjectsLogicSide)
+		for (auto i : lgc::ObjectStorage::globalObjecStorage["logical"])
 		{
-			i->update();
+			dynamic_cast<lgc::LogicObject*>(i)->update();
 		}
 	}
 }
@@ -68,9 +68,9 @@ sr::Game::mouseEventsHandler(gui::Event* aEvent)
 	gui::MouseEvent* moveEvent = static_cast <gui::MouseEvent*> (aEvent);
 	std::cout << moveEvent->mCoord.x << " " << moveEvent->mCoord.y << "\n";
 
-	for (auto i : mObjectsLogicSide)
+	for (auto i : lgc::ObjectStorage::globalObjecStorage["logical"])
 	{
-		i->processEvent(aEvent);
+		dynamic_cast<lgc::LogicObject*>(i)->processEvent(aEvent);
 	}
 }
 

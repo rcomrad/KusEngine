@@ -3,12 +3,12 @@
 
 //--------------------------------------------------------------------------------
 
-#include "game/game_object.hpp"
+#include "logic/logic_object.hpp"
 #include "gui/gui_drawable.hpp"
 
 namespace sr
 {
-	class SpaceObject : public GameObject, public gui::Drawable
+	class SpaceObject : public gui::Drawable, public lgc::LogicObject
 	{
 	public:
 		SpaceObject(std::string aTexturePath, str_const_ref aLayer = "Default");

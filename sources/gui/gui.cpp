@@ -14,20 +14,22 @@
 // #define TEXT_DY                     -20.f
 // #define TEXT_SINGLE_DX              10.f
 
-sr::GUI::GUI() 
+DraweblesSet gui::GUI::mDrawebles;
+
+gui::GUI::GUI() 
 {
    // mHotkeys[sf::Keyboard::Space] = KeyEvent::KeyEventType::SPACE_PAUSE;
 
     gui::GuiOutputBase::addLayer({
-        {"Player", 10},
+        {"Player", 100},
         {"Background", 1},
         {"Planet", 5},
-        {"Data", 5}
+        {"Data", 16}
     });
 }
 
 std::vector<gui::Event*>
-sr::GUI::getEvents()
+gui::GUI::getEvents()
 {
     std::vector<gui::Event*> result;
     sf::Event event;
@@ -52,14 +54,16 @@ sr::GUI::getEvents()
 #include <space/player.hpp>
 
 void 
-sr::GUI::drawObjects
+gui::GUI::drawObjects
 (
-    const SetDrawebleType* aDrawableObjects
+   // const SetDrawebleType* aDrawableObjects
 )
 {
     gui::Window::globalWindow.clear();
-    gui::Window::globalWindow.centrateView("Player", (*(--aDrawableObjects->end()))->getPosition());
-    for (auto drawTarget : *aDrawableObjects) drawTarget->draw();
+    gui::Window::globalWindow.centrateView("Player", (*(--mDrawebles.end()))->getPosition());
+    for (auto drawTarget : mDrawebles) drawTarget->draw();
+    //gui::Window::globalWindow.centrateView("Player", (*(--aDrawableObjects->end()))->getPosition());
+    //for (auto drawTarget : *aDrawableObjects) drawTarget->draw();
     gui::Window::globalWindow.mWindow.display();
    
     // for (auto drawTarget : *aDrawableObjects) ((gui::GuiOutputBase*) drawTarget)->draw();
@@ -67,7 +71,7 @@ sr::GUI::drawObjects
  
     //gui::Window::display();
 
-    // gui::Window::globalWindow.mWindow.setView(gui::Window::globalWindow.mWindow.getDefaultView());
+    // gui::WindoVectorguiw::globalWindow.mWindow.setView(gui::Window::globalWindow.mWindow.getDefaultView());
 
     // (*(array.begin()))->draw();
     // (*(array.begin() + 3))->draw();
@@ -87,8 +91,20 @@ sr::GUI::drawObjects
 
 }
 
+void 
+gui::GUI::addDrawable(gui::GuiOutputBase* aDrawable)
+{
+    mDrawebles.insert(aDrawable);
+}
+
+void 
+gui::GUI::removeDrawable(gui::GuiOutputBase* aDrawable)
+{
+    mDrawebles.erase(aDrawable);
+}
+
 gui::CloseEvent* 
-sr::GUI::makeCloseEvent(sf::Event* aEvent)
+gui::GUI::makeCloseEvent(sf::Event* aEvent)
 {
     gui::CloseEvent* result = new gui::CloseEvent();
     gui::Window::globalWindow.mWindow.close();
@@ -96,7 +112,7 @@ sr::GUI::makeCloseEvent(sf::Event* aEvent)
 }
 
 gui::MouseEvent* 
-sr::GUI::makeMouseEvent(sf::Event* aEvent)
+gui::GUI::makeMouseEvent(sf::Event* aEvent)
 {
     sf::Vector2i pixelPos;
     sf::Vector2f worldPos;
@@ -109,7 +125,7 @@ sr::GUI::makeMouseEvent(sf::Event* aEvent)
 }
 
 gui::KeyEvent* 
-sr::GUI::makeKeyEvent(sf::Event* aEvent)
+gui::GUI::makeKeyEvent(sf::Event* aEvent)
 {
     gui::KeyEvent* result = new gui::KeyEvent(aEvent->key.code);
     gui::Window::globalWindow.mWindow.close();

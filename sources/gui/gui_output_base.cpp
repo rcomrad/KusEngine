@@ -2,6 +2,7 @@
 
 #include "gui_drawable.hpp"
 #include "gui_writable.hpp"
+#include "gui.hpp"
 
 std::map<std::string, layer_type> gui::GuiOutputBase::globalLayerNumbers =
 {
@@ -11,9 +12,14 @@ std::map<std::string, layer_type> gui::GuiOutputBase::globalLayerNumbers =
 gui::GuiOutputBase::GuiOutputBase() :
     mType           (GuiObjectType::NUN),
     mLayer          (250)
-{}
+{
+    addTag("drawable");
+}
 
-gui::GuiOutputBase::~GuiOutputBase(){}
+gui::GuiOutputBase::~GuiOutputBase()
+{
+    GUI::removeDrawable(this);
+}
 
 #define thisIsSprite    (sint_32(mType) & sint_32(GuiObjectType::SPRITE))
 #define thisIsText      (sint_32(mType) & sint_32(GuiObjectType::TEXT))
@@ -98,6 +104,7 @@ void
 gui::GuiOutputBase::setLayer(str_const_ref aLayerName)
 {
     mLayer = getComponentNumber(globalLayerNumbers, aLayerName);
+    GUI::addDrawable(this);
 }
 
 void 
@@ -136,7 +143,7 @@ gui::GuiOutputBase::addComponentToDictionary
                     "Component_name:",
                     newComponent.first, 
                     "Component_number:",
-                    newComponent.second,
+                    sint_32(newComponent.second),
                     "Existing_component_name:",
                     existComponent.first
                 );          

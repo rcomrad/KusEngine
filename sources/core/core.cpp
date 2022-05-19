@@ -26,7 +26,7 @@ sr::Core::run()
 		Time::updateTime();
 		if (Time::getFPSDCount())
 		{
-			mView.drawObjects(mCurrentState->getPresentation());
+			mView.drawObjects();
 		}
 
 		mCurrentState->processEvents(mView.getEvents());

@@ -9,7 +9,7 @@
 #include "gui/gui_drawable.hpp"
 #include "gui/gui_types.hpp"
 
-#include "log_types.hpp"
+#include "logic_types.hpp"
 
 namespace lgc
 {
@@ -20,7 +20,7 @@ namespace lgc
 		virtual ~ProgramState() = default;
 
 		//virtual bool run(std::vector<gui::Event*> aEvents) = 0;
-		virtual const SetDrawebleType* getPresentation() const = 0;
+		//virtual const SetDrawebleType* getPresentation() const = 0;
 		virtual void processEvents(EventArray aEvents) = 0;
 		virtual void update() = 0;
 	};

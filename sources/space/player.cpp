@@ -4,6 +4,7 @@ sr::Player::Player(str_const_ref aTexturePath) :
 	Spaceship(aTexturePath, "Player")
 {
 	setView("Player");
+	addTag("Player");
 
 	setScale({ 0.35, 0.35 });
 }
