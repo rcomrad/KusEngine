@@ -6,7 +6,8 @@
 
 #include "space/spaceship.hpp"
 
-#define PLAYER_TEXTURE_PATH TEXTURES + "player.png"s
+//#define PLAYER_TEXTURE_PATH TEXTURES + "player.png"s
+#define PLAYER_TEXTURE_PATH TEXTURES + "plain.png"s
 
 namespace sr
 {

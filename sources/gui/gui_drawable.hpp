@@ -23,6 +23,9 @@ namespace gui
 		void resetSpritePosition	(dom::Pair<float> aCoord);
 		void setSpriteScale			(dom::Pair<float> aCoord);
 
+		void setRect(dom::Pair<int> aPosition, int aWidth, int aHeight);
+		void setRectChange(int dX, int dY);
+
 	private:
 		struct TextureCell
 		{
@@ -35,7 +38,12 @@ namespace gui
 		static dom::Storage<TextureCell> mTextureStorage;
 
 		sf::Sprite			mSprite;
-		dom::Pair<float>	mCoordOffset;
+		dom::Pair<int>	mPositionOffset;
+
+		sf::IntRect mRect;
+		dom::Pair<int>	mRectOffset;
+		dom::Pair<uint_32>	mTextureSize;
+		//flost mAnimationSpeed;
 	};
 }
 

@@ -44,7 +44,7 @@ sr::Game::processEvents(std::vector<gui::Event*> aEvents)
 			keyEventsHandler(i);
 			break;
 		case gui::Event::EventType::WINDOW_CLOSED	:
-			//TODO:
+			close();
 			break;
 		}
 	}

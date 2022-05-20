@@ -16,13 +16,21 @@ namespace lgc
 	class ProgramState
 	{
 	public:
-		ProgramState() = default;
+		ProgramState();
 		virtual ~ProgramState() = default;
 
 		//virtual bool run(std::vector<gui::Event*> aEvents) = 0;
 		//virtual const SetDrawebleType* getPresentation() const = 0;
 		virtual void processEvents(EventArray aEvents) = 0;
 		virtual void update() = 0;
+		
+		bool isClosed();
+
+	protected:
+		void close();
+
+	private:
+		bool mIsClosed;
 	};
 }
 	

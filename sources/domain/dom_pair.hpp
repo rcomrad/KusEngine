@@ -38,13 +38,16 @@ namespace dom
 			i = p.i;
 			j = p.j;
 		}
-		Pair(const T1 iInit, const T2 jInit) :
+
+		Pair(T1&& iInit, T2&& jInit) :
 			i(iInit),
 			j(jInit)
-		{
-						int yy = 0;
-				++yy;	
-		}
+		{}
+
+		Pair(const T1& iInit, const T2& jInit) :
+			i(iInit),
+			j(jInit)
+		{}
 
 		~Pair(){}
 

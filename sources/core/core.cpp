@@ -30,6 +30,7 @@ sr::Core::run()
 		}
 
 		mCurrentState->processEvents(mView.getEvents());
+		if (mCurrentState->isClosed()) break;
 		mCurrentState->update();
 		//for (int i = 0; i < 1e7; ++i);
 	}

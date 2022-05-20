@@ -6,10 +6,13 @@ gui::Drawable::Drawable(std::string aTexturePath)
 {
     setType(gui::GuiOutputBase::GuiObjectType::SPRITE);
 
-    mSprite.setTexture(mTextureStorage.getCell(aTexturePath).val);
+    sf::Texture texture = mTextureStorage.getCell(aTexturePath).val;
+    mSprite.setTexture(texture);
+    sf::Vector2u temp = texture.getSize();
+    mTextureSize = {temp.x, temp.y};
 
-    mCoordOffset.x = mSprite.getGlobalBounds().height / 2;
-    mCoordOffset.y = mSprite.getGlobalBounds().width / 2;
+    mPositionOffset.x = mSprite.getGlobalBounds().height / 2;
+    mPositionOffset.y = mSprite.getGlobalBounds().width / 2;
 }
 
 gui::Drawable::~Drawable(){}
@@ -31,8 +34,8 @@ gui::Drawable::resetSpritePosition(dom::Pair<float> aCoord)
 {
     mSprite.setPosition
     ({
-        (aCoord.x - mCoordOffset.x),
-        (aCoord.y - mCoordOffset.y)
+        (aCoord.x - mPositionOffset.x),
+        (aCoord.y - mPositionOffset.y)
     });
 }
 
@@ -41,8 +44,21 @@ gui::Drawable::setSpriteScale(dom::Pair<float> aCoord)
 {
     mSprite.setScale({ float(aCoord.x), float(aCoord.y) });
 
-    mCoordOffset.x = mSprite.getGlobalBounds().height / 2;
-    mCoordOffset.y = mSprite.getGlobalBounds().width / 2;
+    mPositionOffset.x = mSprite.getGlobalBounds().height / 2;
+    mPositionOffset.y = mSprite.getGlobalBounds().width / 2;
+}
+
+void
+gui::Drawable::setRect(dom::Pair<int> aPosition, int aWidth, int aHeight)
+{
+
+    mRect = sf::IntRect(aPosition.x, aPosition.y, aWidth, aHeight);
+}
+
+void
+gui::Drawable::setRectChange(int dX, int dY)
+{
+    mRectOffset = {dX, dY};
 }
 
 sf_2f_val

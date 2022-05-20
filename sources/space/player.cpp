@@ -6,7 +6,7 @@ sr::Player::Player(str_const_ref aTexturePath) :
 	setView("Player");
 	addTag("Player");
 
-	setScale({ 0.35, 0.35 });
+	//setScale({ 0.35, 0.35 });
 }
 
 sr::Player::~Player() {}
