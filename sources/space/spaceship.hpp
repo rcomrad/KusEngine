@@ -2,7 +2,6 @@
 #define SPACESHIP_H
 
 #include "space_object.hpp"
-#include "core/my_time.hpp"
 
 namespace sr
 {
@@ -13,7 +12,7 @@ namespace sr
 		Spaceship(std::string aTexturePath, str_const_ref aLayer = "Default");
 		virtual ~Spaceship();
 		virtual void move(dom::Pair<float> aCoord);
-		virtual void update();
+		virtual void update(float adTime);
 
 	private:
 		uint_16 mSpeed;

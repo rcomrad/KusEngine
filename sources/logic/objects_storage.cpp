@@ -2,7 +2,7 @@
 
 lgc::ObjectStorage lgc::ObjectStorage::globalObjecStorage;
 std::map<uint_64, tag_type> lgc::ObjectStorage::mTagDictionary;
-std::vector<std::set<lgc::BasicObject*>> lgc::ObjectStorage::mObjects;
+std::vector<std::set<lgc::BasicObject*>> lgc::ObjectStorage::mObjects(1);
 
 uint_64
 lgc::ObjectStorage::getTagNumber(str_const_ref aName) const
@@ -47,12 +47,26 @@ lgc::ObjectStorage::removeObject(lgc::BasicObject* aObject, std::set<tag_type> a
 std::set<lgc::BasicObject*>&
 lgc::ObjectStorage::operator[](str_const_ref aTag)
 {
+    #ifdef _DBG_
+    if (mTagDictionary.count(getTagNumber(aTag)) == 0) 
+    {
+        dom::ErrorMessages::writeError("there_is_no_object_with_given_tag", "given_tag:", aTag);
+        return mObjects[0];
+    }
+    #endif
     return mObjects[mTagDictionary[getTagNumber(aTag)]];
 }
 
 const std::set<lgc::BasicObject*>&
 lgc::ObjectStorage::operator[](str_const_ref aTag) const
 {
+    #ifdef _DBG_
+    if (mTagDictionary.count(getTagNumber(aTag)) == 0) 
+    {
+        dom::ErrorMessages::writeError("there_is_no_object_with_given_tag", "given_tag:", aTag);
+        return mObjects[0];
+    }
+    #endif
     return mObjects[mTagDictionary[getTagNumber(aTag)]];
 }
 

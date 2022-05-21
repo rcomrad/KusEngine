@@ -3,6 +3,8 @@
 #define WINDOW_SIZE_X	700
 #define WINDOW_SIZE_Y	700
 
+#define _DBG_
+
 gui::Window gui::Window::globalWindow;
 
 //sf::RenderWindow gui::Window::allWindow(sf::VideoMode(WINDOW_SIZE_X, WINDOW_SIZE_Y), "Evolution");
@@ -11,6 +13,7 @@ gui::Window::Window() :
     mWindow (sf::VideoMode(WINDOW_SIZE_X, WINDOW_SIZE_Y), "Game"),
     mCurrentViewNumber  (250)
 {
+   mWindow.setFramerateLimit(80);
     // mViewNumbers["Default"] = 0;
     // mViews.push_back(mWindow.getDefaultView());
 }
@@ -90,6 +93,14 @@ gui::Window::setView(uint_8 aViewNumber)
 void
 gui::Window::centrateView(uint_8 aViewNumber, sf_2f_const_ref aCoord)
 {
+    #ifdef _DBG_
+    if (aViewNumber >= mViews.size() || aViewNumber < 0) 
+    {
+        dom::ErrorMessages::writeError("wiew_doesnt_exist", "view_number:", aViewNumber);
+        return;
+    }
+    #endif
+
     mViews[aViewNumber].setCenter(aCoord);
 }
 
@@ -97,5 +108,14 @@ gui::Window::centrateView(uint_8 aViewNumber, sf_2f_const_ref aCoord)
 void
 gui::Window::centrateView(str_const_ref aViewName, sf_2f_const_ref aCoord)
 {
-    mViews[mViewNumbers[aViewName]].setCenter(aCoord);
+    #ifdef _DBG_
+    if (mViewNumbers.count(aViewName) == 0) 
+    {
+        dom::ErrorMessages::writeError("wiew_doesnt_exist", "view_name:", aViewName);
+        return;
+    }
+    #endif
+
+    centrateView(mViewNumbers[aViewName], aCoord);
+    //mViews[mViewNumbers[aViewName]].setCenter(aCoord);
 }

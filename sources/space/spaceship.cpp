@@ -27,10 +27,10 @@ sr::Spaceship::move(dom::Pair<float> aCoord)
 }
 
 void 
-sr::Spaceship::update()
+sr::Spaceship::update(float adTime)
 {
 	dom::Pair<float> dist = mTargetCoord - Drawable::getPosition();
-	double dSpace = Time::getDTime() / DAY_SPEED * mSpeed;
+	double dSpace = adTime / DAY_SPEED * mSpeed;
 	dist.x *= dSpace;
 	dist.y *= dSpace;
 	Drawable::move(dist);

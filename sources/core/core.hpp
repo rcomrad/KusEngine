@@ -7,9 +7,9 @@
 
 #include "gui/gui.hpp"
 #include "game/game.hpp"
-#include "core/my_time.hpp"
 
 #include "logic/program_state.hpp"
+#include "logic/lgc_time.hpp"
 
 namespace sr
 {

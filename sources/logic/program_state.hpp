@@ -10,6 +10,8 @@
 #include "gui/gui_types.hpp"
 
 #include "logic_types.hpp"
+#include "objects_storage.hpp"
+#include "logic_object.hpp"
 
 namespace lgc
 {
@@ -23,6 +25,7 @@ namespace lgc
 		//virtual const SetDrawebleType* getPresentation() const = 0;
 		virtual void processEvents(EventArray aEvents) = 0;
 		virtual void update() = 0;
+		void timeUpdate();
 		
 		bool isClosed();
 
@@ -31,6 +34,7 @@ namespace lgc
 
 	private:
 		bool mIsClosed;
+		//static Time mTime;
 	};
 }
 	

@@ -18,12 +18,13 @@ namespace sr
 	public:
 		Date();
 		virtual ~Date();
-		void update();
+		void update(float adTime);
 		str_val getPresentation();
 		virtual void processEvent(gui::Event* aEvent);
 	private:
 		sint_64 mDate;
 		std::vector<str_val> mMonthNames;
+		float mTime;
 		//std::vector<str_const_ref> mMonthNames;
 	};
 }

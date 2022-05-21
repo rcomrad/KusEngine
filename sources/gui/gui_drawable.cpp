@@ -6,7 +6,7 @@ gui::Drawable::Drawable(std::string aTexturePath)
 {
     setType(gui::GuiOutputBase::GuiObjectType::SPRITE);
 
-    sf::Texture texture = mTextureStorage.getCell(aTexturePath).val;
+    const sf::Texture& texture = mTextureStorage.getCell(aTexturePath).val;
     mSprite.setTexture(texture);
     sf::Vector2u temp = texture.getSize();
     mTextureSize = {temp.x, temp.y};

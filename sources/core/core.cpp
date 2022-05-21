@@ -12,8 +12,6 @@
 sr::Core::Core()
 {
 	mCurrentState = new Game();
-	Time::updateTime();
-	//for (int i = 0; i < 1e6; ++i);
 }
 
 sr::Core::~Core(){}
@@ -23,16 +21,19 @@ sr::Core::run()
 {
 	while (true)
 	{
-		Time::updateTime();
-		if (Time::getFPSDCount())
-		{
-			mView.drawObjects();
-		}
-
+		// while (lgc::Time::globalTime.getFPSDCount() == 0)
+		// {
+		//  	lgc::Time::globalTime.updateTimeAndFPS();
+		// }
+		// lgc::Time::globalTime.updateTimeAndFPS();
+		// if (lgc::Time::globalTime.getFPSDCount())
+		// {
+		//  	mView.drawObjects();
+		// }
+		mView.drawObjects();
 		mCurrentState->processEvents(mView.getEvents());
 		if (mCurrentState->isClosed()) break;
 		mCurrentState->update();
-		//for (int i = 0; i < 1e7; ++i);
 	}
 
 }

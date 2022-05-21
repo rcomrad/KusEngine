@@ -10,6 +10,7 @@
 #include "domain/dom_type.hpp"
 #include "domain/dom_string.hpp"
 #include "domain/dom_math.hpp"
+#include "domain/dom_error_message.hpp"
 
 #include "object_types.hpp"
 #include "basic_object.hpp"

@@ -4,7 +4,6 @@
 //--------------------------------------------------------------------------------
 
 #include "space/space_object.hpp"
-#include "core/my_time.hpp"
 
 #include "gui/gui_paths.hpp"
 
@@ -16,7 +15,7 @@ namespace sr
 		Planet();
 		virtual ~Planet();
 		virtual void processEvent(gui::Event* aEvent);
-		virtual void update();
+		virtual void update(float adTime);
 		virtual void move(dom::Pair<float> aCoord);
 
 

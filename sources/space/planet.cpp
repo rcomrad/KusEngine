@@ -17,11 +17,11 @@ sr::Planet::Planet() :
 sr::Planet::~Planet() {}
 
 void
-sr::Planet::update() 
+sr::Planet::update(float adTime) 
 {
 	float x1 = x0 + (r * cos((a) / 100.));
 	float y1 = y0 + (r * sin((a) / 100.));
-	a += sr::Time::getDTime();
+	a += adTime;
 	if (a > 36000) a = 1;
 
 	//for (int i = 0; i < 1e7; ++i);

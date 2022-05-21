@@ -8,6 +8,7 @@
 
 #include "domain/dom_string.hpp"
 #include "domain/dom_type.hpp"
+#include "domain/dom_error_message.hpp"
 
 #include "gui_types.hpp"
 

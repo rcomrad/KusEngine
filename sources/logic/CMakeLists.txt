@@ -14,5 +14,8 @@ add_library(
 
     "objects_storage.cpp"
     "objects_storage.hpp"
+    
+    "lgc_time.hpp"
+    "lgc_time.cpp"
 )
 

@@ -55,10 +55,11 @@ sr::Game::update()
 {
 	if (!mPause)
 	{
-		for (auto i : lgc::ObjectStorage::globalObjecStorage["logical"])
-		{
-			dynamic_cast<lgc::LogicObject*>(i)->update();
-		}
+		timeUpdate();
+		// for (auto i : lgc::ObjectStorage::globalObjecStorage["logical"])
+		// {
+		// 	dynamic_cast<lgc::LogicObject*>(i)->update(0);
+		// }
 	}
 }
 

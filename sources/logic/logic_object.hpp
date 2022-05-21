@@ -9,6 +9,7 @@
 
 #include "basic_object.hpp"
 #include "logic_types.hpp"
+#include "lgc_time.hpp"
 
 namespace lgc
 {
@@ -18,7 +19,7 @@ namespace lgc
 		LogicObject();
 		virtual ~LogicObject() = default;
 		virtual void processEvent(gui::Event* aEvent) = 0;
-		virtual void update() = 0;
+		virtual void update(float adTime) = 0;
 
 	private:
 		std::vector<tag_type> mTags;

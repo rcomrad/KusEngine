@@ -45,7 +45,6 @@ public:
 	D(){}
 };
 
-
 int main()
 {
 

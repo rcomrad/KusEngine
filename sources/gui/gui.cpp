@@ -52,6 +52,7 @@ gui::GUI::getEvents()
 }
 
 #include <space/player.hpp>
+#include "logic/objects_storage.hpp"
 
 void 
 gui::GUI::drawObjects
@@ -60,35 +61,22 @@ gui::GUI::drawObjects
 )
 {
     gui::Window::globalWindow.clear();
-    gui::Window::globalWindow.centrateView("Player", (*(--mDrawebles.end()))->getPosition());
+
+    //gui::Window::globalWindow.centrateView("Player", (*(--mDrawebles.end()))->getPosition());
+
+    auto array = lgc::ObjectStorage::globalObjecStorage["Player"];
+    #ifdef _DBG_
+    if (array.size() == 0) 
+    {
+        dom::ErrorMessages::writeError("there_is_no_object_with_player_tag");
+    }
+    #endif
+    sr::Player* player = dynamic_cast<sr::Player*> (*array.begin());
+    gui::Window::globalWindow.centrateView("Player", player->getPosition());
+    
     for (auto drawTarget : mDrawebles) drawTarget->draw();
-    //gui::Window::globalWindow.centrateView("Player", (*(--aDrawableObjects->end()))->getPosition());
-    //for (auto drawTarget : *aDrawableObjects) drawTarget->draw();
+
     gui::Window::globalWindow.mWindow.display();
-   
-    // for (auto drawTarget : *aDrawableObjects) ((gui::GuiOutputBase*) drawTarget)->draw();
-
- 
-    //gui::Window::display();
-
-    // gui::WindoVectorguiw::globalWindow.mWindow.setView(gui::Window::globalWindow.mWindow.getDefaultView());
-
-    // (*(array.begin()))->draw();
-    // (*(array.begin() + 3))->draw();
-
-
-	// sf::View view;
-
-    // gui::GuiOutputBase* ggg = (*(++ ++ array.begin()));
-    // Player* pp = dynamic_cast<Player*> (ggg);
-    // view.setCenter(pp->getCoord());
-    // std::cout << "  ->  " << pp->getCoord().x << " " << pp->getCoord().y << "\n";
-
-    // gui::Window::globalWindow.mWindow.setView(view);
-    // (*(array.begin() + 1))->draw(); 
-    //(*(array.begin() + 2))->draw();
-    //
-
 }
 
 void 

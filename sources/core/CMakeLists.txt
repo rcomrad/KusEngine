@@ -3,7 +3,4 @@ add_library(
 
     "core.hpp"
     "core.cpp"
-
-    "my_time.hpp"
-    "my_time.cpp"
 )
