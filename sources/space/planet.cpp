@@ -21,8 +21,8 @@ sr::Planet::update(float adTime)
 {
 	float x1 = x0 + (r * cos((a) / 100.));
 	float y1 = y0 + (r * sin((a) / 100.));
-	a += adTime;
-	if (a > 36000) a = 1;
+	a += adTime / 10.;
+	while (a > 36000) a -= 36000;
 
 	//for (int i = 0; i < 1e7; ++i);
 

@@ -14,6 +14,10 @@ sr::Spaceship::Spaceship
 {
 	mSpeed = 10;
 	mTargetCoord = getPosition();
+	setAnimationLimit(100);
+	setRect({0, 500}, 145, 100);
+	setRectChange(145, 0);	
+	setRectXLimits(650);
 }
 sr::Spaceship::~Spaceship(){}
 
@@ -34,4 +38,5 @@ sr::Spaceship::update(float adTime)
 	dist.x *= dSpace;
 	dist.y *= dSpace;
 	Drawable::move(dist);
+	updateAnimation(adTime);
 }

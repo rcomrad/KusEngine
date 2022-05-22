@@ -2,7 +2,9 @@
 
 dom::Storage<gui::Drawable::TextureCell> gui::Drawable::mTextureStorage;
 
-gui::Drawable::Drawable(std::string aTexturePath)
+gui::Drawable::Drawable(std::string aTexturePath) :
+    mAnimationTimer (0),
+    mAnimationLimit (0)
 {
     setType(gui::GuiOutputBase::GuiObjectType::SPRITE);
 
@@ -51,14 +53,55 @@ gui::Drawable::setSpriteScale(dom::Pair<float> aCoord)
 void
 gui::Drawable::setRect(dom::Pair<int> aPosition, int aWidth, int aHeight)
 {
-
     mRect = sf::IntRect(aPosition.x, aPosition.y, aWidth, aHeight);
+    mSprite.setTextureRect(mRect);
 }
 
 void
 gui::Drawable::setRectChange(int dX, int dY)
 {
     mRectOffset = {dX, dY};
+}
+
+void
+gui::Drawable::setRectXLimits(int aX)
+{
+   mTextureSize.x = aX;
+}
+
+void
+gui::Drawable::setRectYLimits(int aY)
+{
+   mTextureSize.x = aY;
+}
+
+void
+gui::Drawable::setRectLimits(int aX, int aY)
+{
+   setRectXLimits(aX);
+   setRectYLimits(aY);
+}
+
+void
+gui::Drawable::updateAnimation(float adTime)
+{
+    mAnimationTimer += adTime;
+    if (mAnimationLimit && mAnimationTimer > mAnimationLimit)
+    {
+        mAnimationTimer %= mAnimationLimit;
+        mRect.top += mRectOffset.y;
+        mRect.left += mRectOffset.x;
+        if (mRect.top > mTextureSize.y) mRect.top = 0;
+        if (mRect.left > mTextureSize.x) mRect.left = 0;
+        mSprite.setTextureRect(mRect);
+
+    }
+}
+
+void
+gui::Drawable::setAnimationLimit(uint_16 aAnimationLimit)
+{
+    mAnimationLimit = aAnimationLimit;
 }
 
 sf_2f_val

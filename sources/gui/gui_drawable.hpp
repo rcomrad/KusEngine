@@ -25,6 +25,12 @@ namespace gui
 
 		void setRect(dom::Pair<int> aPosition, int aWidth, int aHeight);
 		void setRectChange(int dX, int dY);
+		void setRectXLimits(int aX);
+		void setRectYLimits(int aY);
+		void setRectLimits(int aX, int aY);
+
+		void updateAnimation(float adTime);
+		void setAnimationLimit(uint_16 aAnimationLimit);
 
 	private:
 		struct TextureCell
@@ -43,6 +49,9 @@ namespace gui
 		sf::IntRect mRect;
 		dom::Pair<int>	mRectOffset;
 		dom::Pair<uint_32>	mTextureSize;
+
+		uint_16 mAnimationTimer;
+		uint_16 mAnimationLimit;
 		//flost mAnimationSpeed;
 	};
 }
