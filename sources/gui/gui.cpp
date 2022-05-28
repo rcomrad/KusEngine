@@ -24,7 +24,8 @@ gui::GUI::GUI()
         {"Player", 100},
         {"Background", 1},
         {"Planet", 5},
-        {"Data", 16}
+        {"Data", 16},
+        {"Button", 20}
     });
 }
 
@@ -64,7 +65,7 @@ gui::GUI::drawObjects
 
     //gui::Window::globalWindow.centrateView("Player", (*(--mDrawebles.end()))->getPosition());
 
-    auto array = lgc::ObjectStorage::globalObjecStorage["Player"];
+    auto& array = lgc::ObjectStorage::globalObjecStorage["Player"];
     #ifdef _DBG_
     if (array.size() == 0) 
     {
@@ -76,7 +77,7 @@ gui::GUI::drawObjects
     
     for (auto drawTarget : mDrawebles) drawTarget->draw();
 
-    gui::Window::globalWindow.mWindow.display();
+    gui::Window::globalWindow.display();
 }
 
 void 

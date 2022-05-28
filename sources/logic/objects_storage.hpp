@@ -22,10 +22,6 @@ namespace lgc
 	public:
 		static ObjectStorage globalObjecStorage;
 
-		ObjectStorage() = default;
-		//TODO delete all
-		virtual ~ObjectStorage() = default;
-
 		uint_64 getTagNumber(str_const_ref aName) const;
 		//TODO str_val array?
 		std::set<tag_type> addObject(BasicObject* aObject, std::vector<str_val> aTags);
@@ -41,6 +37,10 @@ namespace lgc
 		std::set<BasicObject*> operator[](std::vector<str_val> aTag);
 
 	private:
+		ObjectStorage() = default;
+		//TODO delete all
+		virtual ~ObjectStorage() = default;
+
 		static std::map<uint_64, tag_type> mTagDictionary;
 		static std::vector<std::set<BasicObject*>> mObjects;
     };

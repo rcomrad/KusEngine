@@ -1,5 +1,7 @@
 #include "game/game.hpp"
 
+#include "logic/buttons.hpp"
+
 sr::Game::Game() :
 	mPause(false)
 {
@@ -7,6 +9,8 @@ sr::Game::Game() :
 	Background* b = new Background();
 	Planet* pp = new Planet();
 	Date* d = new Date();
+
+	lgc::Buttons* button = new lgc::Buttons(TEXTURES + "button.png", {"play", "exit"}, {100., 100.});
 
 	// mObjectsDrawSide.insert(p);
 	// mObjectsDrawSide.insert(b);

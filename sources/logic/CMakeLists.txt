@@ -17,5 +17,9 @@ add_library(
     
     "lgc_time.hpp"
     "lgc_time.cpp"
+
+    "main_menu.cpp"
+
+    "buttons.cpp"
 )
 

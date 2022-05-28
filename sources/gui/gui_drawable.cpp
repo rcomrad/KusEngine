@@ -104,6 +104,13 @@ gui::Drawable::setAnimationLimit(uint_16 aAnimationLimit)
     mAnimationLimit = aAnimationLimit;
 }
 
+dom::Pair<float>
+gui::Drawable::getSpriteSize()
+{
+    sf::FloatRect bounds = mSprite.getGlobalBounds();
+    return { bounds.width, bounds.height};
+}
+
 sf_2f_val
 gui::Drawable::getSpritePosition()
 {
