@@ -2,6 +2,7 @@
 #define LOGIC_OBJECT
 
 #include <vector>
+#include <optional>
 
 #include "domain/dom_string.hpp"
 
@@ -18,7 +19,7 @@ namespace lgc
 	public:
 		LogicObject();
 		virtual ~LogicObject() = default;
-		virtual void processEvent(gui::Event* aEvent) = 0;
+		virtual std::optional<uint_16> processEvent(gui::Event* aEvent);
 		virtual void update(float adTime) = 0;
 
 	private:

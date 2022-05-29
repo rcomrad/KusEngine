@@ -42,12 +42,6 @@ sr::Date::update(float adTime)
 	}
 }
 
-void
-sr::Date::processEvent(gui::Event* aEvent)
-{
-
-}
-
 str_val
 sr::Date::getPresentation()
 {

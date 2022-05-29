@@ -29,7 +29,7 @@ namespace gui
 		// 	str_const_ref	aViewName		= "Default"
 		// );
 		virtual ~DrawableAndWritable();
-		void draw();
+		//void draw();
 	};
 }
 

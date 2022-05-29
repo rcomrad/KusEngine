@@ -20,7 +20,7 @@ namespace gui
 		virtual sf_2f_val getSpritePosition();
 
 		void moveSprite				(dom::Pair<float> aCoord);
-		//void setSpritePosition		(dom::Pair<float> aCoord);
+		void setSpritePosition		(dom::Pair<float> aCoord);
 		void resetSpritePosition	(dom::Pair<float> aCoord);
 		void setSpriteScale			(dom::Pair<float> aCoord);
 
@@ -46,7 +46,7 @@ namespace gui
 		};
 		static dom::Storage<TextureCell> mTextureStorage;
 
-		sf::Sprite			mSprite;
+		sf::Sprite		mSprite;
 		dom::Pair<int>	mPositionOffset;
 
 		sf::IntRect mRect;

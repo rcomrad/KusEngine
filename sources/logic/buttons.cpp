@@ -15,6 +15,9 @@ lgc::Buttons::Buttons
     mButtonSize = this->getSpriteSize();
     this->setLayer("Button");
     this->setView("Player");
+    addTag("Button");
+    setStartPosition({100., 100.});
+    setPositionChange({0., 30.});
 }
 
 void
@@ -27,7 +30,6 @@ void
 lgc::Buttons::setStartPosition(dom::Pair<float> aStartPosition)
 {
     mStartPosition = aStartPosition;
-    this->setPo
 }
 
 void
@@ -42,20 +44,52 @@ lgc::Buttons::setPositionChange(dom::Pair<float> aPositionChange)
     mPositionChange = aPositionChange;
 }
 
+#include <iostream>
 void
 lgc::Buttons::draw()
 {
+    dom::Pair<float> offset = mPositionChange;
+    if (offset.x) offset.x += mButtonSize.x;
+    if (offset.y) offset.y += mButtonSize.y;
+
+    dom::Pair<float> position = mStartPosition;
     for(auto& str : mButtonNames)
     {
-        set
+        //std::cout << position.x << " " << position.y << "\n";
+        this->setPosition(position);
+        this->setText(str);
+        this->GuiOutputBase::draw();
+        position += offset;
     }
 }
 
-void
+std::optional<uint_16>
 lgc::Buttons::processEvent(gui::Event* aEvent)
 {
-    gui::MouseEvent* event = dynamic_cast<gui::MouseEvent*> (aEvent);
+	if (aEvent->getEventType() != gui::Event::EventType::MOUSE_RELEASED)
+	{
+        return {};
+    }
 
+    gui::MouseEvent* event = dynamic_cast<gui::MouseEvent*> (aEvent);
+    auto mousePos = event->getPosition();
+
+    dom::Pair<float> offset = mPositionChange;
+    if (offset.x) offset.x += mButtonSize.x;
+    if (offset.y) offset.y += mButtonSize.y;
+
+    dom::Pair<float> position = mStartPosition;
+    
+    for(int i = 0; i < mButtonNames.size(); ++i)
+    {
+        if (position.x <= mousePos.x && position.x + mButtonSize.x <= mousePos.x
+            && position.y <= mousePos.y && position.y + mButtonSize.y <= mousePos.y)
+        {
+            return i;
+        }
+    }
+
+    return {};
 }
 
 void

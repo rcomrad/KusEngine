@@ -33,6 +33,7 @@ namespace gui
 		virtual void draw();
 
 		void move			(dom::Pair<float> aCoord);
+		void setPosition	(dom::Pair<float> aCoord);
 		void resetPosition	(dom::Pair<float> aCoord);
 		void setScale		(dom::Pair<float> aCoord);
 

@@ -54,7 +54,8 @@
         "xlocbuf": "cpp",
         "xlocmes": "cpp",
         "xlocmon": "cpp",
-        "xloctime": "cpp"
+        "xloctime": "cpp",
+        "optional": "cpp"
     },
     "workbench.editor.revealIfOpen" : true
 }

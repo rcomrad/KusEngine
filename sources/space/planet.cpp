@@ -36,11 +36,6 @@ sr::Planet::update(float adTime)
 }
 
 void
-sr::Planet::processEvent(gui::Event* aEvent)
-{
-}
-
-void
 sr::Planet::move(dom::Pair<float> aCoord)
 {
 

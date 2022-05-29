@@ -33,10 +33,10 @@ namespace dom
 				++yy;
 
 		}
-		Pair(const Pair& p)
+		Pair(const Pair& other)
 		{
-			i = p.i;
-			j = p.j;
+			i = other.i;
+			j = other.j;
 		}
 
 		Pair(T1&& iInit, T2&& jInit) :

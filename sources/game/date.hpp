@@ -20,7 +20,6 @@ namespace sr
 		virtual ~Date();
 		void update(float adTime);
 		str_val getPresentation();
-		virtual void processEvent(gui::Event* aEvent);
 	private:
 		sint_64 mDate;
 		std::vector<str_val> mMonthNames;

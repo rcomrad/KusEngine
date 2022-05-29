@@ -14,10 +14,8 @@ namespace sr
 	public:
 		Planet();
 		virtual ~Planet();
-		virtual void processEvent(gui::Event* aEvent);
 		virtual void update(float adTime);
 		virtual void move(dom::Pair<float> aCoord);
-
 
 		double r = 400;
 		double x0 = 500;

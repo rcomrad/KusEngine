@@ -17,7 +17,7 @@ namespace sr
 		//Player(std::string aTexturePath, sf::RenderWindow& aWindow);
 		Player(str_const_ref aTexturePath = PLAYER_TEXTURE_PATH);
 		virtual ~Player();
-		virtual void processEvent(gui::Event* aEvent);
+		std::optional<uint_16> processEvent(gui::Event* aEvent) override;
 
 	private:
 	};

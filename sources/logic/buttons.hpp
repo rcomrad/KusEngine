@@ -31,10 +31,10 @@ namespace lgc
 		void setStartPosition(dom::Pair<float> aStartPosition);
 		void setButtonSize(dom::Pair<float> aButtonSize);
 		void setPositionChange(dom::Pair<float> aPositionChange);
-
+            
 		virtual void draw();
 
-		virtual void processEvent(gui::Event* aEvent);
+		std::optional<uint_16> processEvent(gui::Event* aEvent) override;
 		virtual void update(float adTime);
 
 	private:

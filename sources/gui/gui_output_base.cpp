@@ -43,6 +43,13 @@ gui::GuiOutputBase::move(dom::Pair<float> aCoord)
 }
 
 void
+gui::GuiOutputBase::setPosition(dom::Pair<float> aCoord)
+{
+    if (thisIsSprite)   thisToDrawable->setSpritePosition(aCoord);
+    if (thisIsText)     thisToWritable->setTextPosition(aCoord);
+}
+
+void
 gui::GuiOutputBase::resetPosition(dom::Pair<float> aCoord)
 {
     if (thisIsSprite)   thisToDrawable->resetSpritePosition(aCoord);

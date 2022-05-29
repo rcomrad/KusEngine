@@ -28,6 +28,12 @@ gui::Writable::moveText(dom::Pair<float> aCoord)
 }
 
 void
+gui::Writable::setTextPosition(dom::Pair<float> aCoord)
+{
+    mText.setPosition(sf::Vector2f(aCoord.x, aCoord.y));
+}
+
+void
 gui::Writable::resetTextPosition(dom::Pair<float> aCoord)
 {
     mText.setPosition

@@ -32,6 +32,12 @@ gui::Drawable::moveSprite(dom::Pair<float> aCoord)
 }
 
 void
+gui::Drawable::setSpritePosition(dom::Pair<float> aCoord)
+{
+    mSprite.setPosition(sf::Vector2f(aCoord.x, aCoord.y));
+}
+
+void
 gui::Drawable::resetSpritePosition(dom::Pair<float> aCoord)
 {
     mSprite.setPosition

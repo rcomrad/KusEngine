@@ -21,6 +21,7 @@ namespace gui
 		void drawText();
 
 		void moveText			(dom::Pair<float> aCoord);
+		void setTextPosition	(dom::Pair<float> aCoord);
 		void resetTextPosition	(dom::Pair<float> aCoord);
 		void setTextScale		(dom::Pair<float> aCoord);
 		
