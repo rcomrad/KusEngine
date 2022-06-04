@@ -3,14 +3,15 @@
 #include "logic/buttons.hpp"
 
 sr::Game::Game() :
-	mPause(false)
+	mPause(false),
+	mNextState(ProgramStateName::Nun)
 {
 	Player* p = new Player();
 	Background* b = new Background();
 	Planet* pp = new Planet();
 	Date* d = new Date();
 
-	lgc::Buttons* button = new lgc::Buttons(TEXTURES + "button.png", {"play", "exit"}, {100., 100.});
+	//lgc::Buttons* button = new lgc::Buttons(TEXTURES + "button.png", {"play", "exit"}, {100., 100.});
 
 	// mObjectsDrawSide.insert(p);
 	// mObjectsDrawSide.insert(b);
@@ -67,15 +68,30 @@ sr::Game::update()
 	}
 }
 
+std::optional<lgc::ProgramState::ProgramStateName>
+sr::Game::getNextStateName()
+{
+	if (mNextState != ProgramStateName::Nun) return mNextState;
+	return {};
+}
+
 void 
 sr::Game::mouseEventsHandler(gui::Event* aEvent)
 {
 	gui::MouseEvent* moveEvent = static_cast <gui::MouseEvent*> (aEvent);
 	std::cout << moveEvent->mCoord.x << " " << moveEvent->mCoord.y << "\n";
 
+	// auto res = 
+	// (dynamic_cast<lgc::LogicObject*>
+	// 	(*lgc::ObjectStorage::globalObjecStorage["Button"].begin())
+	// )->processEvent(aEvent);
+	// if (res) std::cout << res.value() << '\n';
+	// else  std::cout << "false" << '\n';
+
 	for (auto i : lgc::ObjectStorage::globalObjecStorage["logical"])
 	{
-		dynamic_cast<lgc::LogicObject*>(i)->processEvent(aEvent);
+		// TODO: Brackets are somehow critical
+		(dynamic_cast<lgc::LogicObject*>(i))->processEvent(aEvent);
 	}
 }
 
@@ -88,6 +104,12 @@ sr::Game::keyEventsHandler(gui::Event* aEvent)
 	{
 	case gui::KeyEvent::KeyType::Space :
 		mPause = !mPause;
+		break;
+	case gui::KeyEvent::KeyType::Escape :
+		mNextState = lgc::ProgramState::ProgramStateName::Menu;
+		break;
+	case gui::KeyEvent::KeyType::X :
+		close();
 		break;
 	}
 }

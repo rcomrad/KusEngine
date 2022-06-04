@@ -9,9 +9,10 @@
 
 #define PAUSE_DELTA		7
 
-sr::Core::Core()
+sr::Core::Core() :
+	mCurrentState(nullptr)
 {
-	mCurrentState = new Game();
+	makeNextState(lgc::ProgramState::ProgramStateName::Menu);
 }
 
 sr::Core::~Core(){}
@@ -32,10 +33,31 @@ sr::Core::run()
 		// }
 		mView.drawObjects();
 		mCurrentState->processEvents(mView.getEvents());
+		auto nextState = mCurrentState->getNextStateName();
+		if (nextState) makeNextState(nextState.value());
 		if (mCurrentState->isClosed()) break;
 		mCurrentState->update();
 	}
 
+}
+
+void
+sr::Core::makeNextState(lgc::ProgramState::ProgramStateName aName)
+{
+	if (mCurrentState != nullptr) delete mCurrentState;
+	switch (aName)
+	{
+	case lgc::ProgramState::ProgramStateName::Nun :
+		break;
+	case lgc::ProgramState::ProgramStateName::Game :
+		mCurrentState = new Game();
+		break;	
+	case lgc::ProgramState::ProgramStateName::Menu :
+		mCurrentState = new Menu();
+		break;
+	default:
+		break;
+	}
 }
 
 //--------------------------------------------------------------------------------

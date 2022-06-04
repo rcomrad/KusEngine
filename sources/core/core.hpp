@@ -7,6 +7,7 @@
 
 #include "gui/gui.hpp"
 #include "game/game.hpp"
+#include "game/menu.hpp"
 
 #include "logic/program_state.hpp"
 #include "logic/lgc_time.hpp"
@@ -20,6 +21,7 @@ namespace sr
 		~Core();
 
 		void run();
+		void makeNextState(lgc::ProgramState::ProgramStateName aName);
 
 	private:
 		gui::GUI mView;

@@ -9,5 +9,7 @@ add_library(
 
     "game.cpp"
     "game.hpp"
+
+    "menu.cpp"
 )
 

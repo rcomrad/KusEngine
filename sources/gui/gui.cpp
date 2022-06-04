@@ -66,14 +66,18 @@ gui::GUI::drawObjects
     //gui::Window::globalWindow.centrateView("Player", (*(--mDrawebles.end()))->getPosition());
 
     auto& array = lgc::ObjectStorage::globalObjecStorage["Player"];
-    #ifdef _DBG_
-    if (array.size() == 0) 
+    // #ifdef _DBG_
+    // if (array.size() == 0) 
+    // {
+    //     dom::ErrorMessages::writeError("there_is_no_object_with_player_tag");
+    // }
+    // #endif
+
+    if (array.size() != 0) 
     {
-        dom::ErrorMessages::writeError("there_is_no_object_with_player_tag");
+        sr::Player* player = dynamic_cast<sr::Player*> (*array.begin());
+        gui::Window::globalWindow.centrateView("Player", player->getPosition());
     }
-    #endif
-    sr::Player* player = dynamic_cast<sr::Player*> (*array.begin());
-    gui::Window::globalWindow.centrateView("Player", player->getPosition());
     
     for (auto drawTarget : mDrawebles) drawTarget->draw();
 
@@ -117,7 +121,6 @@ gui::KeyEvent*
 gui::GUI::makeKeyEvent(sf::Event* aEvent)
 {
     gui::KeyEvent* result = new gui::KeyEvent(aEvent->key.code);
-    gui::Window::globalWindow.mWindow.close();
     return result;
 
     // for (auto& i : mHotkeys)

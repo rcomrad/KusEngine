@@ -4,6 +4,11 @@ lgc::ProgramState::ProgramState() :
     mIsClosed   (false)
 {}
 
+lgc::ProgramState::~ProgramState()
+{
+    lgc::ObjectStorage::globalObjecStorage.clear();
+}
+
 void
 lgc::ProgramState::close()
 {

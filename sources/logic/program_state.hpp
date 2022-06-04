@@ -4,6 +4,7 @@
 //--------------------------------------------------------------------------------
 
 #include <set>
+#include <optional>
 
 #include "gui/gui_event.hpp"
 #include "gui/gui_drawable.hpp"
@@ -18,13 +19,16 @@ namespace lgc
 	class ProgramState
 	{
 	public:
+		enum class ProgramStateName {Nun, Menu, Game};
+
 		ProgramState();
-		virtual ~ProgramState() = default;
+		virtual ~ProgramState();
 
 		//virtual bool run(std::vector<gui::Event*> aEvents) = 0;
 		//virtual const SetDrawebleType* getPresentation() const = 0;
 		virtual void processEvents(EventArray aEvents) = 0;
 		virtual void update() = 0;
+		virtual std::optional<ProgramStateName> getNextStateName() = 0;
 		void timeUpdate();
 		
 		bool isClosed();

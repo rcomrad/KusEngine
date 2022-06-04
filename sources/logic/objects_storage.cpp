@@ -44,6 +44,13 @@ lgc::ObjectStorage::removeObject(lgc::BasicObject* aObject, std::set<tag_type> a
     }
 }
 
+void 
+lgc::ObjectStorage::clear()
+{
+    mObjects.clear();
+    mTagDictionary.clear();
+}
+
 std::set<lgc::BasicObject*>&
 lgc::ObjectStorage::operator[](str_const_ref aTag)
 {

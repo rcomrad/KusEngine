@@ -26,6 +26,7 @@ namespace lgc
 		//TODO str_val array?
 		std::set<tag_type> addObject(BasicObject* aObject, std::vector<str_val> aTags);
 		void removeObject(BasicObject* aObject, std::set<tag_type> aTags);
+		void clear();
 
 		//TODO C++23?
 		//template <typename Self>

@@ -82,11 +82,12 @@ lgc::Buttons::processEvent(gui::Event* aEvent)
     
     for(int i = 0; i < mButtonNames.size(); ++i)
     {
-        if (position.x <= mousePos.x && position.x + mButtonSize.x <= mousePos.x
-            && position.y <= mousePos.y && position.y + mButtonSize.y <= mousePos.y)
+        if (position.x <= mousePos.x && position.x + mButtonSize.x >= mousePos.x
+            && position.y <= mousePos.y && position.y + mButtonSize.y >= mousePos.y)
         {
             return i;
         }
+        position += offset;
     }
 
     return {};
