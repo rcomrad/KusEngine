@@ -9,6 +9,7 @@
 #include "domain/dom_error_message.hpp"
 
 #include "logic/basic_object.hpp"
+#include "logic/objects_storage.hpp"
 
 #include "gui_types.hpp"
 

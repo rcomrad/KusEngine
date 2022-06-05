@@ -14,8 +14,6 @@
 // #define TEXT_DY                     -20.f
 // #define TEXT_SINGLE_DX              10.f
 
-DraweblesSet gui::GUI::mDrawebles;
-
 gui::GUI::GUI() 
 {
    // mHotkeys[sf::Keyboard::Space] = KeyEvent::KeyEventType::SPACE_PAUSE;
@@ -75,25 +73,17 @@ gui::GUI::drawObjects
 
     if (array.size() != 0) 
     {
-        sr::Player* player = dynamic_cast<sr::Player*> (*array.begin());
+        sr::Player* player = dynamic_cast<sr::Player*> (array.begin()->get());
         gui::Window::globalWindow.centrateView("Player", player->getPosition());
     }
     
-    for (auto drawTarget : mDrawebles) drawTarget->draw();
+    auto temp = lgc::ObjectStorage::globalObjecStorage.getDrawables();
+    for (auto& drawTarget : lgc::ObjectStorage::globalObjecStorage.getDrawables())
+    {
+        (dynamic_cast<gui::GuiOutputBase*>(drawTarget.get()))->draw();
+    }
 
     gui::Window::globalWindow.display();
-}
-
-void 
-gui::GUI::addDrawable(gui::GuiOutputBase* aDrawable)
-{
-    mDrawebles.insert(aDrawable);
-}
-
-void 
-gui::GUI::removeDrawable(gui::GuiOutputBase* aDrawable)
-{
-    mDrawebles.erase(aDrawable);
 }
 
 gui::CloseEvent* 

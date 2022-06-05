@@ -23,6 +23,8 @@
 #include "gui_key_event.hpp"
 #include "gui_types.hpp"
 
+#include "logic/objects_storage.hpp"
+
 namespace gui
 {
 	class GUI
@@ -44,16 +46,11 @@ namespace gui
 		std::vector<gui::Event*> getEvents();
 
 		void drawObjects();
-
-		static void addDrawable(gui::GuiOutputBase* aDrawable);
-		static void removeDrawable(gui::GuiOutputBase* aDrawable);
-
+		
 	private:
 		gui::CloseEvent* makeCloseEvent(sf::Event* aEvent);
 		gui::MouseEvent* makeMouseEvent(sf::Event* aEvent);
 		gui::KeyEvent* makeKeyEvent(sf::Event* aEvent);
-
-		static DraweblesSet mDrawebles;
 	};
 }
 

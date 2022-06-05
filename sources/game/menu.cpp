@@ -50,7 +50,7 @@ sr::Menu::mouseEventsHandler(gui::Event* aEvent)
 
 	auto res = 
 	(dynamic_cast<lgc::LogicObject*>
-		(*lgc::ObjectStorage::globalObjecStorage["Button"].begin())
+		((*lgc::ObjectStorage::globalObjecStorage["Button"].begin()).get())
 	)->processEvent(aEvent);
 	if (res) 
     {

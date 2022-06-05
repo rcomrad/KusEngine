@@ -45,9 +45,10 @@ public:
 	D(){}
 };
 
+
+#include <vector>
 int main()
 {
-
 	//B b;
 	//std::cout << b.n;
 	//C c;

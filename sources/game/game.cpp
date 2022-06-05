@@ -88,10 +88,10 @@ sr::Game::mouseEventsHandler(gui::Event* aEvent)
 	// if (res) std::cout << res.value() << '\n';
 	// else  std::cout << "false" << '\n';
 
-	for (auto i : lgc::ObjectStorage::globalObjecStorage["logical"])
+	for (auto& logObj : lgc::ObjectStorage::globalObjecStorage["logical"])
 	{
 		// TODO: Brackets are somehow critical
-		(dynamic_cast<lgc::LogicObject*>(i))->processEvent(aEvent);
+		(dynamic_cast<lgc::LogicObject*>(logObj.get()))->processEvent(aEvent);
 	}
 }
 

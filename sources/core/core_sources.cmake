@@ -1,0 +1,1 @@
+set(CORE_SOURCES core.hpp core.cpp)
