@@ -50,9 +50,6 @@ gui::GUI::getEvents()
     return result;
 }
 
-#include <space/player.hpp>
-#include "logic/objects_storage.hpp"
-
 void 
 gui::GUI::drawObjects
 (
@@ -63,7 +60,7 @@ gui::GUI::drawObjects
 
     //gui::Window::globalWindow.centrateView("Player", (*(--mDrawebles.end()))->getPosition());
 
-    auto& array = lgc::ObjectStorage::globalObjecStorage["Player"];
+    auto player = lgc::ObjectStorage::globalObjecStorage["Player"];
     // #ifdef _DBG_
     // if (array.size() == 0) 
     // {
@@ -71,16 +68,15 @@ gui::GUI::drawObjects
     // }
     // #endif
 
-    if (array.size() != 0) 
+    if (player) 
     {
-        sr::Player* player = dynamic_cast<sr::Player*> (array.begin()->get());
-        gui::Window::globalWindow.centrateView("Player", player->getPosition());
+        sr::Player* temp = dynamic_cast<sr::Player*> (player.value().begin()->get());
+        gui::Window::globalWindow.centrateView("Player", temp->getPosition());
     }
     
-    auto temp = lgc::ObjectStorage::globalObjecStorage.getDrawables();
-    for (auto& drawTarget : lgc::ObjectStorage::globalObjecStorage.getDrawables())
+    for (auto& drawTarget : lgc::ObjectStorage::globalObjecStorage.getSortedDrawables())
     {
-        (dynamic_cast<gui::GuiOutputBase*>(drawTarget.get()))->draw();
+        drawTarget->draw();
     }
 
     gui::Window::globalWindow.display();

@@ -18,13 +18,14 @@ namespace lgc
 	class Buttons : public LogicObject, public gui::DrawableAndWritable
 	{
 	public:
-		Buttons
+		static std::shared_ptr<Buttons> create
 		(
 			str_const_ref aTexturePath, 
 			std::vector<str_val> aButtonsNames,
 			dom::Pair<float> aStartPosition,
 			dom::Pair<float> mPositionChange = {0, 0}
 		);
+
 		virtual ~Buttons() = default;
 
 		void setButtonNames(const std::vector<str_val>& aButtonsNames);
@@ -42,6 +43,15 @@ namespace lgc
 		dom::Pair<float> mStartPosition;
 		dom::Pair<float> mButtonSize;
 		dom::Pair<float> mPositionChange;
+
+		Buttons
+		(
+			str_const_ref aTexturePath, 
+			std::vector<str_val> aButtonsNames,
+			dom::Pair<float> aStartPosition,
+			dom::Pair<float> mPositionChange
+		);
+
 	};
 }
 

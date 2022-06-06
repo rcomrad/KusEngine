@@ -16,20 +16,13 @@ namespace gui
 			std::string		aTexturePath, 
 			std::string		aFontPath
 		);
-
 		DrawableAndWritable
 		(
 			std::string		aTexturePath
 		);
-		// DrawableAndWritable
-		// (
-		// 	std::string		aTexturePath	, 
-		// 	std::string		aFontPath		, 
-		// 	str_const_ref	aLayerName		= "Default",
-		// 	str_const_ref	aViewName		= "Default"
-		// );
-		virtual ~DrawableAndWritable();
-		//void draw();
+		virtual ~DrawableAndWritable() = default;
+
+		void create();
 	};
 }
 

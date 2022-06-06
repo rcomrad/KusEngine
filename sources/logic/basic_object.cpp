@@ -2,9 +2,10 @@
 
 #include "objects_storage.hpp"
 
-lgc::BasicObject::~BasicObject()
+void
+lgc::BasicObject::clearFromStorage()
 {
-   //ObjectStorage::globalObjecStorage.removeObject(std::shared_ptr<BasicObject>(this), mTags);
+   ObjectStorage::globalObjecStorage.removeObject(shared_from_this(), mTags);
 }
 
 void
@@ -17,6 +18,6 @@ lgc::BasicObject::addTag(str_const_ref aTag)
 void
 lgc::BasicObject::addTag(std::vector<str_val> aTags)
 {
-   auto temp = ObjectStorage::globalObjecStorage.addObject(std::shared_ptr<BasicObject>(this), aTags);
+   auto temp = ObjectStorage::globalObjecStorage.addObject(shared_from_this(), aTags);
    mTags.insert(temp.begin(), temp.end());
 }

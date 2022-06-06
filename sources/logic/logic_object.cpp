@@ -1,8 +1,9 @@
 #include "logic_object.hpp"
 
-lgc::LogicObject::LogicObject()
+void
+lgc::LogicObject::create()
 {
-    addTag("logical");
+    this->addTag("logical");
 }
 
 std::optional<uint_16>

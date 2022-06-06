@@ -19,7 +19,24 @@ sr::Spaceship::Spaceship
 	setRectChange(145, 0);	
 	setRectXLimits(650);
 }
-sr::Spaceship::~Spaceship(){}
+
+std::shared_ptr<sr::Spaceship>
+sr::Spaceship::create		
+(
+	std::string aTexturePath, 
+	str_const_ref aLayer
+)
+{
+	std::shared_ptr<sr::Spaceship> result (new Spaceship(aTexturePath, aLayer));
+	result->SpaceObject::create();
+	return result;
+}
+
+void
+sr::Spaceship::create()
+{
+	this->SpaceObject::create();
+}
 
 void
 sr::Spaceship::move(dom::Pair<float> aCoord)

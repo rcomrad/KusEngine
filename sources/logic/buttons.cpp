@@ -15,10 +15,31 @@ lgc::Buttons::Buttons
     mButtonSize = this->getSpriteSize();
     this->setLayer("Button");
     this->setView("Player");
-    addTag("Button");
     setStartPosition({100., 100.});
     setPositionChange({0., 30.});
 }
+
+std::shared_ptr<lgc::Buttons> 
+lgc::Buttons::create
+(
+    str_const_ref aTexturePath, 
+    std::vector<str_val> aButtonsNames,
+    dom::Pair<float> aStartPosition,
+    dom::Pair<float> mPositionChange
+)
+{
+    std::shared_ptr<lgc::Buttons> result 
+    (
+        new Buttons(aTexturePath, aButtonsNames, aStartPosition, mPositionChange)
+    );
+
+    result->LogicObject::create();
+    result->DrawableAndWritable::create();
+    result->addTag("Button");
+
+    return result;
+}
+
 
 void
 lgc::Buttons::setButtonNames(const std::vector<str_val>& aButtonsNames)

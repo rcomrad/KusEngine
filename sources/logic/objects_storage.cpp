@@ -2,8 +2,7 @@
 
 lgc::ObjectStorage lgc::ObjectStorage::globalObjecStorage;
 
-lgc::ObjectStorage::ObjectStorage() : 
-    mMutex (false)
+lgc::ObjectStorage::ObjectStorage()
 {
     clear();
 }
@@ -21,27 +20,14 @@ lgc::ObjectStorage::addObject(std::shared_ptr<lgc::BasicObject> aObject, std::ve
 
     for(auto& i : aTags)
     {
-        uint_64 hashNum = getTagNumber(i);
-      	#ifdef _DBG_
-		mStringDictionary[i] = hashNum;
-	    #endif      
-        auto it = mTagDictionary.find(hashNum);
-        if (it == mTagDictionary.end())
+        gui::GuiOutputBase;
+        tag_type tag = prepareStorage(i);
+        mObjects[tag]->insert(aObject);
+        if (tag == 0)
         {
-            //TODO: is it effective? 
-            //mTagDictionary[i] = mTagDictionary.size();
-            mTagDictionary[hashNum] = mObjects.size();
-            //mObjects.resize(mObjects.size() + 1);
-            mObjects.push_back
-            (
-                std::shared_ptr<std::set<std::shared_ptr<BasicObject>>> 
-                (new std::set<std::shared_ptr<BasicObject>>)
-            );
-            it = mTagDictionary.find(hashNum);
+            mDrawables.insert(dynamic_cast<gui::GuiOutputBase*>(aObject.get()));
         }
-
-        mObjects[it->second]->insert(aObject);
-        result.insert(it->second);
+        result.insert(tag);
     }
 
     return result;
@@ -50,8 +36,6 @@ lgc::ObjectStorage::addObject(std::shared_ptr<lgc::BasicObject> aObject, std::ve
 void
 lgc::ObjectStorage::removeObject(std::shared_ptr<lgc::BasicObject> aObject, std::set<tag_type> aTags)
 {
-    if (mMutex) return;
-
     for(auto& i : aTags)
     {
         if(i >= mObjects.size()) continue;
@@ -66,49 +50,36 @@ lgc::ObjectStorage::removeObject(std::shared_ptr<lgc::BasicObject> aObject, std:
 void 
 lgc::ObjectStorage::clear()
 {
-    mMutex = true;
-
     mTagDictionary.clear();
-    // for(auto& i : mObjects) 
-    // {
-    //     i.get()->clear();
-    // }
-
-    while(mObjects.size() > 0) 
-    {
-        mObjects.erase(mObjects.begin());
-    }
-
     mObjects.clear();
+    #ifdef _DBG_
+    mStringDictionary.clear();
+    #endif
+    mDrawables.clear();
+   
+    prepareStorage(DRAWABLE_TAG);
 
-    //TODO: optional
-            mObjects.push_back
-            (
-                std::shared_ptr<std::set<std::shared_ptr<BasicObject>>> 
-                (new std::set<std::shared_ptr<BasicObject>>)
-            );
-
-    mMutex = false;
-
-    std::set<tag_type> tags =  addObject(nullptr, {DRAWABLE_TAG});
-    removeObject(nullptr, tags);
-    mDrawebleSet = mObjects[*(tags.begin())];
+mObjects.push_back
+(
+std::shared_ptr<std::set<std::shared_ptr<BasicObject>>> 
+(new std::set<std::shared_ptr<BasicObject>>)
+);
 }
 
-std::set<std::shared_ptr<lgc::BasicObject>>&
+std::optional<std::set<std::shared_ptr<lgc::BasicObject>>&>
 lgc::ObjectStorage::operator[](str_const_ref aTag)
 {
     #ifdef _DBG_
     if (mTagDictionary.count(getTagNumber(aTag)) == 0) 
     {
         dom::ErrorMessages::writeError("there_is_no_object_with_given_tag", "given_tag:", aTag);
-        return *mObjects[0];
+        return *mObjects[1];
     }
     #endif
     return *mObjects[mTagDictionary[getTagNumber(aTag)]];
 }
 
-const std::set<std::shared_ptr<lgc::BasicObject>>&
+const std::optional<std::set<std::shared_ptr<lgc::BasicObject>>&>
 lgc::ObjectStorage::operator[](str_const_ref aTag) const
 {
     auto it1 = mTagDictionary.find(getTagNumber(aTag));
@@ -118,7 +89,7 @@ lgc::ObjectStorage::operator[](str_const_ref aTag) const
         dom::ErrorMessages::writeError("there_is_no_object_with_given_tag", "given_tag:", aTag);
         #endif
         //TODO: optional
-        return {*mObjects[0]};
+        return {*mObjects[1]};
     }
 
     return  *mObjects[it1->second];
@@ -142,8 +113,32 @@ lgc::ObjectStorage::operator[](std::vector<str_val> aTag)
     return result;
 }
 
-std::set<std::shared_ptr<lgc::BasicObject>>&
-lgc::ObjectStorage::getDrawables()
+const gui::DraweblesSet&
+lgc::ObjectStorage::getSortedDrawables() const
 {
-    return *mDrawebleSet.get();
+    return mDrawables;
+}
+
+tag_type
+lgc::ObjectStorage::prepareStorage(str_const_ref aStr)
+{
+    uint_64 hashNum = getTagNumber(aStr);
+    auto it = mTagDictionary.find(hashNum);
+    if (it == mTagDictionary.end())
+    {
+        #ifdef _DBG_
+        mStringDictionary[aStr] = hashNum;
+        #endif      
+        //TODO: is it effective? 
+        //mTagDictionary[i] = mTagDictionary.size();
+        mTagDictionary[hashNum] = mObjects.size();
+        //mObjects.resize(mObjects.size() + 1);
+        mObjects.push_back
+        (
+            std::shared_ptr<std::set<std::shared_ptr<BasicObject>>> 
+            (new std::set<std::shared_ptr<BasicObject>>)
+        );
+        it = mTagDictionary.find(hashNum);
+    }
+    return  it->second;
 }

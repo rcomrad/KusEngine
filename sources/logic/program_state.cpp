@@ -27,10 +27,13 @@ lgc::ProgramState::timeUpdate()
     float dTime = Time::globalTime.updateTime();
     // float dTime = Time::globalTime.getdTime();
 
-    auto& objects = ObjectStorage::globalObjecStorage["logical"];
-    for(auto& ptr : objects)
+    auto objects = ObjectStorage::globalObjecStorage["logical"];
+    if (objects) 
     {
-        dynamic_cast<LogicObject*> (ptr.get())->update(dTime);
+        for(auto& ptr : objects.value())
+        {
+            dynamic_cast<LogicObject*> (ptr.get())->update(dTime);
 
+        }
     }
 }

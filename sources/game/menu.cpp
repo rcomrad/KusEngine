@@ -1,10 +1,13 @@
 #include "menu.hpp"
 
+#include <memory>
 
 sr::Menu::Menu() :
 	mNextState(ProgramStateName::Nun)
 {
-	lgc::Buttons* button = new lgc::Buttons(TEXTURES + "button.png", {"play", "exit"}, {100., 100.});
+	//lgc::Buttons* button = new lgc::Buttons(TEXTURES + "button.png", {"play", "exit"}, {100., 100.});
+	//std::shared_ptr<lgc::Buttons> button(new lgc::Buttons(TEXTURES + "button.png", {"play", "exit"}, {100., 100.}));
+	lgc::Buttons::create(TEXTURES + "button.png", {"play", "exit"}, {100., 100.});
 }
 
 sr::Menu::~Menu()
@@ -48,9 +51,12 @@ sr::Menu::mouseEventsHandler(gui::Event* aEvent)
 	gui::MouseEvent* moveEvent = static_cast <gui::MouseEvent*> (aEvent);
 	std::cout << moveEvent->mCoord.x << " " << moveEvent->mCoord.y << "\n";
 
+	auto button = lgc::ObjectStorage::globalObjecStorage["Button"];
+	if (!button) return; 
+
 	auto res = 
 	(dynamic_cast<lgc::LogicObject*>
-		((*lgc::ObjectStorage::globalObjecStorage["Button"].begin()).get())
+		((*button.value().begin()).get())
 	)->processEvent(aEvent);
 	if (res) 
     {

@@ -12,15 +12,18 @@ namespace sr
 	class Planet : public SpaceObject
 	{
 	public:
-		Planet();
-		virtual ~Planet();
+		static std::shared_ptr<Planet> create();
+		virtual ~Planet() = default;
 		virtual void update(float adTime);
 		virtual void move(dom::Pair<float> aCoord);
 
+	private:
 		double r = 400;
 		double x0 = 500;
 		double y0 = 500;
 		double a = 1;
+
+		Planet();
 	};
 }
 

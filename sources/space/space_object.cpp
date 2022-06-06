@@ -10,4 +10,9 @@ sr::SpaceObject::SpaceObject
 	setLayer(aLayer);
 }
 
-sr::SpaceObject::~SpaceObject() {}
+void
+sr::SpaceObject::create() 
+{
+	this->Drawable::create();
+	this->LogicObject::create();
+}

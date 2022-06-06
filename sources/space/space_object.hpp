@@ -12,8 +12,9 @@ namespace sr
 	{
 	public:
 		SpaceObject(std::string aTexturePath, str_const_ref aLayer = "Default");
-		virtual ~SpaceObject();
-		virtual void move(dom::Pair<float> aCoord) = 0;
+		virtual ~SpaceObject() = default;
+		void create();
+		virtual void move(dom::Pair<float> aCoord) = 0;	
 	};
 }
 

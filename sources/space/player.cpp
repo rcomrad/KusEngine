@@ -4,12 +4,16 @@ sr::Player::Player(str_const_ref aTexturePath) :
 	Spaceship(aTexturePath, "Player")
 {
 	setView("Player");
-	addTag("Player");
-
-	//setScale({ 0.35, 0.35 });
 }
 
-sr::Player::~Player() {}
+std::shared_ptr<sr::Player>
+sr::Player::create(str_const_ref aTexturePath)
+{
+	std::shared_ptr<sr::Player> result (new Player(aTexturePath));
+	result->addTag("Player");
+	result->Spaceship::create();
+	return result;
+}
 
 std::optional<uint_16> 
 sr::Player::processEvent(gui::Event* aEvent)

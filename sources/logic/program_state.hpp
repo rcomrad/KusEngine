@@ -5,6 +5,7 @@
 
 #include <set>
 #include <optional>
+#include <boo
 
 #include "gui/gui_event.hpp"
 #include "gui/gui_drawable.hpp"

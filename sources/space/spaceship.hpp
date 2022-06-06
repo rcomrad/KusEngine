@@ -8,11 +8,18 @@ namespace sr
 	class Spaceship : public sr::SpaceObject
 	{
 	public:
-		//Spaceship(std::string aTexturePath, sf::RenderWindow& aWindow);
-		Spaceship(std::string aTexturePath, str_const_ref aLayer = "Default");
-		virtual ~Spaceship();
+		static std::shared_ptr<sr::Spaceship> create
+		(
+			std::string aTexturePath, 
+			str_const_ref aLayer = "Default"
+		);
+		void create();
+		virtual ~Spaceship() = default;
 		virtual void move(dom::Pair<float> aCoord);
 		virtual void update(float adTime);
+
+	protected:
+		Spaceship(std::string aTexturePath, str_const_ref aLayer);
 
 	private:
 		uint_16 mSpeed;

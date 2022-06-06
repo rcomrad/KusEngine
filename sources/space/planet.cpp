@@ -7,14 +7,17 @@ sr::Planet::Planet() :
 {
 	setScale({0.1, 0.1});
 	setView("Player");
-	addTag("Planet");
-	//Drawable::resetSprite({ 10000, 10000 });
-	//x0 = 10000;
-	//y0 = 10000;
 
 }
 
-sr::Planet::~Planet() {}
+std::shared_ptr<sr::Planet>
+sr::Planet::create()
+{
+	std::shared_ptr<sr::Planet> result (new Planet);
+	result->addTag("Planet");
+	result->SpaceObject::create();
+	return result;
+}
 
 void
 sr::Planet::update(float adTime) 

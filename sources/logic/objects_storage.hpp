@@ -7,16 +7,17 @@
 #include <algorithm>
 #include <iterator>
 #include <memory>
+#include <optional>
 
 #include "domain/dom_type.hpp"
 #include "domain/dom_string.hpp"
 #include "domain/dom_math.hpp"
 #include "domain/dom_error_message.hpp"
 
+#include "gui/gui_output_base.hpp"
+
 #include "object_types.hpp"
 #include "basic_object.hpp"
-
-#define DRAWABLE_TAG "Drawable"s
 
 namespace lgc
 {
@@ -36,18 +37,16 @@ namespace lgc
 		//template <typename Self>
 		//auto& operator[](this Self&& self, std::size_t idx) { return self.mVector[idx]; }
 
-		std::set<std::shared_ptr<BasicObject>>& operator[](str_const_ref aTag);
-		const std::set<std::shared_ptr<BasicObject>>& operator[](str_const_ref aTag) const;
+		std::optional<std::set<std::shared_ptr<BasicObject>>&> operator[](str_const_ref aTag);
+		const std::optional<std::set<std::shared_ptr<lgc::BasicObject>>&> operator[](str_const_ref aTag) const;
 
 		std::set<std::shared_ptr<BasicObject>> operator[](std::vector<str_val> aTag);
 
-		std::set<std::shared_ptr<BasicObject>>& getDrawables();
+		const gui::DraweblesSet& getSortedDrawables() const;
 
 	private:
 		ObjectStorage();
 		~ObjectStorage() = default;
-
-		bool mMutex;
 
     	#ifdef _DBG_
 		std::map<str_val, uint_64> mStringDictionary;
@@ -55,7 +54,9 @@ namespace lgc
 		std::map<uint_64, tag_type> mTagDictionary;
 		std::vector<std::shared_ptr<std::set<std::shared_ptr<BasicObject>>>> mObjects;
 
-		std::shared_ptr<std::set<std::shared_ptr<BasicObject>>> mDrawebleSet;
+		gui::DraweblesSet mDrawables;
+
+		tag_type prepareStorage(str_const_ref aStr);
     };
 }
 

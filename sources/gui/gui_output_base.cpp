@@ -3,6 +3,8 @@
 #include "gui_drawable.hpp"
 #include "gui_writable.hpp"
 
+#include "logic/objects_storage.hpp"
+
 std::map<std::string, layer_type> gui::GuiOutputBase::globalLayerNumbers =
 {
     {"Default", 250}
@@ -11,12 +13,13 @@ std::map<std::string, layer_type> gui::GuiOutputBase::globalLayerNumbers =
 gui::GuiOutputBase::GuiOutputBase() :
     mType           (GuiObjectType::NUN),
     mLayer          (250)
-{
-    addTag(DRAWABLE_TAG);
-}
-
-gui::GuiOutputBase::~GuiOutputBase()
 {}
+
+void
+gui::GuiOutputBase::create()
+{
+    this->addTag(DRAWABLE_TAG);
+}
 
 #define thisIsSprite    (sint_32(mType) & sint_32(GuiObjectType::SPRITE))
 #define thisIsText      (sint_32(mType) & sint_32(GuiObjectType::TEXT))

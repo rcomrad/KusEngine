@@ -13,8 +13,9 @@ namespace gui
 	{
 	public:
 		Drawable(std::string aTexturePath);
+		virtual ~Drawable() = default;
+		void create();
 
-		virtual ~Drawable();
 		void drawSprite();
 
 		virtual sf_2f_val getSpritePosition();

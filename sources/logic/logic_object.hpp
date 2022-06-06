@@ -17,8 +17,10 @@ namespace lgc
     class LogicObject : virtual public BasicObject
     {
 	public:
-		LogicObject();
+		LogicObject() = default;
 		virtual ~LogicObject() = default;
+		void create();
+
 		virtual std::optional<uint_16> processEvent(gui::Event* aEvent);
 		virtual void update(float adTime) = 0;
 

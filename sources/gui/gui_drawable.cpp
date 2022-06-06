@@ -17,7 +17,11 @@ gui::Drawable::Drawable(std::string aTexturePath) :
     mPositionOffset.y = mSprite.getGlobalBounds().width / 2;
 }
 
-gui::Drawable::~Drawable(){}
+void
+gui::Drawable::create()
+{
+    this->GuiOutputBase::create();
+}
 
 void
 gui::Drawable::drawSprite()

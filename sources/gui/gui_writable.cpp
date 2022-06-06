@@ -13,7 +13,11 @@ gui::Writable::Writable
     mText.setFont(mFontsStorage.getCell(aFontPath).val);
 }
 
-gui::Writable::~Writable() {}
+void
+gui::Writable::create()
+{
+    this->GuiOutputBase::create();
+}
 
 void
 gui::Writable::drawText()

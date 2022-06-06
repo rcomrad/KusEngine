@@ -14,9 +14,9 @@ namespace gui
 	class Writable : virtual public GuiOutputBase
 	{
 	public:
-		 Writable(std::string aFontPath = STANDART_FONT_PATH);
-
-		virtual ~Writable();
+		Writable(std::string aFontPath = STANDART_FONT_PATH);
+		virtual ~Writable() = default;
+		void create();
 
 		void drawText();
 

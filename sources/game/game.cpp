@@ -6,10 +6,10 @@ sr::Game::Game() :
 	mPause(false),
 	mNextState(ProgramStateName::Nun)
 {
-	Player* p = new Player();
-	Background* b = new Background();
-	Planet* pp = new Planet();
-	Date* d = new Date();
+	Player::create();
+	Background::create();
+	Planet::create();
+	Date::create();
 
 	//lgc::Buttons* button = new lgc::Buttons(TEXTURES + "button.png", {"play", "exit"}, {100., 100.});
 
@@ -88,10 +88,14 @@ sr::Game::mouseEventsHandler(gui::Event* aEvent)
 	// if (res) std::cout << res.value() << '\n';
 	// else  std::cout << "false" << '\n';
 
-	for (auto& logObj : lgc::ObjectStorage::globalObjecStorage["logical"])
+	auto logArray = lgc::ObjectStorage::globalObjecStorage["logical"];
+	if (logArray)
 	{
-		// TODO: Brackets are somehow critical
-		(dynamic_cast<lgc::LogicObject*>(logObj.get()))->processEvent(aEvent);
+		for (auto& logObj : logArray.value())
+		{
+			// TODO: Brackets are somehow critical
+			(dynamic_cast<lgc::LogicObject*>(logObj.get()))->processEvent(aEvent);
+		}
 	}
 }
 

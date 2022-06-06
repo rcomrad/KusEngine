@@ -16,15 +16,18 @@ namespace sr
 	class Date : public gui::Writable, public lgc::LogicObject
 	{
 	public:
-		Date();
-		virtual ~Date();
+		virtual ~Date() = default;
+		static std::shared_ptr<sr::Date> create();
+
 		void update(float adTime);
 		str_val getPresentation();
+
 	private:
 		sint_64 mDate;
 		std::vector<str_val> mMonthNames;
 		float mTime;
-		//std::vector<str_const_ref> mMonthNames;
+
+		Date();
 	};
 }
 

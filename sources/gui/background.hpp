@@ -9,10 +9,11 @@ namespace sr
 	class Background : public gui::Drawable
 	{
 	public:
-		Background(std::string aTexturePath = BACKGROUND_TEXTURE_PATH);
-		virtual ~Background();
+		virtual ~Background() = default;
+		static std::shared_ptr<sr::Background> create(std::string aTexturePath = BACKGROUND_TEXTURE_PATH);
 
 	private:
+		Background(std::string aTexturePath);
 	};
 }
 

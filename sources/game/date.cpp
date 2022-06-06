@@ -8,7 +8,6 @@ sr::Date::Date() :
 {
 	setLayer("Data");
 	setView("Static");
-	addTag("Data");
 
 	mMonthNames =
 	{
@@ -28,8 +27,17 @@ sr::Date::Date() :
 	setText(getPresentation());
 }
 
-sr::Date::~Date() {}
-#include <iostream>
+std::shared_ptr<sr::Date>
+sr::Date::create()
+{
+	std::shared_ptr<sr::Date> result (new Date);
+	result->addTag("Data");
+	result->Writable::create();
+	result->LogicObject::create();
+	return result;
+}
+
+
 void
 sr::Date::update(float adTime)
 {

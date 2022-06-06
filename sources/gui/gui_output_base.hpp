@@ -9,9 +9,10 @@
 #include "domain/dom_error_message.hpp"
 
 #include "logic/basic_object.hpp"
-#include "logic/objects_storage.hpp"
 
 #include "gui_types.hpp"
+
+#define DRAWABLE_TAG "Drawable"s
 
 namespace gui
 {
@@ -29,7 +30,8 @@ namespace gui
 		};
 
 		GuiOutputBase();
-		virtual ~GuiOutputBase();
+		virtual ~GuiOutputBase() = default;
+		void create();
 
 		virtual void draw();
 
@@ -83,8 +85,8 @@ namespace gui
 	struct GuiOutputBaseComparator {
 		bool operator() (GuiOutputBase* a, GuiOutputBase* b) const;
 	};
-}
 
-typedef std::set<gui::GuiOutputBase*, gui::GuiOutputBaseComparator> DraweblesSet;
+	typedef std::set<gui::GuiOutputBase*, gui::GuiOutputBaseComparator> DraweblesSet;
+}
 
 #endif // !GUI_OUTPUT_BASE_H
