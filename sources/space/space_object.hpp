@@ -4,7 +4,7 @@
 //--------------------------------------------------------------------------------
 
 #include "logic/logic_object.hpp"
-#include "gui/gui_drawable.hpp"
+#include "gui/drawable.hpp"
 
 namespace sr
 {

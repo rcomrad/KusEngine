@@ -5,7 +5,7 @@
 #include <set>
 #include <memory>
 
-#include "domain/dom_string.hpp"
+#include "domain/string.hpp"
 
 #include "object_types.hpp"
 

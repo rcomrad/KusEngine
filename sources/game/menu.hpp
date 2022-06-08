@@ -5,9 +5,9 @@
 
 #include <iostream>
 
-#include "gui/gui_key_event.hpp"
-#include "gui/gui_close_event.hpp"
-#include "gui/gui_mouse_event.hpp"
+#include "gui/key_event.hpp"
+#include "gui/close_event.hpp"
+#include "gui/mouse_event.hpp"
 
 #include "logic/program_state.hpp"
 #include "logic/objects_storage.hpp"

@@ -7,16 +7,14 @@ set(
     logic_object.cpp
     logic_object.hpp
 
-    logic_types.hpp
-
     basic_object.cpp
     basic_object.hpp
 
     objects_storage.cpp
     objects_storage.hpp
     
-    lgc_time.hpp
-    lgc_time.cpp
+    time.hpp
+    time.cpp
 
     buttons.hpp
     buttons.cpp
@@ -25,4 +23,6 @@ set(
     main_menu.cpp
 
     object_types.hpp
+
+    type.hpp
 )

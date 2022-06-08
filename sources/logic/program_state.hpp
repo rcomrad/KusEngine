@@ -5,13 +5,12 @@
 
 #include <set>
 #include <optional>
-#include <boo
 
-#include "gui/gui_event.hpp"
-#include "gui/gui_drawable.hpp"
-#include "gui/gui_types.hpp"
+#include "gui/event.hpp"
+#include "gui/drawable.hpp"
+#include "gui/type.hpp"
 
-#include "logic_types.hpp"
+#include "type.hpp"
 #include "objects_storage.hpp"
 #include "logic_object.hpp"
 

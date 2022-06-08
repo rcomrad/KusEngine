@@ -5,7 +5,7 @@
 
 #include "space/space_object.hpp"
 
-#include "gui/gui_paths.hpp"
+#include "gui/path.hpp"
 
 namespace sr
 {

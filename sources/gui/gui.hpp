@@ -12,16 +12,16 @@
 #include <SFML/Graphics.hpp>
 
 #include "space/player.hpp"
-#include "background.hpp"
+#include "game/background.hpp"
 
-#include "gui_window.hpp"
-#include "gui_drawable.hpp"
-#include "gui_close_event.hpp"
-#include "gui_event.hpp"
-#include "gui_mouse_event.hpp"
-#include "gui_close_event.hpp"
-#include "gui_key_event.hpp"
-#include "gui_types.hpp"
+#include "window.hpp"
+#include "drawable.hpp"
+#include "close_event.hpp"
+#include "event.hpp"
+#include "mouse_event.hpp"
+#include "close_event.hpp"
+#include "key_event.hpp"
+#include "type.hpp"
 
 #include "logic/objects_storage.hpp"
 

@@ -66,20 +66,20 @@ std::shared_ptr<std::set<std::shared_ptr<BasicObject>>>
 );
 }
 
-std::optional<std::set<std::shared_ptr<lgc::BasicObject>>&>
+boost::optional<std::set<std::shared_ptr<lgc::BasicObject>>&>
 lgc::ObjectStorage::operator[](str_const_ref aTag)
 {
     #ifdef _DBG_
     if (mTagDictionary.count(getTagNumber(aTag)) == 0) 
     {
         dom::ErrorMessages::writeError("there_is_no_object_with_given_tag", "given_tag:", aTag);
-        return *mObjects[1];
+        return {};
     }
     #endif
     return *mObjects[mTagDictionary[getTagNumber(aTag)]];
 }
 
-const std::optional<std::set<std::shared_ptr<lgc::BasicObject>>&>
+const boost::optional<std::set<std::shared_ptr<lgc::BasicObject>>&>
 lgc::ObjectStorage::operator[](str_const_ref aTag) const
 {
     auto it1 = mTagDictionary.find(getTagNumber(aTag));
@@ -89,7 +89,7 @@ lgc::ObjectStorage::operator[](str_const_ref aTag) const
         dom::ErrorMessages::writeError("there_is_no_object_with_given_tag", "given_tag:", aTag);
         #endif
         //TODO: optional
-        return {*mObjects[1]};
+        return {};
     }
 
     return  *mObjects[it1->second];

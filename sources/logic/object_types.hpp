@@ -3,7 +3,7 @@
 
 //--------------------------------------------------------------------------------
 
-#include "domain/dom_type.hpp"
+#include "domain/type.hpp"
 
 typedef uint_16 tag_type;
 

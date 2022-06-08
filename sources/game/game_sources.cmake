@@ -1,6 +1,9 @@
 set(
     GAME_SOURCES 
     
+    background.cpp
+    background.hpp
+
     date.cpp
     date.hpp
 

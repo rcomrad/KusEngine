@@ -1,8 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "gui/gui_paths.hpp"
-#include "gui/gui_mouse_event.hpp"
+#include "gui/path.hpp"
+#include "gui/mouse_event.hpp"
 
 #include "space/spaceship.hpp"
 

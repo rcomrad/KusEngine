@@ -3,11 +3,11 @@
 
 //--------------------------------------------------------------------------------
 
-#include "domain/dom_string.hpp"
-#include "domain/dom_pair.hpp"
+#include "domain/string.hpp"
+#include "domain/pair.hpp"
 
-#include "gui/gui_mouse_event.hpp"
-#include "gui/gui_drawable_and_writable.hpp"
+#include "gui/mouse_event.hpp"
+#include "gui/drawable_and_writable.hpp"
 
 #include "program_state.hpp"
 #include "objects_storage.hpp"

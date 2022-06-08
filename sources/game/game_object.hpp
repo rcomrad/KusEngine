@@ -1,8 +1,8 @@
 #ifndef GAME_OBJECT_HPP
 #define GAME_OBJECT_HPP
 
-#include "gui/gui_drawable.hpp"
-#include "gui/gui_event.hpp"
+#include "gui/drawable.hpp"
+#include "gui/event.hpp"
 
 namespace sr
 {

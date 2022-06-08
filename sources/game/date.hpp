@@ -5,9 +5,9 @@
 
 #include <vector>
 
-#include "domain/dom_string.hpp"
+#include "domain/string.hpp"
 
-#include "gui/gui_writable.hpp"
+#include "gui/writable.hpp"
 
 #include "logic/logic_object.hpp"
 

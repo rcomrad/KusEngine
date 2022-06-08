@@ -4,13 +4,13 @@
 #include <vector>
 #include <optional>
 
-#include "domain/dom_string.hpp"
+#include "domain/string.hpp"
 
-#include "gui/gui_event.hpp"
+#include "gui/event.hpp"
 
 #include "basic_object.hpp"
-#include "logic_types.hpp"
-#include "lgc_time.hpp"
+#include "type.hpp"
+#include "time.hpp"
 
 namespace lgc
 {

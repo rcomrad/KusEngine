@@ -10,7 +10,7 @@
 #include "game/menu.hpp"
 
 #include "logic/program_state.hpp"
-#include "logic/lgc_time.hpp"
+#include "logic/time.hpp"
 
 namespace sr
 {

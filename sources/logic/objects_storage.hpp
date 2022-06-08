@@ -9,12 +9,14 @@
 #include <memory>
 #include <optional>
 
-#include "domain/dom_type.hpp"
-#include "domain/dom_string.hpp"
-#include "domain/dom_math.hpp"
-#include "domain/dom_error_message.hpp"
+#include <boost/optional.hpp>
 
-#include "gui/gui_output_base.hpp"
+#include "domain/type.hpp"
+#include "domain/string.hpp"
+#include "domain/math.hpp"
+#include "domain/error_message.hpp"
+
+#include "gui/output_base.hpp"
 
 #include "object_types.hpp"
 #include "basic_object.hpp"
@@ -24,7 +26,6 @@ namespace lgc
     class ObjectStorage
     {
 	public:
-
 		static ObjectStorage globalObjecStorage;
 
 		uint_64 getTagNumber(str_const_ref aName) const;
@@ -37,8 +38,8 @@ namespace lgc
 		//template <typename Self>
 		//auto& operator[](this Self&& self, std::size_t idx) { return self.mVector[idx]; }
 
-		std::optional<std::set<std::shared_ptr<BasicObject>>&> operator[](str_const_ref aTag);
-		const std::optional<std::set<std::shared_ptr<lgc::BasicObject>>&> operator[](str_const_ref aTag) const;
+		boost::optional<std::set<std::shared_ptr<BasicObject>>&> operator[](str_const_ref aTag);
+		const boost::optional<std::set<std::shared_ptr<lgc::BasicObject>>&> operator[](str_const_ref aTag) const;
 
 		std::set<std::shared_ptr<BasicObject>> operator[](std::vector<str_val> aTag);
 
