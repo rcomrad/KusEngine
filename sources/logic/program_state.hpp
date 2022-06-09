@@ -8,6 +8,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/lexical_cast/lexical_cast_old.hpp>
+#include <boost/property_tree/info_parser.hpp>
 
 #include "gui/event.hpp"
 #include "gui/gui.hpp"
@@ -15,6 +16,7 @@
 #include "type.hpp"
 #include "objects_storage.hpp"
 #include "logic_object.hpp"
+#include "path.hpp"
 //#include "program_states_data.hpp"
 
 namespace lgc
@@ -24,7 +26,7 @@ namespace lgc
 	public:
 		enum class ProgramStateName {Nun, Menu, Game};
 
-		ProgramState();
+		ProgramState(str_const_ref aFileName);
 		virtual ~ProgramState();
 
 		//virtual bool run(std::vector<gui::Event*> aEvents) = 0;

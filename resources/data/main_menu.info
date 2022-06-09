@@ -1,0 +1,15 @@
+StateSettings
+{
+	Layers 
+	{
+		Buttons		7
+	}
+	Constructor
+	{
+		Centrate
+		{
+			ViewName	Player	
+			ObjectTag	Buttons
+		}
+	}
+}

@@ -60,7 +60,7 @@ gui::GUI::drawObjects
 
     //gui::Window::globalWindow.centrateView("Player", (*(--mDrawebles.end()))->getPosition());
 
-    auto player = lgc::ObjectStorage::globalObjecStorage["Player"];
+    //auto player = lgc::ObjectStorage::globalObjecStorage["Player"];
     // #ifdef _DBG_
     // if (array.size() == 0) 
     // {
@@ -68,11 +68,11 @@ gui::GUI::drawObjects
     // }
     // #endif
 
-    if (player) 
-    {
-        sr::Player* temp = dynamic_cast<sr::Player*> (player.value().begin()->get());
-        gui::Window::globalWindow.centrateView("Player", temp->getPosition());
-    }
+    // if (player) 
+    // {
+    //     sr::Player* temp = dynamic_cast<sr::Player*> (player.value().begin()->get());
+    //     gui::Window::globalWindow.centrateView("Player", temp->getPosition());
+    // }
     
     for (auto& drawTarget : lgc::ObjectStorage::globalObjecStorage.getSortedDrawables())
     {
@@ -86,6 +86,17 @@ void
 gui::GUI::addLayer(str_const_ref aName, layer_type& aLayerNumber)
 {
     gui::GuiOutputBase::addLayer(aName, aLayerNumber);
+}
+
+void
+gui::GUI::centrate(str_const_ref aViewName, str_const_ref aObjectTag)
+{
+    auto obj = lgc::ObjectStorage::globalObjecStorage[aObjectTag];
+    if (obj) 
+    {
+        gui::GuiOutputBase* temp = dynamic_cast<gui::GuiOutputBase*> (obj.value().begin()->get());
+        gui::Window::globalWindow.centrateView(aViewName, temp->getPosition());
+    }
 }
 
 gui::CloseEvent* 

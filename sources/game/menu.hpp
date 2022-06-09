@@ -9,10 +9,14 @@
 #include "gui/close_event.hpp"
 #include "gui/mouse_event.hpp"
 
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/info_parser.hpp>
+
 #include "logic/program_state.hpp"
 #include "logic/objects_storage.hpp"
 #include "logic/buttons.hpp"
 #include "logic/program_states_data.hpp"
+#include "logic/path.hpp"
 
 namespace sr
 {

@@ -3,11 +3,15 @@
 #include "logic/buttons.hpp"
 
 sr::Game::Game() :
+	ProgramState	("game.info"),
 	mPause(false),
 	mNextState(ProgramStateName::Nun)
 {
-	this->stateSetup(lgc::ProgramStatesData::globalProgramStatesData.getData("Game"));
-
+	//this->stateSetup(lgc::ProgramStatesData::globalProgramStatesData.getData("Game"));
+	// boost::property_tree::ptree data;
+	// boost::property_tree::info_parser::read_info(DATA "game.info", data);
+	// this->stateSetup(data.find("StateSettings")->second);
+	
 	Player::create();
 	Background::create();
 	Planet::create();

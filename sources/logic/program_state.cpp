@@ -1,8 +1,12 @@
 #include "logic/program_state.hpp"
 
-lgc::ProgramState::ProgramState() :
+lgc::ProgramState::ProgramState(str_const_ref aFileName) :
     mIsClosed   (false)
-{}
+{
+    boost::property_tree::ptree data;
+	boost::property_tree::info_parser::read_info(DATA + aFileName, data);
+	this->stateSetup(data.find("StateSettings")->second);
+}
 
 lgc::ProgramState::~ProgramState()
 {

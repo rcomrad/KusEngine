@@ -48,6 +48,7 @@ namespace gui
 		void drawObjects();
 		
 		static void addLayer(str_const_ref aName, layer_type& aLayerNumber);
+		static void centrate(str_const_ref aViewName, str_const_ref aObjectTag);
 
 	private:
 		gui::CloseEvent* makeCloseEvent(sf::Event* aEvent);
