@@ -91,7 +91,25 @@
         "unordered_map": "cpp",
         "unordered_set": "cpp",
         "valarray": "cpp",
-        "xhash": "cpp"
+        "xhash": "cpp",
+        "variant": "cpp",
+        "csetjmp": "cpp",
+        "any": "cpp",
+        "barrier": "cpp",
+        "cfenv": "cpp",
+        "cinttypes": "cpp",
+        "coroutine": "cpp",
+        "execution": "cpp",
+        "filesystem": "cpp",
+        "latch": "cpp",
+        "memory_resource": "cpp",
+        "numbers": "cpp",
+        "ranges": "cpp",
+        "scoped_allocator": "cpp",
+        "semaphore": "cpp",
+        "source_location": "cpp",
+        "span": "cpp",
+        "syncstream": "cpp"
     },
     "workbench.editor.revealIfOpen" : true
 }

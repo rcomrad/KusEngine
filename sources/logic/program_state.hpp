@@ -6,13 +6,16 @@
 #include <set>
 #include <optional>
 
+#include <boost/property_tree/ptree.hpp>
+#include <boost/lexical_cast/lexical_cast_old.hpp>
+
 #include "gui/event.hpp"
-#include "gui/drawable.hpp"
-#include "gui/type.hpp"
+#include "gui/gui.hpp"
 
 #include "type.hpp"
 #include "objects_storage.hpp"
 #include "logic_object.hpp"
+//#include "program_states_data.hpp"
 
 namespace lgc
 {
@@ -33,11 +36,15 @@ namespace lgc
 		
 		bool isClosed();
 
+		void stateSetup(boost::property_tree::ptree& aSettings);
+
 	protected:
 		void close();
 
 	private:
 		bool mIsClosed;
+
+		void layerSetup(boost::property_tree::ptree& aSettings);
 		//static Time mTime;
 	};
 }

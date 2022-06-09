@@ -18,13 +18,13 @@ gui::GUI::GUI()
 {
    // mHotkeys[sf::Keyboard::Space] = KeyEvent::KeyEventType::SPACE_PAUSE;
 
-    gui::GuiOutputBase::addLayer({
-        {"Player", 100},
-        {"Background", 1},
-        {"Planet", 5},
-        {"Data", 16},
-        {"Button", 20}
-    });
+    // gui::GuiOutputBase::addLayer({
+    //     {"Player", 100},
+    //     {"Background", 1},
+    //     {"Planet", 5},
+    //     {"Data", 16},
+    //     {"Button", 20}
+    // });
 }
 
 std::vector<gui::Event*>
@@ -80,6 +80,12 @@ gui::GUI::drawObjects
     }
 
     gui::Window::globalWindow.display();
+}
+
+void
+gui::GUI::addLayer(str_const_ref aName, layer_type& aLayerNumber)
+{
+    gui::GuiOutputBase::addLayer(aName, aLayerNumber);
 }
 
 gui::CloseEvent* 

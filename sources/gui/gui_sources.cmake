@@ -12,6 +12,9 @@ set(
 
     event.cpp
     event.hpp
+    
+    gui_output_base.cpp
+    gui_output_base.hpp
 
     gui.cpp
     gui.hpp
@@ -21,9 +24,6 @@ set(
 
     mouse_event.cpp
     mouse_event.hpp
-
-    output_base.cpp
-    output_base.hpp
 
     path.hpp
 

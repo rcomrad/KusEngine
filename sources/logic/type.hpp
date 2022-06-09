@@ -5,7 +5,7 @@
 
 #include <set>
 
-#include "gui/output_base.hpp"
+#include "gui/gui_output_base.hpp"
 
 //#define SET_DRAWEBLE_TYPE std::set<sr::GuiOutputBase*, sr::GuiOutputBaseComparator>
 

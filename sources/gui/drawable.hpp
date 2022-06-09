@@ -5,7 +5,7 @@
 #include "domain/storage.hpp"
 
 #include "window.hpp"
-#include "output_base.hpp"
+#include "gui_output_base.hpp"
 
 namespace gui
 {

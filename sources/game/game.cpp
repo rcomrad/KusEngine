@@ -6,6 +6,8 @@ sr::Game::Game() :
 	mPause(false),
 	mNextState(ProgramStateName::Nun)
 {
+	this->stateSetup(lgc::ProgramStatesData::globalProgramStatesData.getData("Game"));
+
 	Player::create();
 	Background::create();
 	Planet::create();

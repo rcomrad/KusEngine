@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.21.3)
 project(KusEngine VERSION 2.0)
 set(CMAKE_CXX_STANDARD 20)
 
@@ -12,9 +12,13 @@ endif()
 
 set(SFML_DIR ${SFML_ROOT_DIR}/lib/cmake/SFML)
 
+#set(Boost_USE_STATIC_LIBS OFF) 
+#set(Boost_USE_MULTITHREADED ON)  
+#set(Boost_USE_STATIC_RUNTIME OFF) 
+ADD_DEFINITIONS("-DBOOST_ALL_NO_LIB")
 find_package(SFML 2.5.1 COMPONENTS system window graphics audio REQUIRED)
 
-find_package( Boost 1.40 COMPONENTS program_options REQUIRED )
+find_package(Boost 1.40 COMPONENTS program_options REQUIRED)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/sources/sources.cmake)
 
@@ -23,6 +27,8 @@ get_sources(${CMAKE_CURRENT_SOURCE_DIR}/sources SOURCES)
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${Boost_INCLUDE_DIR})
+#target_link_libraries(${PROJECT_NAME} PRIVATE boost_json-mt)
+#target_link_libraries(${PROJECT_NAME} PRIVATE ${BOOST_LIB})
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/sources)
 

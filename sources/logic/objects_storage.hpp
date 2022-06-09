@@ -16,7 +16,7 @@
 #include "domain/math.hpp"
 #include "domain/error_message.hpp"
 
-#include "gui/output_base.hpp"
+#include "gui/gui_output_base.hpp"
 
 #include "object_types.hpp"
 #include "basic_object.hpp"

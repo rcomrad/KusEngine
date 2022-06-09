@@ -1,0 +1,18 @@
+MainMenu
+{
+	Layers 
+	{
+		Buttons		7
+	}
+}
+Game
+{
+	Layers
+	{
+		Player		100
+		Background	1
+		Planet		5
+		Data		16
+	}
+}
+

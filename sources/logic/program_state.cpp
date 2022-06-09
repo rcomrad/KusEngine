@@ -15,6 +15,15 @@ lgc::ProgramState::close()
     mIsClosed = true;
 }
 
+void
+lgc::ProgramState::stateSetup(boost::property_tree::ptree& aSettings)
+{
+    for(auto& it : aSettings)
+    {
+        if (it.first == "Layers") layerSetup(it.second);
+    }
+}
+
 bool
 lgc::ProgramState::isClosed()
 {
@@ -35,5 +44,15 @@ lgc::ProgramState::timeUpdate()
             dynamic_cast<LogicObject*> (ptr.get())->update(dTime);
 
         }
+    }
+}
+
+void
+lgc::ProgramState::layerSetup(boost::property_tree::ptree& aSettings)
+{
+    for(auto& it : aSettings)
+    {
+        layer_type num = boost::lexical_cast<int>(it.second.data());
+        gui::GUI::addLayer(it.first, num);
     }
 }

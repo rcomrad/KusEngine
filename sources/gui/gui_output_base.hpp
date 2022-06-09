@@ -46,6 +46,7 @@ namespace gui
 
 		bool operator<(const GuiOutputBase& aOther) const;
 
+		static void addLayer(str_const_ref aName, layer_type& aLayerNumber);
 		static void addLayer(const dom::Pair<const char*, layer_type>& aLayer);
 		static void addLayer(const std::vector<dom::Pair<const char*, layer_type>>& aLayerArray);
 

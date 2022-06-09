@@ -47,6 +47,8 @@ namespace gui
 
 		void drawObjects();
 		
+		static void addLayer(str_const_ref aName, layer_type& aLayerNumber);
+
 	private:
 		gui::CloseEvent* makeCloseEvent(sf::Event* aEvent);
 		gui::MouseEvent* makeMouseEvent(sf::Event* aEvent);

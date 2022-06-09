@@ -12,6 +12,7 @@
 #include "logic/program_state.hpp"
 #include "logic/objects_storage.hpp"
 #include "logic/buttons.hpp"
+#include "logic/program_states_data.hpp"
 
 namespace sr
 {

@@ -11,6 +11,7 @@
 
 #include "logic/program_state.hpp"
 #include "logic/objects_storage.hpp"
+#include "logic/program_states_data.hpp"
 
 #include "game/date.hpp"
 #include "space/planet.hpp"

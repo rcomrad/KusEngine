@@ -4,6 +4,9 @@ set(
     program_state.cpp
     program_state.hpp
 
+    program_states_data.hpp
+    program_states_data.cpp
+
     logic_object.cpp
     logic_object.hpp
 
@@ -25,4 +28,5 @@ set(
     object_types.hpp
 
     type.hpp
+    path.hpp
 )

@@ -1,4 +1,4 @@
-#include "output_base.hpp"
+#include "gui_output_base.hpp"
 
 #include "drawable.hpp"
 #include "writable.hpp"
@@ -87,6 +87,13 @@ gui::GuiOutputBase::operator<(const GuiOutputBase& aOther) const
 {
     if (mLayer != aOther.mLayer) return mLayer < aOther.mLayer;
     return this < &aOther;
+}
+
+void 
+gui::GuiOutputBase::addLayer(str_const_ref aName, layer_type& aLayerNumber)
+{
+    addLayer(std::vector<dom::Pair<const char*, layer_type>> {{aName.c_str(), aLayerNumber}});
+    //addLayer(dom::Pair<const char*, layer_type> {aName, aLayerNumber});
 }
 
 void 
