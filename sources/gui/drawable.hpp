@@ -18,7 +18,8 @@ namespace gui
 
 		void drawSprite();
 
-		virtual sf_2f_val getSpritePosition();
+		sf_2f_val getSpritePosition();
+		sf_2f_val getSpriteCenter();
 
 		void moveSprite				(dom::Pair<float> aCoord);
 		void setSpritePosition		(dom::Pair<float> aCoord);

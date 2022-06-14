@@ -101,6 +101,10 @@ gui::Window::centrateView(uint_8 aViewNumber, sf_2f_const_ref aCoord)
     }
     #endif
 
+    // auto viewSize = mViews[aViewNumber].getSize();
+    // viewSize.x /= 2;
+    // viewSize.y /= 2;
+    //mViews[aViewNumber].setCenter(aCoord + viewSize);
     mViews[aViewNumber].setCenter(aCoord);
 }
 
@@ -115,7 +119,7 @@ gui::Window::centrateView(str_const_ref aViewName, sf_2f_const_ref aCoord)
         return;
     }
     #endif
-
+    
     centrateView(mViewNumbers[aViewName], aCoord);
     //mViews[mViewNumbers[aViewName]].setCenter(aCoord);
 }

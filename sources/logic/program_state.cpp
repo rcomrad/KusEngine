@@ -25,6 +25,7 @@ lgc::ProgramState::stateSetup(boost::property_tree::ptree& aSettings)
     for(auto& it : aSettings)
     {
         if (it.first == "Layers") layerSetup(it.second);
+        //else if (it.first == "Loop") layerSetup(it.second);
     }
 }
 

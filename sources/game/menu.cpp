@@ -11,6 +11,7 @@ sr::Menu::Menu() :
 	//lgc::Buttons* button = new lgc::Buttons(TEXTURES + "button.png", {"play", "exit"}, {100., 100.});
 	//std::shared_ptr<lgc::Buttons> button(new lgc::Buttons(TEXTURES + "button.png", {"play", "exit"}, {100., 100.}));
 	lgc::Buttons::create(TEXTURES + "button.png", {"play", "exit"}, {100., 100.});
+	gui::GUI::centrate("Static", "Button");
 }
 
 sr::Menu::~Menu()

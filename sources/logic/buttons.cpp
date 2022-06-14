@@ -14,7 +14,7 @@ lgc::Buttons::Buttons
 {
     mButtonSize = this->getSpriteSize();
     this->setLayer("Button");
-    this->setView("Player");
+    this->setView("Static");
     setStartPosition({100., 100.});
     setPositionChange({0., 30.});
 }

@@ -64,6 +64,7 @@ sr::Game::processEvents(std::vector<gui::Event*> aEvents)
 void
 sr::Game::update()
 {
+	gui::GUI::centrate("Game", "Player");
 	if (!mPause)
 	{
 		timeUpdate();

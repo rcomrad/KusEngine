@@ -126,3 +126,12 @@ gui::Drawable::getSpritePosition()
 {
     return  mSprite.getPosition();
 }
+
+sf_2f_val
+gui::Drawable::getSpriteCenter()
+{
+    sf_2f_val pos = {mSprite.getLocalBounds().width, mSprite.getLocalBounds().height};
+    pos.x /= 2;
+    pos.y /= 2;
+    return  getSpritePosition() + pos;
+}

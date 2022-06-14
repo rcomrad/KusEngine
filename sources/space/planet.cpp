@@ -6,7 +6,7 @@ sr::Planet::Planet() :
 	SpaceObject	(PLANET_TEXTURE, "Planet")
 {
 	setScale({0.1, 0.1});
-	setView("Player");
+	setView("Game");
 
 }
 

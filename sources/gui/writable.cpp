@@ -6,7 +6,7 @@ gui::Writable::Writable
 (
     std::string     aFontPath
 ) :
-    mCoordOffset({0.f, 0.f})
+    mCoordOffset(0.f, 0.f)
 {
     setType(gui::GuiOutputBase::GuiObjectType::TEXT);
 

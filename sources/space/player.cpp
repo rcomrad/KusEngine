@@ -3,7 +3,8 @@
 sr::Player::Player(str_const_ref aTexturePath) :
 	Spaceship(aTexturePath, "Player")
 {
-	setView("Player");
+	setView("Game");
+	this->setPosition({500,500});
 }
 
 std::shared_ptr<sr::Player>

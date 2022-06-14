@@ -1,6 +1,8 @@
 #ifndef DOM_PAIR_HPP
 #define DOM_PAIR_HPP
 
+#include <utility>
+
 namespace dom
 {
 	template<typename T1, typename T2 = T1>
@@ -27,82 +29,159 @@ namespace dom
 			T2 second;
 		};
 
-		Pair()
-		{
-				int yy = 0;
-				++yy;
-
-		}
-		Pair(const Pair& other)
-		{
-			i = other.i;
-			j = other.j;
-		}
-
-		Pair(T1&& iInit, T2&& jInit) :
-			i(iInit),
-			j(jInit)
+		Pair() :
+			x(),
+			y()
 		{}
 
-		Pair(const T1& iInit, const T2& jInit) :
-			i(iInit),
-			j(jInit)
+		// template <typename ARG>
+		// Pair(ARG&& other) : 
+		// 	x(std::forward<T1>(other.x)),
+		// 	y(std::forward<T2>(other.y))
+		// {}
+		Pair(const Pair<T1, T2>& other) : 
+			x(other.x),
+			y(other.y)
+		{}
+		Pair(Pair<T1, T2>&& other) : 
+			x(std::forward<T1>(other.x)),
+			y(std::forward<T2>(other.y))
 		{}
 
-		~Pair(){}
+		template <typename ARG1, typename ARG2>
+		Pair(ARG1&& xInit, ARG2&& yInit) :
+			x(std::forward<T1>(xInit)),
+			y(std::forward<T2>(yInit))
+		{}
 
-		void operator+= (const Pair& n)
-		{
-			i += n.i;
-			j += n.j;
-		}
-		void operator-= (const Pair& n)
-		{
-			i -= n.i;
-			j -= n.j;
-		}
+		~Pair() = default;
 
-		Pair operator+ (const Pair& n) const
+		void operator+= (const Pair& other)
 		{
-			Pair ret;
-			ret.i = i + n.i;
-			ret.j = j + n.j;
-			return ret;
+			x += other.x;
+			y += other.y;
 		}
-		Pair operator- (const Pair& n) const
+		void operator-= (const Pair& other)
 		{
-			Pair ret;
-			ret.i = i - n.i;
-			ret.j = j - n.j;
-			return ret;
+			x -= other.x;
+			y -= other.y;
 		}
 
-		bool operator< (const Pair& n) const
+		// template <typename ARG>
+		// Pair& operator=(ARG&& other)
+		// {
+		// 	x = std::forward<T1>(other.x);
+		// 	y = std::forward<T2>(other.y);
+		// 	return *this;
+		// }
+		Pair& operator=(const Pair<T1, T2>& other)
 		{
-			if (i != n.i) return i < n.i;
-			return j < n.j;
-		}
-		bool operator>(const Pair& n) const
-		{
-			if (i != n.i) return i > n.i;
-			return j > n.j;
-		}
-		bool operator== (const Pair& n) const
-		{
-			return i == n.i && j == n.j;
-		}
-		bool operator!= (const Pair& n) const
-		{
-			return i != n.i || j != n.j;
-		}
-
-		Pair& operator=(const Pair& other)
-		{
-			j = other.j;
-			i = other.i;
-
+			x = other.x;
+			y = other.y;
 			return *this;
 		}
+		Pair& operator=(Pair<T1, T2>&& other)
+		{
+			x = std::forward<T1>(other.x);
+			y = std::forward<T2>(other.y);
+			return *this;
+		}
+
+		friend Pair operator+ (const Pair& a1, const Pair& a2)
+		{
+			Pair<T1, T2> res{ a1.x + a2.x, a1.y + a2.y };
+			return res;
+		}
+		friend Pair operator+ (const Pair& a1, Pair&& a2)
+		{
+			a2.x += a1.x;
+			a2.y += a1.y;
+			return a2;
+		}
+		friend Pair operator+ (Pair&& a1, const Pair& a2)
+		{
+			return a2 + std::move(a1);
+		}
+		friend Pair operator+ (Pair&& a1, Pair&& a2)
+		{
+			a1.x += a2.x;
+			a1.y += a2.y;
+			return a1;
+		}
+
+		friend Pair operator- (const Pair& a1, const Pair& a2)
+		{
+			Pair<T1, T2> res{ a1.x - a2.x, a1.y - a2.y };
+			return res;
+		}
+		friend Pair operator- (const Pair& a1, Pair&& a2)
+		{
+			a2.x -= a1.x;
+			a2.y -= a1.y;
+			return a2;
+		}
+		friend Pair operator- (Pair&& a1, const Pair& a2)
+		{
+			return a2 - std::move(a1);
+		}
+		friend Pair operator- (Pair&& a1, Pair&& a2)
+		{
+			a1.x -= a2.x;
+			a1.y -= a2.y;
+			return a1;
+		}
+
+		bool operator< (const Pair& other) const
+		{
+			if (x != other.x) return y < other.y;
+			return y < other.y;
+		}
+		bool operator>(const Pair& other) const
+		{
+			if (x != other.x) return y > other.y;
+			return y > other.y;
+		}
+		bool operator== (const Pair& other) const
+		{
+			return x == other.x && y == other.y;
+		}
+		bool operator!= (const Pair& other) const
+		{
+			return x != other.x || y != other.y;
+		}
+
+		private:
+		class PairBracketAccessResult
+		{
+			friend Pair;
+		public:
+			operator T1&()
+			{
+				if (mIndex != 0) exit(-1);
+				return mRes.x;
+			}
+
+			operator T2&()
+			{
+				if (mIndex != 1) exit(-1);
+				return mRes.y;
+			}
+
+		private:
+			Pair& mRes;
+			int mIndex;
+
+			PairBracketAccessResult(Pair& aRes, int aIndex) :
+				mRes	(aRes),
+				mIndex	(aIndex)
+			{}
+		};
+
+		public:
+			PairBracketAccessResult operator[] (const int& aIndex)
+			{
+				return PairBracketAccessResult(*this, aIndex);
+			}
 	};
 }
 

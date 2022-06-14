@@ -58,21 +58,12 @@ gui::GUI::drawObjects
 {
     gui::Window::globalWindow.clear();
 
-    //gui::Window::globalWindow.centrateView("Player", (*(--mDrawebles.end()))->getPosition());
-
-    //auto player = lgc::ObjectStorage::globalObjecStorage["Player"];
-    // #ifdef _DBG_
-    // if (array.size() == 0) 
-    // {
-    //     dom::ErrorMessages::writeError("there_is_no_object_with_player_tag");
-    // }
-    // #endif
-
-    // if (player) 
-    // {
-    //     sr::Player* temp = dynamic_cast<sr::Player*> (player.value().begin()->get());
-    //     gui::Window::globalWindow.centrateView("Player", temp->getPosition());
-    // }
+    auto player = lgc::ObjectStorage::globalObjecStorage["Player"];
+    if (player) 
+    {
+        sr::Player* temp = dynamic_cast<sr::Player*> (player.value().begin()->get());
+        gui::Window::globalWindow.centrateView("Player", temp->getPosition());
+    }
     
     for (auto& drawTarget : lgc::ObjectStorage::globalObjecStorage.getSortedDrawables())
     {
@@ -94,8 +85,8 @@ gui::GUI::centrate(str_const_ref aViewName, str_const_ref aObjectTag)
     auto obj = lgc::ObjectStorage::globalObjecStorage[aObjectTag];
     if (obj) 
     {
-        gui::GuiOutputBase* temp = dynamic_cast<gui::GuiOutputBase*> (obj.value().begin()->get());
-        gui::Window::globalWindow.centrateView(aViewName, temp->getPosition());
+        gui::Drawable* temp = dynamic_cast<gui::Drawable*> (obj.value().begin()->get());  
+        gui::Window::globalWindow.centrateView(aViewName, temp->getSpriteCenter());
     }
 }
 
