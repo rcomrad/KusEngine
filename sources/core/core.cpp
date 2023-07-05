@@ -1,63 +1,41 @@
-#include "core/core.hpp"
+#include "core.hpp"
 
-//--------------------------------------------------------------------------------
+#include "gui/gui.hpp"
 
-#define WORLD_SIZE_X	32
-#define WORLD_SIZE_Y	20
+#include "menu.hpp"
 
-
-
-#define PAUSE_DELTA		7
-
-sr::Core::Core() :
-	mCurrentState(nullptr)
+core::Core::Core() noexcept
 {
-	makeNextState(lgc::ProgramState::ProgramStateName::Menu);
-}
-
-sr::Core::~Core(){}
-
-void
-sr::Core::run()
-{
-	while (true)
-	{
-		// while (lgc::Time::globalTime.getFPSDCount() == 0)
-		// {
-		//  	lgc::Time::globalTime.updateTimeAndFPS();
-		// }
-		// lgc::Time::globalTime.updateTimeAndFPS();
-		// if (lgc::Time::globalTime.getFPSDCount())
-		// {
-		//  	mView.drawObjects();
-		// }
-		mView.drawObjects();
-		mCurrentState->processEvents(mView.getEvents());
-		auto nextState = mCurrentState->getNextStateName();
-		if (nextState) makeNextState(nextState.value());
-		if (mCurrentState->isClosed()) break;
-		mCurrentState->update();
-	}
-
+    makeState(ProgramState::Name::Menu);
 }
 
 void
-sr::Core::makeNextState(lgc::ProgramState::ProgramStateName aName)
+core::Core::run() noexcept
 {
-	if (mCurrentState != nullptr) delete mCurrentState;
-	switch (aName)
-	{
-	case lgc::ProgramState::ProgramStateName::Nun :
-		break;
-	case lgc::ProgramState::ProgramStateName::Game :
-		mCurrentState = new Game();
-		break;	
-	case lgc::ProgramState::ProgramStateName::Menu :
-		mCurrentState = new Menu();
-		break;
-	default:
-		break;
-	}
+    gui::GUI gui;
+
+    while (true)
+    {
+        auto state = mCurrentState->getNewState();
+        if (state == ProgramState::Name::Close) break;
+
+        if (state != ProgramState::Name::Nun) makeState(state);
+
+        gui.draw();
+        gui.update();
+    }
 }
 
-//--------------------------------------------------------------------------------
+void
+core::Core::makeState(ProgramState::Name aName) noexcept
+{
+    switch (aName)
+    {
+        // case ProgramState::Name::Game:
+        //     mCurrentState = std::make_unique<Game>();
+        //     break;
+        case ProgramState::Name::Menu:
+            mCurrentState = std::make_unique<Menu>();
+            break;
+    }
+}

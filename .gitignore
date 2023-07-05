@@ -1,2 +1,13 @@
 /build
-/bin/*.pdb
+
+**.pdb
+**.obj
+**.sqlite3
+**.log
+**.err
+**.exe
+**.dll
+**.pass
+**.path
+**.dmprar
+**.out

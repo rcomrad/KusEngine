@@ -1,35 +1,28 @@
-#ifndef CORE_H
-#define CORE_H
+#ifndef CORE_HPP
+#define CORE_HPP
 
 //--------------------------------------------------------------------------------
 
-#include <iostream>
+#include <memory>
 
-#include "gui/gui.hpp"
-#include "game/game.hpp"
-#include "game/menu.hpp"
+#include "program_state.hpp"
 
-#include "logic/program_state.hpp"
-#include "logic/time.hpp"
-
-namespace sr
+namespace core
 {
-	class Core
-	{
-	public:
-		Core();
-		~Core();
+class Core
+{
+public:
+    Core() noexcept;
 
-		void run();
-		void makeNextState(lgc::ProgramState::ProgramStateName aName);
+    void run() noexcept;
 
-	private:
-		gui::GUI mView;
+private:
+    std::unique_ptr<ProgramState> mCurrentState;
 
-		lgc::ProgramState* mCurrentState;
-	};
-}
+    void makeState(ProgramState::Name aName) noexcept;
+};
+} // namespace core
 
 //--------------------------------------------------------------------------------
 
-#endif // CORE_H
+#endif // !CORE_HPP

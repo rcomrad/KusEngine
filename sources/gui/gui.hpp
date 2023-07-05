@@ -1,59 +1,23 @@
-#ifndef GUI_H
-#define GUI_H
+#ifndef GUI_HPP
+#define GUI_HPP
 
-//--------------------------------------------------------------------------------
-
-#include <iostream>
 #include <vector>
-#include <string>
-#include <set>
-#include <map>
 
-#include <SFML/Graphics.hpp>
-
-#include "space/player.hpp"
-#include "game/background.hpp"
-
-#include "window.hpp"
-#include "drawable.hpp"
-#include "close_event.hpp"
-#include "event.hpp"
-#include "mouse_event.hpp"
-#include "close_event.hpp"
-#include "key_event.hpp"
-#include "type.hpp"
-
-#include "logic/objects_storage.hpp"
+#include "scene.hpp"
 
 namespace gui
 {
-	class GUI
-	{
-	public:
-		// enum class EventType
-		// {
-		// 	NUN = 0,
-		// 	SWITCH_DRAW_MODE = 1,
-		// 	SWITCH_PAUSE = 2,
-		// 	INCREASE_SPEED = 3,
-		// 	DECREASE_SPEED = 4,
-		// 	STANDART_PAUSE = 5
-		// };
+class GUI
+{
+public:
+    // GUI() noexcept;
 
-		GUI();
+    void draw() noexcept;
+    void update() noexcept;
 
-		// bool isAppClosed() const;
-		std::vector<gui::Event*> getEvents();
+private:
+    std::vector<Scene> mScenes;
+};
+} // namespace gui
 
-		void drawObjects();
-		
-	private:
-		gui::CloseEvent* makeCloseEvent(sf::Event* aEvent);
-		gui::MouseEvent* makeMouseEvent(sf::Event* aEvent);
-		gui::KeyEvent* makeKeyEvent(sf::Event* aEvent);
-	};
-}
-
-//--------------------------------------------------------------------------------
-
-#endif // GUI_H
+#endif // !GUI_HPP

@@ -1,52 +1,41 @@
-#ifndef WINDOW_H
-#define WINDOW_H
+#ifndef KUS_WINDOW_HPP
+#define KUS_WINDOW_HPP
 
-#include <vector>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/View.hpp>
+
 #include <map>
+#include <vector>
 
-#include <SFML/Graphics.hpp>
-
+#include "domain/error_message.hpp"
 #include "domain/string.hpp"
 #include "domain/type.hpp"
-#include "domain/error_message.hpp"
 
 #include "type.hpp"
 
 namespace gui
 {
-	class Window
-	{
-	public:
-		static Window globalWindow;
+class Window
+{
+public:
+    static Window& getInstance() noexcept;
 
-		Window();
-		virtual ~Window();
-		//static void draw(auto& aTarget);
+    void draw(sf::Text& aTarget) noexcept;
+    void draw(sf::Sprite& aTarget) noexcept;
 
-		void draw(sf::Text& aTarget);
-		void draw(sf::Sprite& aTarget);
+    void clear() noexcept;
+    void display() noexcept;
+    void close() noexcept;
 
-		void clear	();
-		void display();
-		void close	();
+    void setView(const sf::View& aView) noexcept;
 
-		bool pollEvent(sf::Event& event);
+    // bool pollEvent(sf::Event& event) const noexcept;
 
-		uint_8	getViewNumber	(str_const_ref aViewName);
-		void	setView			(uint_8 aViewNumber);
-		void	centrateView	(uint_8 aViewNumber, sf_2f_const_ref aCoord);
-		//TODO:
-		void	centrateView	(str_const_ref aViewName, sf_2f_const_ref aCoord);
+private:
+    Window() noexcept;
 
-	public:
-		sf::RenderWindow mWindow;
+    sf::RenderWindow mWindow;
+};
+} // namespace gui
 
-		uint_8						mCurrentViewNumber;		
-		std::vector<sf::View>		mViews;
-		std::map<str_val, uint_8>	mViewNumbers;
-		
-		//sf::RenderWindow mWindow;
-	};
-}
-
-#endif // !WINDOW_H
+#endif // !KUS_WINDOW_HPP
