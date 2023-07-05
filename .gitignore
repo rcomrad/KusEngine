@@ -1,14 +1,2 @@
 /build
 /.vscode
-
-**.pdb
-**.obj
-**.sqlite3
-**.log
-**.err
-**.exe
-**.dll
-**.pass
-**.path
-**.dmprar
-**.out
