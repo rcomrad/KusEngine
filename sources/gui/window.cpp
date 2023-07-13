@@ -24,13 +24,13 @@ gui::Window::Window() noexcept
 }
 
 void
-gui::Window::draw(sf::Text& aTarget) noexcept
+gui::Window::draw(const sf::Text& aTarget) noexcept
 {
     mWindow.draw(aTarget);
 }
 
 void
-gui::Window::draw(sf::Sprite& aTarget) noexcept
+gui::Window::draw(const sf::Sprite& aTarget) noexcept
 {
     mWindow.draw(aTarget);
 }

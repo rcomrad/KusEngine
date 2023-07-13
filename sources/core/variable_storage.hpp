@@ -27,10 +27,10 @@ private:
     VariableStorage();
     void reloadSettings() noexcept;
 
-    int valueSetter(const std::string& s) noexcept;
+    // int valueSetter(const std::string& s) noexcept;
     std::unordered_map<std::string, int> mInts;
 
-    bool turnOnOff(const std::string& s) noexcept;
+    // bool turnOnOff(const std::string& s) noexcept;
     std::unordered_map<std::string, bool> mFlags;
 
     std::unordered_map<std::string, std::string> mWords;

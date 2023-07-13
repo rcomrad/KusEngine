@@ -1,6 +1,9 @@
 set(
     GUI_SOURCES 
 
+    basic_object.cpp
+    basic_object.hpp
+
     # close_event.cpp
     # close_event.hpp
 

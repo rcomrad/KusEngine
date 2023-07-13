@@ -1,0 +1,14 @@
+
+{
+name = player
+type = object
+texture = task1.png
+scale = 0.3,0.3
+position = 300,300
+}
+{
+	name = player
+	type = object
+	texture = player.png
+	position = 500,100
+}

@@ -5,8 +5,6 @@
 
 #include <memory>
 
-#include "program_state.hpp"
-
 namespace core
 {
 class Core
@@ -17,9 +15,9 @@ public:
     void run() noexcept;
 
 private:
-    std::unique_ptr<ProgramState> mCurrentState;
+    // std::unique_ptr<ProgramState> mCurrentState;
 
-    void makeState(ProgramState::Name aName) noexcept;
+    // void makeState(ProgramState::Name aName) noexcept;
 };
 } // namespace core
 

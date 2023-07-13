@@ -9,4 +9,9 @@ set(
     
     path.cpp
     path.hpp
+
+    value.cpp
+    value.hpp
+
+    variable.hpp
 )

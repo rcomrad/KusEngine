@@ -16,7 +16,7 @@ class File
 {
 private:
     static bool isSeparator(char c) noexcept;
-
+    // static bool isSeparator(char c) noexcept;
 
 public:
     static std::string getAllData(const std::string& aFileName,

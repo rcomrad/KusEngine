@@ -22,20 +22,19 @@ core::VariableStorage::getInstance()
 void
 core::VariableStorage::reloadSettings() noexcept
 {
-    auto& parser  = file::Parser::getInstance();
     auto settings = file::File::getLines("main_settings.conf");
     for (auto& str : settings)
     {
-        auto var = parser.asVariable(str);
-        switch (var.type)
+        auto var = file::Parser::asVariable(str);
+        switch (var.value.getType())
         {
-            case file::Parser::Variable::Type::Int:
-                mInts[var.name] = valueSetter(var.value);
+            case file::Value::Type::Int:
+                mInts[var.name] = var.value;
                 break;
-            case file::Parser::Variable::Type::Bool:
-                mFlags[var.name] = turnOnOff(var.value);
+            case file::Value::Type::Bool:
+                mFlags[var.name] = var.value;
                 break;
-            case file::Parser::Variable::Type::String:
+            case file::Value::Type::String:
                 mWords[var.name] = var.value;
                 break;
         }
@@ -85,16 +84,16 @@ core::VariableStorage::getWord(const std::string& aName,
 
 //--------------------------------------------------------------------------------
 
-bool
-core::VariableStorage::turnOnOff(const std::string& s) noexcept
-{
-    bool result = false;
-    if (s == "on") result = true;
-    return result;
-}
+// bool
+// core::VariableStorage::turnOnOff(const std::string& s) noexcept
+// {
+//     bool result = false;
+//     if (s == "on") result = true;
+//     return result;
+// }
 
-int
-core::VariableStorage::valueSetter(const std::string& s) noexcept
-{
-    return std::stoi(s);
-}
+// int
+// core::VariableStorage::valueSetter(const std::string& s) noexcept
+// {
+//     return std::stoi(s);
+// }

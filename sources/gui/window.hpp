@@ -20,8 +20,8 @@ class Window
 public:
     static Window& getInstance() noexcept;
 
-    void draw(sf::Text& aTarget) noexcept;
-    void draw(sf::Sprite& aTarget) noexcept;
+    void draw(const sf::Text& aTarget) noexcept;
+    void draw(const sf::Sprite& aTarget) noexcept;
 
     void clear() noexcept;
     void display() noexcept;

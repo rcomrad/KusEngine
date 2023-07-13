@@ -7,28 +7,19 @@
 #include <string>
 #include <unordered_map>
 
+#include "variable.hpp"
+
 namespace file
 {
 class Parser
 {
 public:
-    static Parser& getInstance() noexcept;
+    // static Parser& getInstance() noexcept;
 
-    struct Variable
-    {
-        enum class Type
-        {
-            Nun,
-            Int,
-            Bool,
-            String
-        };
+    static Variable asVariable(const std::string& aStr) noexcept;
 
-        Type type;
-        std::string name;
-        std::string value;
-    };
-    Variable asVariable(const std::string& aStr) const noexcept;
+    static std::vector<std::unordered_map<std::string, Value>> getAllObjects(
+        const std::string& aFileName, bool aIsCritical = false) noexcept;
 
 private:
     Parser() noexcept = default;
@@ -40,7 +31,9 @@ private:
         Lower
     };
     static void normalize(std::string& aStr, Type aType = Type::Upper) noexcept;
-    static Variable::Type getTypeByValue(std::string& aStr) noexcept;
+
+    // std::unordered_map<std::string, std::string> asObject(
+    //     const std::string& aStr) noexcept;
 };
 } // namespace file
 

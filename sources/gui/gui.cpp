@@ -2,22 +2,23 @@
 
 #include "window.hpp"
 
-// gui::GUI::GUI()noexcept
+// gui::GUI::GUI() noexcept
 // {
+//     // mScenes.emplace_back();
 // }
 
 void
-gui::GUI::draw() noexcept
+gui::GUI::draw(const std::vector<Scene>& aScenes) noexcept
 {
 
     auto& window = Window::getInstance();
 
     window.clear();
-    for (auto& i : mScenes) i.draw();
+    for (auto& i : aScenes) i.draw();
     window.display();
 }
 
-void
-gui::GUI::update() noexcept
-{
-}
+// void
+// gui::GUI::update() noexcept
+// {
+// }

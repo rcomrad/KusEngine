@@ -10,13 +10,10 @@ namespace gui
 class GUI
 {
 public:
-    // GUI() noexcept;
+    GUI() noexcept = default;
 
-    void draw() noexcept;
-    void update() noexcept;
-
-private:
-    std::vector<Scene> mScenes;
+    void draw(const std::vector<Scene>& aScenes) noexcept;
+    // void update() noexcept;
 };
 } // namespace gui
 

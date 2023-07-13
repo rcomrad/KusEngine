@@ -5,17 +5,22 @@
 
 #include <SFML/Graphics/View.hpp>
 
+#include <vector>
+
+#include "basic_object.hpp"
+
 namespace gui
 {
 class Scene
 {
 public:
-    Scene() noexcept;
-    void draw() noexcept;
+    Scene(const std::string& aPath) noexcept;
+    void draw() const noexcept;
 
 private:
     sf::View mView;
-    
+
+    std::vector<BasicObject> mObjects;
 };
 } // namespace gui
 
