@@ -1,5 +1,6 @@
 #include "program_state.hpp"
 
+#include "event/event_manager.hpp"
 #include "file/path.hpp"
 
 #include "variable_storage.hpp"
@@ -47,6 +48,18 @@ void
 core::ProgramState::draw(gui::GUI& gui) noexcept
 {
     gui.draw(mScenes);
+}
+
+void
+core::ProgramState::update() noexcept
+{
+    static auto& em = event::EventManager::getInstance();
+
+    auto newState = em.pollStateEvent();
+    if (newState.has_value())
+    {
+        reset(newState.value().name);
+    }
 }
 
 bool

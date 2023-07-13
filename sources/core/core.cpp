@@ -1,5 +1,6 @@
 #include "core.hpp"
 
+#include "event/event_manager.hpp"
 #include "file/path.hpp"
 #include "gui/gui.hpp"
 
@@ -22,11 +23,13 @@ core::Core::run() noexcept
 {
     gui::GUI gui;
     ProgramState& state = ProgramState::getInstance();
+    auto& em            = event::EventManager::getInstance();
 
     while (state.isAlive())
     {
         state.draw(gui);
-        // gui.update();
+        em.update();
+        state.update();
     }
 }
 

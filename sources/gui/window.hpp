@@ -11,6 +11,8 @@
 #include "domain/string.hpp"
 #include "domain/type.hpp"
 
+#include "event/gui_event.hpp"
+
 #include "type.hpp"
 
 namespace gui
@@ -29,12 +31,14 @@ public:
 
     void setView(const sf::View& aView) noexcept;
 
-    // bool pollEvent(sf::Event& event) const noexcept;
+    std::vector<event::GUIEvent> pollEvent() noexcept;
 
 private:
     Window() noexcept;
 
     sf::RenderWindow mWindow;
+
+    void setMousePosition(event::GUIEvent& aEvent) const noexcept;
 };
 } // namespace gui
 

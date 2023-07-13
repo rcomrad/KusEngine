@@ -1,5 +1,7 @@
 #include "window.hpp"
 
+#include <SFML/Window/Mouse.hpp>
+
 #include "core/variable_storage.hpp"
 
 gui::Window&
@@ -59,8 +61,49 @@ gui::Window::close() noexcept
     return mWindow.close();
 }
 
-// bool
-// gui::Window::pollEvent(sf::Event& event) noexcept
-// {
-//     return mWindow.pollEvent(event);
-// }
+std::vector<event::GUIEvent>
+gui::Window::pollEvent() noexcept
+{
+    std::vector<event::GUIEvent> result;
+
+    sf::Event event;
+    while (mWindow.pollEvent(event))
+    {
+        auto& temp = result.emplace_back();
+
+        switch (event.type)
+        {
+            case sf::Event::Closed:
+                temp.type = event::GUIEvent::Type::Close;
+                break;
+
+            case sf::Event::KeyPressed:
+                temp.isPressed = true;
+            case sf::Event::KeyReleased:
+                temp.type  = event::GUIEvent::Type::KeyInput;
+                temp.value = event.key.code;
+                break;
+
+            case sf::Event::MouseButtonPressed:
+                temp.isPressed = true;
+            case sf::Event::MouseButtonReleased:
+                temp.type   = event::GUIEvent::Type::MouseInput;
+                temp.isLeft = event.mouseButton.button == sf::Mouse::Left;
+                setMousePosition(temp);
+                break;
+        }
+    }
+
+    auto& temp = result.emplace_back();
+    temp.type  = event::GUIEvent::Type::Gaze;
+    setMousePosition(temp);
+
+    return result;
+}
+
+void
+gui::Window::setMousePosition(event::GUIEvent& aEvent) const noexcept
+{
+    aEvent.x = sf::Mouse::getPosition(mWindow).x;
+    aEvent.y = sf::Mouse::getPosition(mWindow).y;
+}

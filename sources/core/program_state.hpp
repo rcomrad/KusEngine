@@ -28,6 +28,7 @@ public:
     static ProgramState& getInstance() noexcept;
 
     void draw(gui::GUI& gui) noexcept;
+    void update() noexcept;
 
     bool isAlive() const noexcept;
 

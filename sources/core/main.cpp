@@ -54,6 +54,8 @@ main(int argc, char* argv[])
     core::Core app;
     app.run();
 
+    std::cout << "91\n";
+
     return 0;
 }
 
