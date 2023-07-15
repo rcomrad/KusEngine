@@ -1,0 +1,10 @@
+{
+	name = button
+	type = button
+	texture = button.png
+	position = 100,100
+	scale = 0.5, 0.3
+	name = start, exit
+	offset = 0, 200
+	on_click = ~game, ~close
+}

@@ -2,15 +2,13 @@
 
 event::GUIEvent::operator event::KeyEvent() const noexcept
 {
-    return {value, isPressed};
+    return {value, actionType};
 }
 
 event::GUIEvent::operator event::MouseEvent() const noexcept
 {
-    return {x, y, isPressed, isLeft};
-}
-
-event::GUIEvent::operator event::GazeEvent() const noexcept
-{
-    return {x, y};
+    return {
+        {x, y},
+        actionType, MouseEvent::Button(value)
+    };
 }

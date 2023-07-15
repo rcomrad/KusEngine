@@ -3,32 +3,54 @@
 
 //--------------------------------------------------------------------------------
 
+#include "domain/pair.hpp"
+
 namespace event
 {
+
+enum class ActionType
+{
+    Nun,
+    Pressed,
+    Relised,
+    Gaze
+};
 
 struct KeyEvent
 {
 public:
     int key;
-    bool isPressed = false;
+    ActionType type;
 };
 
 struct MouseEvent
 {
 public:
-    float x, y;
-    bool isPressed;
-    bool isLeft;
-};
+    enum class Button
+    {
+        Nun,
+        Left,
+        Right
+    };
 
-struct GazeEvent
-{
-public:
-    float x, y;
+    dom::Pair<float> coord;
+    ActionType type;
+    Button button;
 };
 
 struct GUIEvent
 {
+public:
+    // union Data
+    // {
+
+    //     int value;
+    //     struct
+    //     {
+    //         float x, y;
+    //     };
+    // };
+
 public:
     enum class Type
     {
@@ -36,19 +58,16 @@ public:
         Close,
         KeyInput,
         MouseInput,
-        Gaze
     };
 
-    GUIEvent::Type type = GUIEvent::Type::Nun;
-
+    GUIEvent::Type type   = GUIEvent::Type::Nun;
+    ActionType actionType = ActionType::Nun;
+    // Data eventData;
     int value = 0;
-    float x = 0, y = 0;
-    bool isPressed = false;
-    bool isLeft    = false;
+    float x, y;
 
     operator KeyEvent() const noexcept;
     operator MouseEvent() const noexcept;
-    operator GazeEvent() const noexcept;
 };
 
 } // namespace event

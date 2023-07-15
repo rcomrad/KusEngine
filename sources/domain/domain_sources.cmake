@@ -1,26 +1,7 @@
 set(
     DOMAIN_SOURCES
 
-    error_message.hpp 
-    error_message.cpp
-
-    file_manager.hpp
-    file_manager.cpp
-
-    flags.hpp
-
-    math.hpp
-    math.cpp
-
+    holy_trinity.hpp
+    
     pair.hpp
-
-    path.hpp
-    path.cpp
-
-    storage.hpp
-
-    string.hpp
-    string.cpp
-
-    type.hpp
 )

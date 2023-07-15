@@ -6,9 +6,6 @@ set(
 
     main.cpp
 
-    menu.cpp
-    menu.hpp
-
     program_state.cpp
     program_state.hpp
     

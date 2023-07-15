@@ -2,28 +2,31 @@
 #define BASIC_OBJECT_HPP
 
 #include <vector>
-#include <set>
-#include <memory>
 
-#include "domain/string.hpp"
+#include "domain/holy_trinity.hpp"
 
-#include "object_types.hpp"
+#include "file/variable.hpp"
+#include "gui/gui_object.hpp"
 
 namespace lgc
 {
-    class BasicObject  : public std::enable_shared_from_this<BasicObject>
-    {
-	public:
-		BasicObject() = default;
-		virtual ~BasicObject() = default;
-		void addTag(str_const_ref aTag);
-		void addTag(std::vector<str_val> aTags);
-		void clearFromStorage();
+class Object : public gui::GUIObject
+{
+public:
+    Object(const file::VariableArray& aVariables);
+    HOLY_TRINITY_MOST(Object);
 
-	private:
-		//std::vector<tag_type> mTags;
-		std::set<tag_type> mTags;
-    };
-}
+    bool interact(const event::MouseEvent& aEvent) noexcept;
+
+private:
+    // std::set<tag_type> mTags;
+
+    std::vector<int> mOnClick;
+    std::vector<int> mmOnGaze;
+    std::vector<int> mUpdate;
+
+    void setOnClickAction(const std::string& aActionStr) noexcept;
+};
+} // namespace lgc
 
 #endif // !BASIC_OBJECT_HPP

@@ -57,6 +57,26 @@ file::Parser::getAllObjects(const std::string& aFileName,
     return result;
 }
 
+std::vector<std::string>
+file::Parser::slice(const std::string& aStr, char delimiter) noexcept
+{
+    std::vector<std::string> result(1);
+
+    for (auto& i : aStr)
+    {
+        if (std::isalpha(i) || i == '_' || i == '~')
+        {
+            result.back().push_back(i);
+        }
+        if (i == ',')
+        {
+            result.emplace_back();
+        }
+    }
+
+    return result;
+}
+
 void
 file::Parser::normalize(std::string& aStr, Type aType) noexcept
 {

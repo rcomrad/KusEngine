@@ -4,7 +4,7 @@
 #include <unordered_map>
 
 #include "gui/gui.hpp"
-#include "gui/scene.hpp"
+#include "logic/scene.hpp"
 
 namespace core
 {
@@ -28,9 +28,11 @@ public:
     static ProgramState& getInstance() noexcept;
 
     void draw(gui::GUI& gui) noexcept;
-    void update() noexcept;
+    void interact() noexcept;
 
     bool isAlive() const noexcept;
+
+    void reset(const std::string& aStateName) noexcept;
 
     // protected:
     //     void close() noexcept;
@@ -40,13 +42,12 @@ private:
     // Name mNewState;
     ProgramState() noexcept;
     bool mIsAlive;
-    std::vector<gui::Scene> mScenes;
+    std::vector<lgc::Scene> mScenes;
 
     std::unordered_map<std::string, std::string> mAllStates;
     // static std::unordered_map<std::string, std::string> loadStates()
     // noexcept;
 
-    void reset(const std::string& aStateName) noexcept;
     void loadState(const std::string& aPath) noexcept;
 };
 } // namespace core

@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "scene.hpp"
+#include "logic/scene.hpp"
 
 namespace gui
 {
@@ -12,7 +12,7 @@ class GUI
 public:
     GUI() noexcept = default;
 
-    void draw(const std::vector<Scene>& aScenes) noexcept;
+    void draw(const std::vector<lgc::Scene>& aScenes) noexcept;
     // void update() noexcept;
 };
 } // namespace gui

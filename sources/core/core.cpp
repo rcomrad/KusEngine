@@ -4,8 +4,8 @@
 #include "file/path.hpp"
 #include "gui/gui.hpp"
 
-#include "menu.hpp"
 #include "program_state.hpp"
+#include "variable_storage.hpp"
 
 core::Core::Core() noexcept
 {
@@ -16,6 +16,9 @@ core::Core::Core() noexcept
     // +"resources/"); paths.setPath("textures",
     // paths.getPath("resources").value() + "textures/");
     paths.setDefault(paths.getPath("main").value() + "resources/");
+
+    core::ProgramState::getInstance().reset(
+        VariableStorage::getInstance().getWord("first_state"));
 }
 
 void
@@ -23,13 +26,13 @@ core::Core::run() noexcept
 {
     gui::GUI gui;
     ProgramState& state = ProgramState::getInstance();
-    auto& em            = event::EventManager::getInstance();
+    // auto& em            = event::EventManager::getInstance();
 
     while (state.isAlive())
     {
         state.draw(gui);
-        em.update();
-        state.update();
+        // em.update();
+        state.interact();
     }
 }
 

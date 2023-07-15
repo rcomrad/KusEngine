@@ -3,8 +3,6 @@
 #include "event/event_manager.hpp"
 #include "file/path.hpp"
 
-#include "variable_storage.hpp"
-
 core::ProgramState::ProgramState() noexcept : mIsAlive(true)
 {
     // setNewState(ProgramState::Name::Nun);
@@ -12,7 +10,7 @@ core::ProgramState::ProgramState() noexcept : mIsAlive(true)
         file::Path::getInstance().getPath("states").value());
     for (auto& i : mAllStates) i.second += '/';
 
-    reset(VariableStorage::getInstance().getWord("first_state"));
+    // reset(VariableStorage::getInstance().getWord("first_state"));
 }
 
 core::ProgramState&
@@ -51,14 +49,35 @@ core::ProgramState::draw(gui::GUI& gui) noexcept
 }
 
 void
-core::ProgramState::update() noexcept
+core::ProgramState::interact() noexcept
 {
-    static auto& em = event::EventManager::getInstance();
+    // static auto& em = event::EventManager::getInstance();
+    // em.update();
 
-    auto newState = em.pollStateEvent();
-    if (newState.has_value())
+    // auto newState = em.pollStateEvent();
+    // if (newState.has_value())
+    // {
+    //     reset(newState.value().name);
+    // }
+
+    auto guiEvents = gui::Window::getInstance().pollEvent();
+    for (const auto& event : guiEvents)
     {
-        reset(newState.value().name);
+        // auto& cell = getCell(event.type);
+
+        switch (event.type)
+        {
+            case event::GUIEvent::Type::Close:
+                // cell.emplace_back().name = "close";
+                reset("close");
+                break;
+            case event::GUIEvent::Type::MouseInput:
+                for (auto& i : mScenes)
+                {
+                    if (i.interact(event::MouseEvent(event))) break;
+                }
+                break;
+        }
     }
 }
 

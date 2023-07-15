@@ -1,5 +1,6 @@
 #include "window.hpp"
 
+#include <SFML/Window/Event.hpp>
 #include <SFML/Window/Mouse.hpp>
 
 #include "core/variable_storage.hpp"
@@ -78,25 +79,37 @@ gui::Window::pollEvent() noexcept
                 break;
 
             case sf::Event::KeyPressed:
-                temp.isPressed = true;
+                temp.actionType = event::ActionType::Pressed;
             case sf::Event::KeyReleased:
-                temp.type  = event::GUIEvent::Type::KeyInput;
+                if (temp.type == event::GUIEvent::Type::Nun)
+                    temp.actionType = event::ActionType::Relised;
+
+                temp.type = event::GUIEvent::Type::KeyInput;
+
                 temp.value = event.key.code;
                 break;
 
             case sf::Event::MouseButtonPressed:
-                temp.isPressed = true;
+                temp.actionType = event::ActionType::Pressed;
             case sf::Event::MouseButtonReleased:
-                temp.type   = event::GUIEvent::Type::MouseInput;
-                temp.isLeft = event.mouseButton.button == sf::Mouse::Left;
+                if (temp.type == event::GUIEvent::Type::Nun)
+                    temp.actionType = event::ActionType::Relised;
+
+                temp.type = event::GUIEvent::Type::MouseInput;
+
+                temp.value =
+                    event.mouseButton.button == sf::Mouse::Left ? 1 : -1;
                 setMousePosition(temp);
                 break;
         }
     }
 
-    auto& temp = result.emplace_back();
-    temp.type  = event::GUIEvent::Type::Gaze;
-    setMousePosition(temp);
+    if (result.empty())
+    {
+        auto& temp = result.emplace_back();
+        temp.type  = event::GUIEvent::Type::MouseInput;
+        setMousePosition(temp);
+    }
 
     return result;
 }

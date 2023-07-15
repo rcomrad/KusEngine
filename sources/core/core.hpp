@@ -3,7 +3,7 @@
 
 //--------------------------------------------------------------------------------
 
-#include <memory>
+#include "domain/holy_trinity.hpp"
 
 namespace core
 {

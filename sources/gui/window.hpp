@@ -2,18 +2,14 @@
 #define KUS_WINDOW_HPP
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/View.hpp>
 
 #include <map>
 #include <vector>
 
-#include "domain/error_message.hpp"
-#include "domain/string.hpp"
-#include "domain/type.hpp"
-
 #include "event/gui_event.hpp"
-
-#include "type.hpp"
 
 namespace gui
 {

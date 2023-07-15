@@ -1,8 +1,8 @@
 set(
     GUI_SOURCES 
 
-    basic_object.cpp
-    basic_object.hpp
+    gui_object.cpp
+    gui_object.hpp
 
     # close_event.cpp
     # close_event.hpp
@@ -34,9 +34,6 @@ set(
 
     window.cpp
     window.hpp
-
-    scene.cpp
-    scene.hpp
 
     # writable.cpp
     # writable.hpp
