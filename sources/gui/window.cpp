@@ -62,6 +62,15 @@ gui::Window::close() noexcept
     return mWindow.close();
 }
 
+void
+gui::Window::convertCoordinates(dom::Pair<float>& aCord,
+                                sf::View aVies) const noexcept
+{
+    auto temp = mWindow.mapPixelToCoords(sf::Vector2i(aCord.x, aCord.y), aVies);
+    aCord.x   = temp.x;
+    aCord.y   = temp.y;
+}
+
 std::vector<event::GUIEvent>
 gui::Window::pollEvent() noexcept
 {

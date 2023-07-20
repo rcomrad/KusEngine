@@ -1,0 +1,8 @@
+{
+	name = basic_levels
+	background = 1000
+	object = 2000
+	effects = 3000
+	menu_bar = 4000
+	menu_bar_background = 5000
+}

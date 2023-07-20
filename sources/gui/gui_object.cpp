@@ -1,15 +1,34 @@
 #include "gui_object.hpp"
 
+#include "file/path.hpp"
+
 gui::GUIObject::GUIObject(const std::string& aTextureName) noexcept
 {
     mTexture.loadFromFile(aTextureName);
     mSprite.setTexture(mTexture);
+
+    mFont.loadFromFile(file::Path::getInstance().getPath("font").value() +
+                       "font.ttf");
+    mText.setFont(mFont);
 }
 
 void
-gui::GUIObject::draw(gui::Window& aWindow) const noexcept
+gui::GUIObject::draw(gui::Window& aWindow) noexcept
 {
-    aWindow.draw(mSprite);
+    if (mTexts.empty())
+    {
+        aWindow.draw(mSprite);
+    }
+    else
+    {
+        auto temp = getPosition();
+        for (auto& i : mTexts)
+        {
+            aWindow.draw(mSprite);
+            move(mOfset);
+        }
+        setPosition(temp);
+    }
 }
 
 void
@@ -46,10 +65,52 @@ gui::GUIObject::getPosition() const noexcept
     return {mSprite.getPosition()};
 }
 
-bool
-gui::GUIObject::contains(const dom::Pair<float>& aCoord) const noexcept
+void
+gui::GUIObject::setOfset(const dom::Pair<float>& aOfset) noexcept
 {
-    return mSprite.getLocalBounds().contains({aCoord.x, aCoord.y});
+    mOfset = aOfset;
+}
+
+void
+gui::GUIObject::setTexts(const std::vector<std::string>& aTexts) noexcept
+{
+    mTexts = aTexts;
+}
+
+void
+gui::GUIObject::emplaceBackText(const std::string& aText) noexcept
+{
+    mTexts.emplace_back(aText);
+}
+
+int
+gui::GUIObject::contains(const dom::Pair<float>& aCoord) noexcept
+{
+    int result = -1;
+    if (mTexts.empty())
+    {
+        result =
+            mSprite.getGlobalBounds().contains({aCoord.x, aCoord.y}) ? 1 : -1;
+    }
+    else
+    {
+        auto temp = getPosition();
+        for (int i = 0; i < mTexts.size(); ++i)
+        {
+            auto t1  = mSprite.getLocalBounds();
+            auto t2  = mSprite.getGlobalBounds();
+            auto t23 = mSprite.getTextureRect();
+
+            if (mSprite.getGlobalBounds().contains({aCoord.x, aCoord.y}))
+            {
+                result = i;
+                break;
+            }
+            move(mOfset);
+        }
+        setPosition(temp);
+    }
+    return result;
 }
 
 gui::GUIObject::PositionUnion::operator sf::Vector2f() const noexcept

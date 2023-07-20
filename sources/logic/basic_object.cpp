@@ -9,16 +9,19 @@
 #include "functor_storage.hpp"
 
 lgc::Object::Object(const file::VariableArray& aVariables)
-    : GUIObject(file::Path::getInstance().getPath("textures").value() +
+    : GUIObject(file::Path::getInstance().getPath("texture").value() +
                 std::string(aVariables.find("texture")->second))
 {
     static std::unordered_map<std::string,
                               std::function<void(const file::Value& aVal)>>
         handler = {
-            {"scale",    [&](const file::Value& aVal) { setScale(aVal); }   },
-            {"position", [&](const file::Value& aVal) { setPosition(aVal); }},
+            {"scale",    [&](const file::Value& aVal) { setScale(aVal); }     },
+            {"position", [&](const file::Value& aVal) { setPosition(aVal); }  },
+            {"ofset",    [&](const file::Value& aVal) { setOfset(aVal); }     },
+            {"text",     [&](const file::Value& aVal)
+             { setTexts(file::Parser::slice(aVal, ',')); }},
             {"on_click",
-             [&](const file::Value& aVal) { setOnClickAction(aVal); }       }
+             [&](const file::Value& aVal) { setOnClickAction(aVal); }         }
     };
 
     for (const auto& i : aVariables)
@@ -35,13 +38,15 @@ bool
 lgc::Object::interact(const event::MouseEvent& aEvent) noexcept
 {
     static auto& funcStorage = FunctorStorage::getInstance();
-
-    bool result = false;
-    if (contains(aEvent.coord))
+    // if (aEvent.type != event::ActionType::Relised)
+    bool result   = false;
+    int intersect = contains(aEvent.coord);
+    if (intersect != -1)
     {
         if (aEvent.type == event::ActionType::Relised)
         {
-            if (!mOnClick.empty()) funcStorage.executeFunctor(mOnClick[0]);
+            if (!mOnClick.empty())
+                funcStorage.executeFunctor(mOnClick[intersect]);
         }
         result = true;
     }

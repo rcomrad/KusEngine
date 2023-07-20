@@ -1,9 +1,4 @@
 {
-	setting = yes
-	type = level
-	load = basic_levels
-}
-{
 	name = button
 	texture = button.png
 	position = 100,100
@@ -12,9 +7,4 @@
 	ofset = 0, 200
 	on_click = ~game, ~close
 	level = object
-}
-{
-	name = button
-	texture = background.png
-	level = background
 }

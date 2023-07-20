@@ -27,6 +27,9 @@ public:
 
     void setView(const sf::View& aView) noexcept;
 
+    void convertCoordinates(dom::Pair<float>& aCord,
+                            sf::View aVies) const noexcept;
+
     std::vector<event::GUIEvent> pollEvent() noexcept;
 
 private:

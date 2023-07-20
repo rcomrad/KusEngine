@@ -2,6 +2,7 @@
 #define GUI_OBJECT_HPP
 
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/Vector2.hpp>
 
@@ -23,7 +24,7 @@ public:
     GUIObject(const std::string& aTextureName) noexcept;
     HOLY_TRINITY_MOST(GUIObject);
 
-    void draw(Window& aWindow) const noexcept;
+    void draw(Window& aWindow) noexcept;
 
     void move(const dom::Pair<float>& aCoord) noexcept;
     void setPosition(const dom::Pair<float>& aCoord) noexcept;
@@ -34,11 +35,22 @@ public:
 
     PositionUnion getPosition() const noexcept;
 
-    bool contains(const dom::Pair<float>& aCoord) const noexcept;
+    void setOfset(const dom::Pair<float>& aOfset) noexcept;
+    void setTexts(const std::vector<std::string>& aTexts) noexcept;
+    void emplaceBackText(const std::string& aText) noexcept;
+
+    int contains(const dom::Pair<float>& aCoord) noexcept;
 
 private:
     sf::Texture mTexture;
     sf::Sprite mSprite;
+    // static sf::Text mText;
+    // static sf::Font mFont;
+    sf::Text mText;
+    sf::Font mFont;
+
+    dom::Pair<float> mOfset;
+    std::vector<std::string> mTexts;
 
     struct PositionUnion
     {

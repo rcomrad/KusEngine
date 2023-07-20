@@ -12,7 +12,7 @@ class GUI
 public:
     GUI() noexcept = default;
 
-    void draw(const std::vector<lgc::Scene>& aScenes) noexcept;
+    void draw(std::vector<lgc::Scene>& aScenes) noexcept;
     // void update() noexcept;
 };
 } // namespace gui

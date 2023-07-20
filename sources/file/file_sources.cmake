@@ -1,6 +1,9 @@
 set(
     FILE_SOURCES
 
+    common_data.cpp
+    common_data.hpp
+
     file.cpp
     file.hpp
 

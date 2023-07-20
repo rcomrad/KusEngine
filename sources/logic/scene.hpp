@@ -20,13 +20,23 @@ public:
     Scene(const std::string& aPath) noexcept;
     HOLY_TRINITY_MOST(Scene);
 
-    void draw() const noexcept;
-    bool interact(const event::MouseEvent& aEvent) noexcept;
+    void draw() noexcept;
+    bool interact(event::MouseEvent aEvent) noexcept;
 
 private:
     sf::View mView;
 
-    std::vector<Object> mObjects;
+    std::unordered_map<std::string, int> mLevelValue;
+    std::map<int, std::vector<Object>> mObjects;
+
+    void applySettings(std::vector<file::VariableArray>& aVariables) noexcept;
+
+    void loadLevels(file::VariableArray& aVariables) noexcept;
+
+    int getObjectLevel(file::VariableArray& aVariables) const noexcept;
+
+    static void loadObjectInfo(const std::string& aPath,
+                     file::VariableArray& aVariables) noexcept;
 };
 } // namespace lgc
 

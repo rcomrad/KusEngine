@@ -8,7 +8,7 @@
 // }
 
 void
-gui::GUI::draw(const std::vector<lgc::Scene>& aScenes) noexcept
+gui::GUI::draw(std::vector<lgc::Scene>& aScenes) noexcept
 {
 
     auto& window = Window::getInstance();

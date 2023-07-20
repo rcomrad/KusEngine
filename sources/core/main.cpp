@@ -11,14 +11,32 @@
 int
 main(int argc, char* argv[])
 {
-    // sf::Sprite tttt1;
-    // std::cout << "Sprite: " << sizeof(tttt1) << "\n";
+    // sf::Texture Texture;
+    // std::cout << "Texture: " << sizeof(Texture) << "\n";
 
-    // sf::Texture tttt2;
-    // std::cout << "Texture: " << sizeof(tttt2) << "\n";
+    // sf::Sprite Sprite;
+    // std::cout << "Sprite: " << sizeof(Sprite) << "\n";
 
-    // sf::Text tttt3;
-    // std::cout << "Text: " << sizeof(tttt3) << "\n";
+    // sf::Font Font;
+    // std::cout << "Font: " << sizeof(Font) << "\n";
+
+    // sf::Text Text;
+    // std::cout << "Text: " << sizeof(Text) << "\n";
+    // std::cout << "--------------------------\n";
+
+    // Texture.loadFromFile(
+    //     "D:/projects/VSCode/KusEngine0/resources/texture/background.png");
+    // std::cout << "Texture: " << sizeof(Texture) << "\n";
+
+    // Sprite.setTexture(Texture);
+    // std::cout << "Sprite: " << sizeof(Sprite) << "\n";
+
+    // Font.loadFromFile("D:/projects/VSCode/KusEngine0/resources/font/font.ttf");
+    // std::cout << "Font: " << sizeof(Font) << "\n";
+
+    // Text.setFont(Font);
+    // std::cout << "Text: " << sizeof(Text) << "\n";
+    // std::cout << "--------------------------\n";
 
     // std::unique_ptr<std::string> tttt4;
     // std::cout << "std::unique_ptr<std::string>: " << sizeof(tttt4) << "\n";

@@ -25,6 +25,7 @@ private:
     std::vector<int> mmOnGaze;
     std::vector<int> mUpdate;
 
+
     void setOnClickAction(const std::string& aActionStr) noexcept;
 };
 } // namespace lgc
